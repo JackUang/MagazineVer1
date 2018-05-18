@@ -1,0 +1,59 @@
+﻿
+    @section scripts
+    {
+    @*匯入驗證與AJAX所須的JavaScript*@
+    @Scripts.Render("~/bundles/jqueryval")
+    @*匯入本頁面的JavaScript*@
+    @Scripts.Render("~/jQuery/Home/InfosList.js")
+
+
+
+    }
+
+
+
+    <div class="container-fluid" style="">
+	<div class="row">
+      
+
+<h2 style="margin: auto;
+    text-align: center;
+    background-color: #ffffff;
+    font-weight: 500;
+">會員廣告刊登管理後台<br></h2>
+
+		<div class="col-md-12" style="margin-top: 5%;">            
+                <input type="button" class="btn btn-warning" style="font-size: 25px; font-weight: 600; margin: auto; display: block;
+                    " onclick="javascript:window.location='@Url.Action("Publish", "Create")'"  value="新增廣告">
+                    <font>
+                        <font class="">                           
+                        </font>
+                    </font>
+          @*<button type="button" class="btn btn-warning" style="font-size: 25px;
+    font-weight: 600;
+    margin: auto;
+    display: block;
+"><font><font class="">新增廣告</font></font></button>*@
+            <br>
+            @{var c = 50 - ViewBag.Total;}
+            <span id="ContentPlaceHolder1_Label8" style="font-size:Large;margin: auto;display: -webkit-inline-box;text-align: center;">
+                您還可以新增 
+            </span>            
+            <span id="ContentPlaceHolder1_Label8" style="font-size:Large;margin: auto;text-align: center;">
+               @c
+            </span>
+            <span id="ContentPlaceHolder1_Label8" style="font-size:Large;margin: auto;text-align: center;">
+                則廣告
+            </span>
+               
+                @*載入文章列表內容*@
+                <div id="InfosListBlock">
+                    @Html.Action("List1", "Create")
+                </div>
+
+</div>
+	</div>
+     
+</div>
+
+ 

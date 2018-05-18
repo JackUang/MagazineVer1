@@ -1,0 +1,11 @@
+﻿@using (Ajax.BeginForm("GetBroadcastType", new AjaxOptions { UpdateTargetId = "ddlBroadcastTypeList" }))
+{
+    @Html.AntiForgeryToken()
+    <span>
+        @Html.DropDownList("ddlTownshipCity", ViewBag.DDLTownshipCityList as IEnumerable<SelectListItem>, "請選擇鄉鎮市區", new { onchange= "ddlTownshipCitySubmit($(this).parents('form'));" })    
+        @Html.Hidden("countyCity", (string)ViewBag.County)
+    </span>
+}
+
+
+                                                                                

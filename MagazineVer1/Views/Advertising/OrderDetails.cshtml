@@ -1,0 +1,160 @@
+﻿@model MagazineVer1.Models.ViewModels.Web.ResOrderDetails
+@{
+    ViewBag.Title = "訂單明細";
+    int totalPrice = 0; // 小計總金額
+    int advertisingTotalPrice = 0; // 分類總金額
+    int broadcastTotalPrice = 0; // 播點總金額
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <td>訂單編號：</td>
+        <td>@Model.OrderNumber</td>
+    </tr>
+    <tr>
+        <td>訂單日期：</td>
+        <td>@Model.OrderDateTime</td>
+    </tr>
+    <tr>
+        <td>轉帳總金額：</td>
+        <td>NT$@Model.OrderPrice</td>
+    </tr>
+    <tr>
+        <td>姓名：</td>
+        <td>@Model.UserName</td>
+    </tr>
+    <tr>
+        <td>電子信箱：</td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td>手機號碼：</td>
+        <td>@Model.Phone</td>
+    </tr>
+    <tr>
+        <td>發票抬頭：</td>
+        <td>@Model.InvoiceTitle</td>
+    </tr>
+    <tr>
+        <td>統一編號：</td>
+        <td>@Model.InvoiceCode</td>
+    </tr>
+    <tr>
+        <td>發票地址：</td>
+        <td>@Model.InvoiceAddress</td>
+    </tr>
+</table>
+
+<br /><br />
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>標題</th>
+            <th>小計</th>
+            <th>分類小計</th>
+            <th>播點小計</th>
+            <th>試刊期</th>
+            <th>正式期</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (null != Model.PayAdvertising && 0 < Model.PayAdvertising.Count)
+        {
+            foreach (var item in Model.PayAdvertising)
+            {
+                totalPrice += item.AdvertisingPrice + item.BroadcastPrice;
+                advertisingTotalPrice += item.AdvertisingPrice;
+                broadcastTotalPrice += item.BroadcastPrice;
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><a href="/Advertising/AdvertisingPublishedContent?on=@(Model.OrderNumber)&infId=@item.Id">@item.Title</a></td>
+                    <td>NT$@(item.AdvertisingPrice + item.BroadcastPrice)</td>
+                    <td>NT$@item.AdvertisingPrice</td>
+                    <td>NT$@item.BroadcastPrice</td>
+                    <td>@item.Probation</td>
+                    <td>@item.FormalPeriod</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        }
+        <tr>
+            <td>付費項目小計</td>
+            <td>@((null != Model.PayAdvertising && 0 < Model.PayAdvertising.Count)? Model.PayAdvertising.Count : 0)</td>
+            <td>NT$@totalPrice</td>
+            <td>NT$@advertisingTotalPrice</td>
+            <td>NT$@broadcastTotalPrice</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+
+<br /><br />
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>標題</th>
+            <th>小計</th>
+            <th>分類小計</th>
+            <th>播點小計</th>
+            <th>試刊期</th>
+            <th>正式期</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (null != Model.FreeAdvertising && 0 < Model.FreeAdvertising.Count)
+        {
+            foreach (var item in Model.FreeAdvertising)
+            {
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><a href="/Advertising/AdvertisingPublishedContent?on=@item.Id">@item.Title</a></td>
+                    <td>NT$@(item.AdvertisingPrice + item.BroadcastPrice)</td>
+                    <td>NT$@item.AdvertisingPrice</td>
+                    <td>NT$@item.BroadcastPrice</td>
+                    <td>@item.Probation</td>
+                    <td>@item.FormalPeriod</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        }
+        <tr>
+            <td>免費項目小計</td>
+            <td>@((null != Model.FreeAdvertising && 0 < Model.FreeAdvertising.Count) ? Model.FreeAdvertising.Count : 0)</td>
+            <td>NT$0</td>
+            <td>NT$0</td>
+            <td>NT$0</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<a href="@Url.Action("NoticeCheckBill", new { on =  @Model.OrderNumber})" class="btn btn-warning" role="button">確定</a>

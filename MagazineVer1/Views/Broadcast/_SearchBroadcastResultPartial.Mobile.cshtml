@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MagazineVer1.Models.ViewModels.Web.BroadcastViewModels>
+
+@{ 
+    string county = ViewBag.County;
+    string township = ViewBag.Township;
+    string broadcastPointType = ViewBag.BroadcastPointType;
+    string keywords = ViewBag.keywords;
+}
+
+@if ("SearchBroadcastResult".Equals(ViewContext.RouteData.Values["action"].ToString()) && (null == Model || 0 >= Model.Count()))
+{
+    <h2 style="color:red;">查無資料</h2>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bpt_broadcastPoint)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bdf_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.d_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.d_location3)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.d_location4)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                string href = Url.Action("ConditionalSearchPushAdvertising", new
+                {
+                    bp = item.bpt_broadcastPoint,
+                    bdf_name = item.bdf_name,
+                    bd_name = item.d_name,
+                    bdl3 = item.d_location3,
+                    bdl4 = item.d_location4,
+                    county = county,
+                    township = township
+                });
+                <tr data-href="@( (0 >= item.quantity) ? string.Empty : href)">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bpt_broadcastPoint)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bdf_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.d_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.d_location3)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.d_location4)
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="6" align="left">總共有 @Model.Count() 個播點</td>
+            </tr>
+        </tbody>
+    </table>
+}
+

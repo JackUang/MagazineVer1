@@ -1,0 +1,8 @@
+﻿
+
+<span>
+    @Html.AntiForgeryToken()
+    @Html.DropDownList("group", new SelectList(ViewBag.Group), "=== 請選擇 ===", new { onchange = "doDdl3Submit($(this).parents('form'));" })
+    @Html.Hidden("hiddenCounty", (string)ViewBag.County)
+    @*@Html.Hidden("hiddenTown", (string)ViewBag.Town)*@
+</span>

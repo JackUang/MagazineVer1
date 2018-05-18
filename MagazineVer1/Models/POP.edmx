@@ -1,0 +1,2164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="POPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BeaconDevice">
+          <Key>
+            <PropertyRef Name="d_id" />
+          </Key>
+          <Property Name="d_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="d_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="d_out_day" Type="datetime" Nullable="false" />
+          <Property Name="d_location1" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="d_location2" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="d_location3" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="d_location4" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="d_holder" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="d_memo" Type="varchar(max)" />
+          <Property Name="belongto" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="d_owner" Type="bit" />
+          <Property Name="bdf_id" Type="int" />
+          <Property Name="bpt_id" Type="int" />
+        </EntityType>
+        <EntityType Name="BeaconDeviceFlow">
+          <Key>
+            <PropertyRef Name="bdf_id" />
+          </Key>
+          <Property Name="bdf_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bdf_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="bdf_content" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="bdf_price" Type="int" />
+        </EntityType>
+        <EntityType Name="BroadcastPointType">
+          <Key>
+            <PropertyRef Name="bpt_id" />
+          </Key>
+          <Property Name="bpt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bpt_broadcastPoint" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="DeviceInfo">
+          <Key>
+            <PropertyRef Name="d_id" />
+            <PropertyRef Name="i_id" />
+          </Key>
+          <Property Name="d_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="i_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeviceUsers">
+          <Key>
+            <PropertyRef Name="d_id" />
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="d_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="u_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InfoGroupp">
+          <Key>
+            <PropertyRef Name="ig_id" />
+          </Key>
+          <Property Name="ig_id" Type="int" Nullable="false" />
+          <Property Name="ig_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ig_pic" Type="nvarchar" MaxLength="50" />
+          <Property Name="ig_price" Type="int" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Infos">
+          <Key>
+            <PropertyRef Name="i_id" />
+          </Key>
+          <Property Name="i_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="i_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="i_content" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="i_initial_day" Type="datetime" Nullable="false" />
+          <Property Name="i_expired_day" Type="datetime" Nullable="false" />
+          <Property Name="i_location1" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_location2" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_pic1" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic2" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic3" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic4" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic5" Type="varchar" MaxLength="255" />
+          <Property Name="i_URL" Type="varchar" MaxLength="50" />
+          <Property Name="ig_id" Type="int" Nullable="false" />
+          <Property Name="u_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="i_unconfirm" Type="bit" Nullable="false" />
+          <Property Name="ip_discount" Type="int" Nullable="false" />
+          <Property Name="ip_days" Type="int" Nullable="false" />
+          <Property Name="bill" Type="int" Nullable="false" />
+          <Property Name="i_LINE" Type="varchar" MaxLength="255" />
+          <Property Name="i_open" Type="bit" Nullable="false" />
+          <Property Name="or_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_create_datetime" Type="datetime" />
+          <Property Name="i_probation" Type="nvarchar" MaxLength="256" />
+          <Property Name="i_formal_period" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="InvoiceType">
+          <Key>
+            <PropertyRef Name="inv_id" />
+          </Key>
+          <Property Name="inv_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inv_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="inv_description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="OrderRecord">
+          <Key>
+            <PropertyRef Name="or_id" />
+          </Key>
+          <Property Name="or_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="or_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="or_create_datetime" Type="datetime" Nullable="false" />
+          <Property Name="or_invoice_title" Type="nvarchar" MaxLength="50" />
+          <Property Name="or_invoice_address" Type="nvarchar" MaxLength="512" />
+          <Property Name="or_invoice_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="inv_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="or_invoice_public" Type="bit" Nullable="false" />
+          <Property Name="u_id" Type="nvarchar" MaxLength="128" />
+          <Property Name="bill" Type="int" Nullable="false" />
+          <Property Name="or_payment_status" Type="bit" Nullable="false" />
+          <Property Name="or_payment_confirmed" Type="bit" Nullable="false" />
+          <Property Name="or_remitMoney_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="or_remitMoney_time" Type="datetime" />
+          <Property Name="or_remitMoney" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P_InfoPrice">
+          <Key>
+            <PropertyRef Name="ip_id" />
+          </Key>
+          <Property Name="ip_id" Type="int" Nullable="false" />
+          <Property Name="ip_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ip_discount" Type="int" Nullable="false" />
+          <Property Name="ip_days" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sales">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="int" Nullable="false" />
+          <Property Name="s_day" Type="datetime" Nullable="false" />
+          <Property Name="i_day" Type="datetime" Nullable="false" />
+          <Property Name="i_expired_day" Type="datetime" Nullable="false" />
+          <Property Name="bill" Type="int" Nullable="false" />
+          <Property Name="ip_discount" Type="int" Nullable="false" />
+          <Property Name="i_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="i_content" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ip_days" Type="int" Nullable="false" />
+          <Property Name="u_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="u_mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="u_phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="u_id" Type="int" Nullable="false" />
+          <Property Name="belongto" Type="int" Nullable="false" />
+          <Property Name="ifout" Type="bit" Nullable="false" />
+          <Property Name="invoice_code" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="town">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="int" Nullable="false" />
+          <Property Name="c_county" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="c_town" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="c_zipcode" Type="nvarchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="u_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="HireDate" Type="date" Nullable="false" />
+          <Property Name="CurrentFlag" Type="bit" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="date" Nullable="false" />
+          <Property Name="receipt" Type="nvarchar" MaxLength="10" />
+          <Property Name="p_fee" Type="int" Nullable="false" />
+          <Property Name="p_lastFeeDate" Type="date" Nullable="false" />
+          <Property Name="PhoneNumber1" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PhoneNumber2" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="u_memo" Type="nvarchar(max)" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="u_active" Type="bit" Nullable="false" />
+          <Property Name="belongto" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CommCircleName" Type="nchar" MaxLength="10" />
+          <Property Name="u_location1" Type="nvarchar" MaxLength="10" />
+          <Property Name="u_location2" Type="nvarchar" MaxLength="10" />
+          <Property Name="u_location3" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressID" Type="int" />
+          <Property Name="AddressTypedId" Type="int" />
+          <Property Name="PostalCode" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="SpatialLocation" Type="geography" />
+          <Property Name="applyupgrade" Type="int" Nullable="false" />
+          <Property Name="rejectreason" Type="nvarchar" MaxLength="255" />
+          <Property Name="u_occupation1" Type="nvarchar" MaxLength="50" />
+          <Property Name="u_occupation2" Type="nvarchar(max)" />
+          <Property Name="u_occupation3" Type="nvarchar(max)" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'POP.dbo.AAA' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="AAA">
+          <Key>
+            <PropertyRef Name="c_id" />
+            <PropertyRef Name="c_county" />
+            <PropertyRef Name="c_town" />
+            <PropertyRef Name="c_zipcode" />
+          </Key>
+          <Property Name="c_id" Type="int" Nullable="false" />
+          <Property Name="c_county" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="c_town" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="c_zipcode" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="d_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="d_name" Type="varchar" MaxLength="20" />
+          <Property Name="d_out_day" Type="datetime" />
+          <Property Name="d_location1" Type="varchar" MaxLength="10" />
+          <Property Name="d_location2" Type="varchar" MaxLength="10" />
+          <Property Name="d_location3" Type="varchar" MaxLength="10" />
+          <Property Name="d_location4" Type="varchar" MaxLength="10" />
+          <Property Name="d_holder" Type="varchar" MaxLength="20" />
+          <Property Name="d_memo" Type="varchar(max)" />
+          <Property Name="belongto" Type="nvarchar" MaxLength="128" />
+          <Property Name="i_id" Type="int" />
+          <Property Name="i_name" Type="varchar" MaxLength="50" />
+          <Property Name="i_content" Type="varchar" MaxLength="600" />
+          <Property Name="i_initial_day" Type="datetime" />
+          <Property Name="i_expired_day" Type="datetime" />
+          <Property Name="i_pic1" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic2" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic3" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic4" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic5" Type="varchar" MaxLength="255" />
+          <Property Name="i_URL" Type="varchar" MaxLength="50" />
+          <Property Name="ig_id" Type="int" />
+          <Property Name="u_id" Type="nvarchar" MaxLength="128" />
+          <Property Name="i_unconfirm" Type="bit" />
+          <Property Name="ip_discount" Type="int" />
+          <Property Name="ip_days" Type="int" />
+          <Property Name="bill" Type="int" />
+          <Property Name="i_LINE" Type="varchar" MaxLength="255" />
+          <Property Name="i_location1" Type="nchar" MaxLength="10" />
+          <Property Name="i_location2" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'POP.dbo.uv_AdvertisingCategoryCount' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="uv_AdvertisingCategoryCount">
+          <Key>
+            <PropertyRef Name="ig_id" />
+          </Key>
+          <Property Name="ig_id" Type="int" Nullable="false" />
+          <Property Name="ig_name" Type="varchar" MaxLength="20" />
+          <Property Name="count" Type="int" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'POP.dbo.uv_AllBroadcast' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="uv_AllBroadcast">
+          <Key>
+            <PropertyRef Name="d_id" />
+            <PropertyRef Name="d_name" />
+            <PropertyRef Name="d_out_day" />
+            <PropertyRef Name="d_location1" />
+            <PropertyRef Name="d_location2" />
+            <PropertyRef Name="d_location3" />
+            <PropertyRef Name="d_location4" />
+            <PropertyRef Name="d_holder" />
+            <PropertyRef Name="belongto" />
+          </Key>
+          <Property Name="d_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="d_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="d_out_day" Type="datetime" Nullable="false" />
+          <Property Name="d_location1" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="d_location2" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="d_location3" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="d_location4" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="d_holder" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="d_memo" Type="varchar(max)" />
+          <Property Name="belongto" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="d_owner" Type="bit" />
+          <Property Name="bdf_id" Type="int" />
+          <Property Name="bpt_id" Type="int" />
+          <Property Name="bpt_broadcastPoint" Type="nvarchar" MaxLength="200" />
+          <Property Name="bdf_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="bdf_content" Type="nvarchar" MaxLength="50" />
+          <Property Name="bdf_price" Type="int" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'POP.dbo.uv_ClassifiedAdsSearch' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="uv_ClassifiedAdsSearch">
+          <Key>
+            <PropertyRef Name="i_id" />
+            <PropertyRef Name="i_name" />
+            <PropertyRef Name="i_content" />
+            <PropertyRef Name="i_initial_day" />
+            <PropertyRef Name="i_expired_day" />
+            <PropertyRef Name="ig_id" />
+            <PropertyRef Name="u_id" />
+            <PropertyRef Name="i_unconfirm" />
+            <PropertyRef Name="ip_discount" />
+            <PropertyRef Name="ip_days" />
+            <PropertyRef Name="bill" />
+            <PropertyRef Name="i_open" />
+          </Key>
+          <Property Name="i_id" Type="int" Nullable="false" />
+          <Property Name="i_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="i_content" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="i_initial_day" Type="datetime" Nullable="false" />
+          <Property Name="i_expired_day" Type="datetime" Nullable="false" />
+          <Property Name="i_location1" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_location2" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_pic1" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic2" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic3" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic4" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic5" Type="varchar" MaxLength="255" />
+          <Property Name="i_URL" Type="varchar" MaxLength="50" />
+          <Property Name="ig_id" Type="int" Nullable="false" />
+          <Property Name="u_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="i_unconfirm" Type="bit" Nullable="false" />
+          <Property Name="ip_discount" Type="int" Nullable="false" />
+          <Property Name="ip_days" Type="int" Nullable="false" />
+          <Property Name="bill" Type="int" Nullable="false" />
+          <Property Name="i_LINE" Type="varchar" MaxLength="255" />
+          <Property Name="i_open" Type="bit" Nullable="false" />
+          <Property Name="or_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_create_datetime" Type="datetime" />
+          <Property Name="i_probation" Type="nvarchar" MaxLength="256" />
+          <Property Name="i_formal_period" Type="nvarchar" MaxLength="256" />
+          <Property Name="ig_name" Type="varchar" MaxLength="20" />
+          <Property Name="ig_pic" Type="nvarchar" MaxLength="50" />
+          <Property Name="ig_price" Type="int" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="U2_id" Type="nvarchar" MaxLength="128" />
+          <Property Name="free_id" Type="int" />
+          <Property Name="co_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="co_belong" Type="nvarchar" MaxLength="128" />
+          <Property Name="co_location1" Type="varchar" MaxLength="10" />
+          <Property Name="co_location2" Type="varchar" MaxLength="10" />
+          <Property Name="co_location3" Type="varchar" MaxLength="10" />
+          <Property Name="co_location4" Type="varchar" MaxLength="10" />
+          <Property Name="cl_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="cl_belong" Type="nvarchar" MaxLength="128" />
+          <Property Name="cl_location1" Type="varchar" MaxLength="10" />
+          <Property Name="cl_location2" Type="varchar" MaxLength="10" />
+          <Property Name="cl_location3" Type="varchar" MaxLength="10" />
+          <Property Name="cl_location4" Type="varchar" MaxLength="10" />
+          <Property Name="ac_zipcode" Type="nvarchar" MaxLength="20" />
+          <Property Name="ac_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="ac_location1" Type="nvarchar" MaxLength="10" />
+          <Property Name="ac_location2" Type="nvarchar" MaxLength="10" />
+          <Property Name="ac_location3" Type="nvarchar" MaxLength="50" />
+          <Property Name="ac_belong" Type="int" />
+          <Property Name="ac_family" Type="int" />
+          <Property Name="ac_building" Type="int" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'POP.dbo.uv_ConditionalSearchPushAdvertisin' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="uv_ConditionalSearchPushAdvertisin">
+          <Key>
+            <PropertyRef Name="i_id" />
+          </Key>
+          <Property Name="d_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_id" Type="int" Nullable="false" />
+          <Property Name="d_name" Type="varchar" MaxLength="20" />
+          <Property Name="d_out_day" Type="datetime" />
+          <Property Name="d_location1" Type="varchar" MaxLength="10" />
+          <Property Name="d_location2" Type="varchar" MaxLength="10" />
+          <Property Name="d_location3" Type="varchar" MaxLength="10" />
+          <Property Name="d_location4" Type="varchar" MaxLength="10" />
+          <Property Name="d_holder" Type="varchar" MaxLength="20" />
+          <Property Name="d_memo" Type="varchar(max)" />
+          <Property Name="belongto" Type="nvarchar" MaxLength="128" />
+          <Property Name="d_owner" Type="bit" />
+          <Property Name="bdf_id" Type="int" />
+          <Property Name="bpt_id" Type="int" />
+          <Property Name="bpt_broadcastPoint" Type="nvarchar" MaxLength="200" />
+          <Property Name="bdf_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="bdf_content" Type="nvarchar" MaxLength="50" />
+          <Property Name="bdf_price" Type="int" />
+          <Property Name="i_name" Type="varchar" MaxLength="50" />
+          <Property Name="i_content" Type="varchar" MaxLength="600" />
+          <Property Name="i_initial_day" Type="datetime" />
+          <Property Name="i_expired_day" Type="datetime" />
+          <Property Name="i_location1" Type="nchar" MaxLength="10" />
+          <Property Name="i_location2" Type="nchar" MaxLength="10" />
+          <Property Name="i_pic1" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic2" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic3" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic4" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic5" Type="varchar" MaxLength="255" />
+          <Property Name="i_URL" Type="varchar" MaxLength="50" />
+          <Property Name="ig_id" Type="int" />
+          <Property Name="u_id" Type="nvarchar" MaxLength="128" />
+          <Property Name="i_unconfirm" Type="bit" />
+          <Property Name="ip_discount" Type="int" />
+          <Property Name="ip_days" Type="int" />
+          <Property Name="bill" Type="int" />
+          <Property Name="i_LINE" Type="varchar" MaxLength="255" />
+          <Property Name="i_open" Type="bit" />
+          <Property Name="ig_name" Type="varchar" MaxLength="20" />
+          <Property Name="ig_pic" Type="nvarchar" MaxLength="50" />
+          <Property Name="ig_price" Type="int" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="U2_id" Type="nvarchar" MaxLength="128" />
+          <Property Name="free_id" Type="int" />
+          <Property Name="co_id" Type="int" />
+          <Property Name="co_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="co_belong" Type="nvarchar" MaxLength="128" />
+          <Property Name="co_location1" Type="varchar" MaxLength="10" />
+          <Property Name="co_location2" Type="varchar" MaxLength="10" />
+          <Property Name="co_location3" Type="varchar" MaxLength="10" />
+          <Property Name="co_location4" Type="varchar" MaxLength="10" />
+          <Property Name="ac_Id" Type="int" />
+          <Property Name="ac_zipcode" Type="nvarchar" MaxLength="20" />
+          <Property Name="ac_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="ac_location1" Type="nvarchar" MaxLength="10" />
+          <Property Name="ac_location2" Type="nvarchar" MaxLength="10" />
+          <Property Name="ac_location3" Type="nvarchar" MaxLength="50" />
+          <Property Name="ac_belong" Type="int" />
+          <Property Name="ac_family" Type="int" />
+          <Property Name="ac_building" Type="int" />
+          <Property Name="cl_id" Type="int" />
+          <Property Name="cl_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="cl_belong" Type="nvarchar" MaxLength="128" />
+          <Property Name="cl_location1" Type="varchar" MaxLength="10" />
+          <Property Name="cl_location2" Type="varchar" MaxLength="10" />
+          <Property Name="cl_location3" Type="varchar" MaxLength="10" />
+          <Property Name="cl_location4" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'POP.dbo.uv_PublishedInquire' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="uv_PublishedInquire">
+          <Key>
+            <PropertyRef Name="i_id" />
+            <PropertyRef Name="i_name" />
+            <PropertyRef Name="i_content" />
+            <PropertyRef Name="i_initial_day" />
+            <PropertyRef Name="i_expired_day" />
+            <PropertyRef Name="ig_id" />
+            <PropertyRef Name="u_id" />
+            <PropertyRef Name="i_unconfirm" />
+            <PropertyRef Name="ip_discount" />
+            <PropertyRef Name="ip_days" />
+            <PropertyRef Name="bill" />
+            <PropertyRef Name="i_open" />
+          </Key>
+          <Property Name="i_id" Type="int" Nullable="false" />
+          <Property Name="i_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="i_content" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="i_initial_day" Type="datetime" Nullable="false" />
+          <Property Name="i_expired_day" Type="datetime" Nullable="false" />
+          <Property Name="i_location1" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_location2" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_pic1" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic2" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic3" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic4" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic5" Type="varchar" MaxLength="255" />
+          <Property Name="i_URL" Type="varchar" MaxLength="50" />
+          <Property Name="ig_id" Type="int" Nullable="false" />
+          <Property Name="u_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="i_unconfirm" Type="bit" Nullable="false" />
+          <Property Name="ip_discount" Type="int" Nullable="false" />
+          <Property Name="ip_days" Type="int" Nullable="false" />
+          <Property Name="bill" Type="int" Nullable="false" />
+          <Property Name="i_LINE" Type="varchar" MaxLength="255" />
+          <Property Name="i_open" Type="bit" Nullable="false" />
+          <Property Name="or_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="i_create_datetime" Type="datetime" />
+          <Property Name="i_probation" Type="nvarchar" MaxLength="256" />
+          <Property Name="i_formal_period" Type="nvarchar" MaxLength="256" />
+          <Property Name="ig_name" Type="varchar" MaxLength="20" />
+          <Property Name="ig_pic" Type="nvarchar" MaxLength="50" />
+          <Property Name="ig_price" Type="int" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="or_id" Type="int" />
+          <Property Name="or_create_datetime" Type="datetime" />
+          <Property Name="or_invoice_title" Type="nvarchar" MaxLength="50" />
+          <Property Name="or_invoice_address" Type="nvarchar" MaxLength="512" />
+          <Property Name="or_invoice_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="inv_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="or_invoice_public" Type="bit" />
+          <Property Name="or_payment_status" Type="bit" />
+          <Property Name="or_payment_confirmed" Type="bit" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'POP.dbo.View_AspNetUsers_Infos' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="View_AspNetUsers_Infos">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="i_id" />
+            <PropertyRef Name="i_name" />
+            <PropertyRef Name="i_content" />
+            <PropertyRef Name="i_initial_day" />
+            <PropertyRef Name="i_expired_day" />
+            <PropertyRef Name="ig_id" />
+            <PropertyRef Name="u_id" />
+            <PropertyRef Name="i_unconfirm" />
+            <PropertyRef Name="ip_discount" />
+            <PropertyRef Name="ip_days" />
+            <PropertyRef Name="bill" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="i_id" Type="int" Nullable="false" />
+          <Property Name="i_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="i_content" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="i_initial_day" Type="datetime" Nullable="false" />
+          <Property Name="i_expired_day" Type="datetime" Nullable="false" />
+          <Property Name="i_location1" Type="nchar" MaxLength="10" />
+          <Property Name="i_location2" Type="nchar" MaxLength="10" />
+          <Property Name="i_pic1" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic2" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic3" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic4" Type="varchar" MaxLength="255" />
+          <Property Name="i_pic5" Type="varchar" MaxLength="255" />
+          <Property Name="i_URL" Type="varchar" MaxLength="50" />
+          <Property Name="ig_id" Type="int" Nullable="false" />
+          <Property Name="u_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="i_unconfirm" Type="bit" Nullable="false" />
+          <Property Name="ip_discount" Type="int" Nullable="false" />
+          <Property Name="ip_days" Type="int" Nullable="false" />
+          <Property Name="bill" Type="int" Nullable="false" />
+          <Property Name="i_LINE" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__BeaconDev__bpt_i__12C8C788">
+          <End Role="BroadcastPointType" Type="Self.BroadcastPointType" Multiplicity="0..1" />
+          <End Role="BeaconDevice" Type="Self.BeaconDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BroadcastPointType">
+              <PropertyRef Name="bpt_id" />
+            </Principal>
+            <Dependent Role="BeaconDevice">
+              <PropertyRef Name="bpt_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderRecor__u_id__125EB334">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="OrderRecord" Type="Self.OrderRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderRecord">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeviceInfo_BeaconDevice">
+          <End Role="BeaconDevice" Type="Self.BeaconDevice" Multiplicity="1" />
+          <End Role="DeviceInfo" Type="Self.DeviceInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BeaconDevice">
+              <PropertyRef Name="d_id" />
+            </Principal>
+            <Dependent Role="DeviceInfo">
+              <PropertyRef Name="d_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeviceInfo_Info">
+          <End Role="Infos" Type="Self.Infos" Multiplicity="1" />
+          <End Role="DeviceInfo" Type="Self.DeviceInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Infos">
+              <PropertyRef Name="i_id" />
+            </Principal>
+            <Dependent Role="DeviceInfo">
+              <PropertyRef Name="i_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeviceUsers_BeaconDevice">
+          <End Role="BeaconDevice" Type="Self.BeaconDevice" Multiplicity="1" />
+          <End Role="DeviceUsers" Type="Self.DeviceUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BeaconDevice">
+              <PropertyRef Name="d_id" />
+            </Principal>
+            <Dependent Role="DeviceUsers">
+              <PropertyRef Name="d_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeviceUsers_User2">
+          <End Role="User2" Type="Self.User2" Multiplicity="1" />
+          <End Role="DeviceUsers" Type="Self.DeviceUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User2">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeviceUsers">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_InfoGroup">
+          <End Role="InfoGroupp" Type="Self.InfoGroupp" Multiplicity="1" />
+          <End Role="Infos" Type="Self.Infos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoGroupp">
+              <PropertyRef Name="ig_id" />
+            </Principal>
+            <Dependent Role="Infos">
+              <PropertyRef Name="ig_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Infos_User2">
+          <End Role="User2" Type="Self.User2" Multiplicity="1" />
+          <End Role="Infos" Type="Self.Infos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User2">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Infos">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User2_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="User2" Type="Self.User2" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User2">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_PushAdvertisingStatistics" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GetAllData" Type="bit" Mode="In" />
+          <Parameter Name="CountyCity" Type="varchar" Mode="In" />
+          <Parameter Name="TownshipCity" Type="varchar" Mode="In" />
+          <Parameter Name="BdfBroadcastPoint" Type="varchar" Mode="In" />
+          <Parameter Name="DName" Type="varchar" Mode="In" />
+          <Parameter Name="NowDatetime" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="POPModelStoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BeaconDevice" EntityType="Self.BeaconDevice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BeaconDeviceFlow" EntityType="Self.BeaconDeviceFlow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BroadcastPointType" EntityType="Self.BroadcastPointType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceInfo" EntityType="Self.DeviceInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceUsers" EntityType="Self.DeviceUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoGroupp" EntityType="Self.InfoGroupp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Infos" EntityType="Self.Infos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceType" EntityType="Self.InvoiceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderRecord" EntityType="Self.OrderRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P_InfoPrice" EntityType="Self.P_InfoPrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sales" EntityType="Self.sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="town" EntityType="Self.town" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User2" EntityType="Self.User2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AAA" EntityType="Self.AAA" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AAA].[c_id] AS [c_id], 
+    [AAA].[c_county] AS [c_county], 
+    [AAA].[c_town] AS [c_town], 
+    [AAA].[c_zipcode] AS [c_zipcode], 
+    [AAA].[d_id] AS [d_id], 
+    [AAA].[d_name] AS [d_name], 
+    [AAA].[d_out_day] AS [d_out_day], 
+    [AAA].[d_location1] AS [d_location1], 
+    [AAA].[d_location2] AS [d_location2], 
+    [AAA].[d_location3] AS [d_location3], 
+    [AAA].[d_location4] AS [d_location4], 
+    [AAA].[d_holder] AS [d_holder], 
+    [AAA].[d_memo] AS [d_memo], 
+    [AAA].[belongto] AS [belongto], 
+    [AAA].[i_id] AS [i_id], 
+    [AAA].[i_name] AS [i_name], 
+    [AAA].[i_content] AS [i_content], 
+    [AAA].[i_initial_day] AS [i_initial_day], 
+    [AAA].[i_expired_day] AS [i_expired_day], 
+    [AAA].[i_pic1] AS [i_pic1], 
+    [AAA].[i_pic2] AS [i_pic2], 
+    [AAA].[i_pic3] AS [i_pic3], 
+    [AAA].[i_pic4] AS [i_pic4], 
+    [AAA].[i_pic5] AS [i_pic5], 
+    [AAA].[i_URL] AS [i_URL], 
+    [AAA].[ig_id] AS [ig_id], 
+    [AAA].[u_id] AS [u_id], 
+    [AAA].[i_unconfirm] AS [i_unconfirm], 
+    [AAA].[ip_discount] AS [ip_discount], 
+    [AAA].[ip_days] AS [ip_days], 
+    [AAA].[bill] AS [bill], 
+    [AAA].[i_LINE] AS [i_LINE], 
+    [AAA].[i_location1] AS [i_location1], 
+    [AAA].[i_location2] AS [i_location2]
+    FROM [dbo].[AAA] AS [AAA]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="uv_AdvertisingCategoryCount" EntityType="Self.uv_AdvertisingCategoryCount" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [uv_AdvertisingCategoryCount].[ig_id] AS [ig_id], 
+    [uv_AdvertisingCategoryCount].[ig_name] AS [ig_name], 
+    [uv_AdvertisingCategoryCount].[count] AS [count]
+    FROM [dbo].[uv_AdvertisingCategoryCount] AS [uv_AdvertisingCategoryCount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="uv_AllBroadcast" EntityType="Self.uv_AllBroadcast" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [uv_AllBroadcast].[d_id] AS [d_id], 
+    [uv_AllBroadcast].[d_name] AS [d_name], 
+    [uv_AllBroadcast].[d_out_day] AS [d_out_day], 
+    [uv_AllBroadcast].[d_location1] AS [d_location1], 
+    [uv_AllBroadcast].[d_location2] AS [d_location2], 
+    [uv_AllBroadcast].[d_location3] AS [d_location3], 
+    [uv_AllBroadcast].[d_location4] AS [d_location4], 
+    [uv_AllBroadcast].[d_holder] AS [d_holder], 
+    [uv_AllBroadcast].[d_memo] AS [d_memo], 
+    [uv_AllBroadcast].[belongto] AS [belongto], 
+    [uv_AllBroadcast].[d_owner] AS [d_owner], 
+    [uv_AllBroadcast].[bdf_id] AS [bdf_id], 
+    [uv_AllBroadcast].[bpt_id] AS [bpt_id], 
+    [uv_AllBroadcast].[bpt_broadcastPoint] AS [bpt_broadcastPoint], 
+    [uv_AllBroadcast].[bdf_name] AS [bdf_name], 
+    [uv_AllBroadcast].[bdf_content] AS [bdf_content], 
+    [uv_AllBroadcast].[bdf_price] AS [bdf_price]
+    FROM [dbo].[uv_AllBroadcast] AS [uv_AllBroadcast]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="uv_ClassifiedAdsSearch" EntityType="Self.uv_ClassifiedAdsSearch" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [uv_ClassifiedAdsSearch].[i_id] AS [i_id], 
+    [uv_ClassifiedAdsSearch].[i_name] AS [i_name], 
+    [uv_ClassifiedAdsSearch].[i_content] AS [i_content], 
+    [uv_ClassifiedAdsSearch].[i_initial_day] AS [i_initial_day], 
+    [uv_ClassifiedAdsSearch].[i_expired_day] AS [i_expired_day], 
+    [uv_ClassifiedAdsSearch].[i_location1] AS [i_location1], 
+    [uv_ClassifiedAdsSearch].[i_location2] AS [i_location2], 
+    [uv_ClassifiedAdsSearch].[i_pic1] AS [i_pic1], 
+    [uv_ClassifiedAdsSearch].[i_pic2] AS [i_pic2], 
+    [uv_ClassifiedAdsSearch].[i_pic3] AS [i_pic3], 
+    [uv_ClassifiedAdsSearch].[i_pic4] AS [i_pic4], 
+    [uv_ClassifiedAdsSearch].[i_pic5] AS [i_pic5], 
+    [uv_ClassifiedAdsSearch].[i_URL] AS [i_URL], 
+    [uv_ClassifiedAdsSearch].[ig_id] AS [ig_id], 
+    [uv_ClassifiedAdsSearch].[u_id] AS [u_id], 
+    [uv_ClassifiedAdsSearch].[i_unconfirm] AS [i_unconfirm], 
+    [uv_ClassifiedAdsSearch].[ip_discount] AS [ip_discount], 
+    [uv_ClassifiedAdsSearch].[ip_days] AS [ip_days], 
+    [uv_ClassifiedAdsSearch].[bill] AS [bill], 
+    [uv_ClassifiedAdsSearch].[i_LINE] AS [i_LINE], 
+    [uv_ClassifiedAdsSearch].[i_open] AS [i_open], 
+    [uv_ClassifiedAdsSearch].[or_number] AS [or_number], 
+    [uv_ClassifiedAdsSearch].[i_create_datetime] AS [i_create_datetime], 
+    [uv_ClassifiedAdsSearch].[i_probation] AS [i_probation], 
+    [uv_ClassifiedAdsSearch].[i_formal_period] AS [i_formal_period], 
+    [uv_ClassifiedAdsSearch].[ig_name] AS [ig_name], 
+    [uv_ClassifiedAdsSearch].[ig_pic] AS [ig_pic], 
+    [uv_ClassifiedAdsSearch].[ig_price] AS [ig_price], 
+    [uv_ClassifiedAdsSearch].[DisplayOrder] AS [DisplayOrder], 
+    [uv_ClassifiedAdsSearch].[U2_id] AS [U2_id], 
+    [uv_ClassifiedAdsSearch].[free_id] AS [free_id], 
+    [uv_ClassifiedAdsSearch].[co_name] AS [co_name], 
+    [uv_ClassifiedAdsSearch].[co_belong] AS [co_belong], 
+    [uv_ClassifiedAdsSearch].[co_location1] AS [co_location1], 
+    [uv_ClassifiedAdsSearch].[co_location2] AS [co_location2], 
+    [uv_ClassifiedAdsSearch].[co_location3] AS [co_location3], 
+    [uv_ClassifiedAdsSearch].[co_location4] AS [co_location4], 
+    [uv_ClassifiedAdsSearch].[cl_name] AS [cl_name], 
+    [uv_ClassifiedAdsSearch].[cl_belong] AS [cl_belong], 
+    [uv_ClassifiedAdsSearch].[cl_location1] AS [cl_location1], 
+    [uv_ClassifiedAdsSearch].[cl_location2] AS [cl_location2], 
+    [uv_ClassifiedAdsSearch].[cl_location3] AS [cl_location3], 
+    [uv_ClassifiedAdsSearch].[cl_location4] AS [cl_location4], 
+    [uv_ClassifiedAdsSearch].[ac_zipcode] AS [ac_zipcode], 
+    [uv_ClassifiedAdsSearch].[ac_name] AS [ac_name], 
+    [uv_ClassifiedAdsSearch].[ac_location1] AS [ac_location1], 
+    [uv_ClassifiedAdsSearch].[ac_location2] AS [ac_location2], 
+    [uv_ClassifiedAdsSearch].[ac_location3] AS [ac_location3], 
+    [uv_ClassifiedAdsSearch].[ac_belong] AS [ac_belong], 
+    [uv_ClassifiedAdsSearch].[ac_family] AS [ac_family], 
+    [uv_ClassifiedAdsSearch].[ac_building] AS [ac_building]
+    FROM [dbo].[uv_ClassifiedAdsSearch] AS [uv_ClassifiedAdsSearch]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="uv_ConditionalSearchPushAdvertisin" EntityType="Self.uv_ConditionalSearchPushAdvertisin" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [uv_ConditionalSearchPushAdvertisin].[d_id] AS [d_id], 
+    [uv_ConditionalSearchPushAdvertisin].[i_id] AS [i_id], 
+    [uv_ConditionalSearchPushAdvertisin].[d_name] AS [d_name], 
+    [uv_ConditionalSearchPushAdvertisin].[d_out_day] AS [d_out_day], 
+    [uv_ConditionalSearchPushAdvertisin].[d_location1] AS [d_location1], 
+    [uv_ConditionalSearchPushAdvertisin].[d_location2] AS [d_location2], 
+    [uv_ConditionalSearchPushAdvertisin].[d_location3] AS [d_location3], 
+    [uv_ConditionalSearchPushAdvertisin].[d_location4] AS [d_location4], 
+    [uv_ConditionalSearchPushAdvertisin].[d_holder] AS [d_holder], 
+    [uv_ConditionalSearchPushAdvertisin].[d_memo] AS [d_memo], 
+    [uv_ConditionalSearchPushAdvertisin].[belongto] AS [belongto], 
+    [uv_ConditionalSearchPushAdvertisin].[d_owner] AS [d_owner], 
+    [uv_ConditionalSearchPushAdvertisin].[bdf_id] AS [bdf_id], 
+    [uv_ConditionalSearchPushAdvertisin].[bpt_id] AS [bpt_id], 
+    [uv_ConditionalSearchPushAdvertisin].[bpt_broadcastPoint] AS [bpt_broadcastPoint], 
+    [uv_ConditionalSearchPushAdvertisin].[bdf_name] AS [bdf_name], 
+    [uv_ConditionalSearchPushAdvertisin].[bdf_content] AS [bdf_content], 
+    [uv_ConditionalSearchPushAdvertisin].[bdf_price] AS [bdf_price], 
+    [uv_ConditionalSearchPushAdvertisin].[i_name] AS [i_name], 
+    [uv_ConditionalSearchPushAdvertisin].[i_content] AS [i_content], 
+    [uv_ConditionalSearchPushAdvertisin].[i_initial_day] AS [i_initial_day], 
+    [uv_ConditionalSearchPushAdvertisin].[i_expired_day] AS [i_expired_day], 
+    [uv_ConditionalSearchPushAdvertisin].[i_location1] AS [i_location1], 
+    [uv_ConditionalSearchPushAdvertisin].[i_location2] AS [i_location2], 
+    [uv_ConditionalSearchPushAdvertisin].[i_pic1] AS [i_pic1], 
+    [uv_ConditionalSearchPushAdvertisin].[i_pic2] AS [i_pic2], 
+    [uv_ConditionalSearchPushAdvertisin].[i_pic3] AS [i_pic3], 
+    [uv_ConditionalSearchPushAdvertisin].[i_pic4] AS [i_pic4], 
+    [uv_ConditionalSearchPushAdvertisin].[i_pic5] AS [i_pic5], 
+    [uv_ConditionalSearchPushAdvertisin].[i_URL] AS [i_URL], 
+    [uv_ConditionalSearchPushAdvertisin].[ig_id] AS [ig_id], 
+    [uv_ConditionalSearchPushAdvertisin].[u_id] AS [u_id], 
+    [uv_ConditionalSearchPushAdvertisin].[i_unconfirm] AS [i_unconfirm], 
+    [uv_ConditionalSearchPushAdvertisin].[ip_discount] AS [ip_discount], 
+    [uv_ConditionalSearchPushAdvertisin].[ip_days] AS [ip_days], 
+    [uv_ConditionalSearchPushAdvertisin].[bill] AS [bill], 
+    [uv_ConditionalSearchPushAdvertisin].[i_LINE] AS [i_LINE], 
+    [uv_ConditionalSearchPushAdvertisin].[i_open] AS [i_open], 
+    [uv_ConditionalSearchPushAdvertisin].[ig_name] AS [ig_name], 
+    [uv_ConditionalSearchPushAdvertisin].[ig_pic] AS [ig_pic], 
+    [uv_ConditionalSearchPushAdvertisin].[ig_price] AS [ig_price], 
+    [uv_ConditionalSearchPushAdvertisin].[DisplayOrder] AS [DisplayOrder], 
+    [uv_ConditionalSearchPushAdvertisin].[U2_id] AS [U2_id], 
+    [uv_ConditionalSearchPushAdvertisin].[free_id] AS [free_id], 
+    [uv_ConditionalSearchPushAdvertisin].[co_id] AS [co_id], 
+    [uv_ConditionalSearchPushAdvertisin].[co_name] AS [co_name], 
+    [uv_ConditionalSearchPushAdvertisin].[co_belong] AS [co_belong], 
+    [uv_ConditionalSearchPushAdvertisin].[co_location1] AS [co_location1], 
+    [uv_ConditionalSearchPushAdvertisin].[co_location2] AS [co_location2], 
+    [uv_ConditionalSearchPushAdvertisin].[co_location3] AS [co_location3], 
+    [uv_ConditionalSearchPushAdvertisin].[co_location4] AS [co_location4], 
+    [uv_ConditionalSearchPushAdvertisin].[ac_Id] AS [ac_Id], 
+    [uv_ConditionalSearchPushAdvertisin].[ac_zipcode] AS [ac_zipcode], 
+    [uv_ConditionalSearchPushAdvertisin].[ac_name] AS [ac_name], 
+    [uv_ConditionalSearchPushAdvertisin].[ac_location1] AS [ac_location1], 
+    [uv_ConditionalSearchPushAdvertisin].[ac_location2] AS [ac_location2], 
+    [uv_ConditionalSearchPushAdvertisin].[ac_location3] AS [ac_location3], 
+    [uv_ConditionalSearchPushAdvertisin].[ac_belong] AS [ac_belong], 
+    [uv_ConditionalSearchPushAdvertisin].[ac_family] AS [ac_family], 
+    [uv_ConditionalSearchPushAdvertisin].[ac_building] AS [ac_building], 
+    [uv_ConditionalSearchPushAdvertisin].[cl_id] AS [cl_id], 
+    [uv_ConditionalSearchPushAdvertisin].[cl_name] AS [cl_name], 
+    [uv_ConditionalSearchPushAdvertisin].[cl_belong] AS [cl_belong], 
+    [uv_ConditionalSearchPushAdvertisin].[cl_location1] AS [cl_location1], 
+    [uv_ConditionalSearchPushAdvertisin].[cl_location2] AS [cl_location2], 
+    [uv_ConditionalSearchPushAdvertisin].[cl_location3] AS [cl_location3], 
+    [uv_ConditionalSearchPushAdvertisin].[cl_location4] AS [cl_location4]
+    FROM [dbo].[uv_ConditionalSearchPushAdvertisin] AS [uv_ConditionalSearchPushAdvertisin]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="uv_PublishedInquire" EntityType="Self.uv_PublishedInquire" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [uv_PublishedInquire].[i_id] AS [i_id], 
+    [uv_PublishedInquire].[i_name] AS [i_name], 
+    [uv_PublishedInquire].[i_content] AS [i_content], 
+    [uv_PublishedInquire].[i_initial_day] AS [i_initial_day], 
+    [uv_PublishedInquire].[i_expired_day] AS [i_expired_day], 
+    [uv_PublishedInquire].[i_location1] AS [i_location1], 
+    [uv_PublishedInquire].[i_location2] AS [i_location2], 
+    [uv_PublishedInquire].[i_pic1] AS [i_pic1], 
+    [uv_PublishedInquire].[i_pic2] AS [i_pic2], 
+    [uv_PublishedInquire].[i_pic3] AS [i_pic3], 
+    [uv_PublishedInquire].[i_pic4] AS [i_pic4], 
+    [uv_PublishedInquire].[i_pic5] AS [i_pic5], 
+    [uv_PublishedInquire].[i_URL] AS [i_URL], 
+    [uv_PublishedInquire].[ig_id] AS [ig_id], 
+    [uv_PublishedInquire].[u_id] AS [u_id], 
+    [uv_PublishedInquire].[i_unconfirm] AS [i_unconfirm], 
+    [uv_PublishedInquire].[ip_discount] AS [ip_discount], 
+    [uv_PublishedInquire].[ip_days] AS [ip_days], 
+    [uv_PublishedInquire].[bill] AS [bill], 
+    [uv_PublishedInquire].[i_LINE] AS [i_LINE], 
+    [uv_PublishedInquire].[i_open] AS [i_open], 
+    [uv_PublishedInquire].[or_number] AS [or_number], 
+    [uv_PublishedInquire].[i_create_datetime] AS [i_create_datetime], 
+    [uv_PublishedInquire].[i_probation] AS [i_probation], 
+    [uv_PublishedInquire].[i_formal_period] AS [i_formal_period], 
+    [uv_PublishedInquire].[ig_name] AS [ig_name], 
+    [uv_PublishedInquire].[ig_pic] AS [ig_pic], 
+    [uv_PublishedInquire].[ig_price] AS [ig_price], 
+    [uv_PublishedInquire].[DisplayOrder] AS [DisplayOrder], 
+    [uv_PublishedInquire].[or_id] AS [or_id], 
+    [uv_PublishedInquire].[or_create_datetime] AS [or_create_datetime], 
+    [uv_PublishedInquire].[or_invoice_title] AS [or_invoice_title], 
+    [uv_PublishedInquire].[or_invoice_address] AS [or_invoice_address], 
+    [uv_PublishedInquire].[or_invoice_code] AS [or_invoice_code], 
+    [uv_PublishedInquire].[inv_type] AS [inv_type], 
+    [uv_PublishedInquire].[or_invoice_public] AS [or_invoice_public], 
+    [uv_PublishedInquire].[or_payment_status] AS [or_payment_status], 
+    [uv_PublishedInquire].[or_payment_confirmed] AS [or_payment_confirmed]
+    FROM [dbo].[uv_PublishedInquire] AS [uv_PublishedInquire]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_AspNetUsers_Infos" EntityType="Self.View_AspNetUsers_Infos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_AspNetUsers_Infos].[UserName] AS [UserName], 
+    [View_AspNetUsers_Infos].[i_id] AS [i_id], 
+    [View_AspNetUsers_Infos].[i_name] AS [i_name], 
+    [View_AspNetUsers_Infos].[i_content] AS [i_content], 
+    [View_AspNetUsers_Infos].[i_initial_day] AS [i_initial_day], 
+    [View_AspNetUsers_Infos].[i_expired_day] AS [i_expired_day], 
+    [View_AspNetUsers_Infos].[i_location1] AS [i_location1], 
+    [View_AspNetUsers_Infos].[i_location2] AS [i_location2], 
+    [View_AspNetUsers_Infos].[i_pic1] AS [i_pic1], 
+    [View_AspNetUsers_Infos].[i_pic2] AS [i_pic2], 
+    [View_AspNetUsers_Infos].[i_pic3] AS [i_pic3], 
+    [View_AspNetUsers_Infos].[i_pic4] AS [i_pic4], 
+    [View_AspNetUsers_Infos].[i_pic5] AS [i_pic5], 
+    [View_AspNetUsers_Infos].[i_URL] AS [i_URL], 
+    [View_AspNetUsers_Infos].[ig_id] AS [ig_id], 
+    [View_AspNetUsers_Infos].[u_id] AS [u_id], 
+    [View_AspNetUsers_Infos].[i_unconfirm] AS [i_unconfirm], 
+    [View_AspNetUsers_Infos].[ip_discount] AS [ip_discount], 
+    [View_AspNetUsers_Infos].[ip_days] AS [ip_days], 
+    [View_AspNetUsers_Infos].[bill] AS [bill], 
+    [View_AspNetUsers_Infos].[i_LINE] AS [i_LINE]
+    FROM [dbo].[View_AspNetUsers_Infos] AS [View_AspNetUsers_Infos]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__BeaconDev__bpt_i__12C8C788" Association="Self.FK__BeaconDev__bpt_i__12C8C788">
+            <End Role="BroadcastPointType" EntitySet="BroadcastPointType" />
+            <End Role="BeaconDevice" EntitySet="BeaconDevice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderRecor__u_id__125EB334" Association="Self.FK__OrderRecor__u_id__125EB334">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="OrderRecord" EntitySet="OrderRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeviceInfo_BeaconDevice" Association="Self.FK_DeviceInfo_BeaconDevice">
+            <End Role="BeaconDevice" EntitySet="BeaconDevice" />
+            <End Role="DeviceInfo" EntitySet="DeviceInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeviceInfo_Info" Association="Self.FK_DeviceInfo_Info">
+            <End Role="Infos" EntitySet="Infos" />
+            <End Role="DeviceInfo" EntitySet="DeviceInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeviceUsers_BeaconDevice" Association="Self.FK_DeviceUsers_BeaconDevice">
+            <End Role="BeaconDevice" EntitySet="BeaconDevice" />
+            <End Role="DeviceUsers" EntitySet="DeviceUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeviceUsers_User2" Association="Self.FK_DeviceUsers_User2">
+            <End Role="User2" EntitySet="User2" />
+            <End Role="DeviceUsers" EntitySet="DeviceUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_InfoGroup" Association="Self.FK_Info_InfoGroup">
+            <End Role="InfoGroupp" EntitySet="InfoGroupp" />
+            <End Role="Infos" EntitySet="Infos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Infos_User2" Association="Self.FK_Infos_User2">
+            <End Role="User2" EntitySet="User2" />
+            <End Role="Infos" EntitySet="Infos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User2_AspNetUsers" Association="Self.FK_User2_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="User2" EntitySet="User2" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="POPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User2" Relationship="Self.FK_User2_AspNetUsers" FromRole="AspNetUsers" ToRole="User2" />
+          <NavigationProperty Name="OrderRecord" Relationship="POPModel.FK__OrderRecor__u_id__125EB334" FromRole="AspNetUsers" ToRole="OrderRecord" />
+        </EntityType>
+        <EntityType Name="BeaconDevice">
+          <Key>
+            <PropertyRef Name="d_id" />
+          </Key>
+          <Property Name="d_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="d_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="d_out_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="d_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="d_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="d_location3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="d_location4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="d_holder" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="d_memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="belongto" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="d_owner" Type="Boolean" />
+          <Property Name="bdf_id" Type="Int32" />
+          <Property Name="bpt_id" Type="Int32" />
+          <NavigationProperty Name="BroadcastPointType" Relationship="Self.FK__BeaconDev__bpt_i__12C8C788" FromRole="BeaconDevice" ToRole="BroadcastPointType" />
+          <NavigationProperty Name="User2" Relationship="POPModel.DeviceUsers" FromRole="BeaconDevice" ToRole="User2" />
+          <NavigationProperty Name="Infos" Relationship="POPModel.DeviceInfo" FromRole="BeaconDevice" ToRole="Infos" />
+          
+        </EntityType>
+        <EntityType Name="BroadcastPointType">
+          <Key>
+            <PropertyRef Name="bpt_id" />
+          </Key>
+          <Property Name="bpt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bpt_broadcastPoint" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BeaconDevice" Relationship="Self.FK__BeaconDev__bpt_i__12C8C788" FromRole="BroadcastPointType" ToRole="BeaconDevice" />
+        </EntityType>
+        <EntityType Name="InfoGroupp">
+          <Key>
+            <PropertyRef Name="ig_id" />
+          </Key>
+          <Property Name="ig_id" Type="Int32" Nullable="false" />
+          <Property Name="ig_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ig_pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ig_price" Type="Int32" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Infos" Relationship="POPModel.FK_Info_InfoGroup" FromRole="InfoGroupp" ToRole="Infos" />
+        </EntityType>
+        <EntityType Name="town">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" />
+          <Property Name="c_county" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_town" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_zipcode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CurrentFlag" Type="Boolean" Nullable="false" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="receipt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="p_fee" Type="Int32" Nullable="false" />
+          <Property Name="p_lastFeeDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="u_active" Type="Boolean" Nullable="false" />
+          <Property Name="belongto" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommCircleName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="u_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="u_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="u_location3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressID" Type="Int32" />
+          <Property Name="AddressTypedId" Type="Int32" />
+          <Property Name="PostalCode" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SpatialLocation" Type="Geography" />
+          <Property Name="applyupgrade" Type="Int32" Nullable="false" />
+          <Property Name="rejectreason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="u_occupation1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="u_occupation2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="u_occupation3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_User2_AspNetUsers" FromRole="User2" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Infos" Relationship="POPModel.FK_Infos_User2" FromRole="User2" ToRole="Infos" />
+          <NavigationProperty Name="BeaconDevice" Relationship="POPModel.DeviceUsers" FromRole="User2" ToRole="BeaconDevice" />
+        </EntityType>
+        <EntityType Name="AAA">
+          <Key>
+            <PropertyRef Name="c_id" />
+            <PropertyRef Name="c_county" />
+            <PropertyRef Name="c_town" />
+            <PropertyRef Name="c_zipcode" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" />
+          <Property Name="c_county" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_town" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_zipcode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="d_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="d_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="d_out_day" Type="DateTime" Precision="3" />
+          <Property Name="d_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_location3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_location4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_holder" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="d_memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="belongto" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_id" Type="Int32" />
+          <Property Name="i_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="i_content" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="i_initial_day" Type="DateTime" Precision="3" />
+          <Property Name="i_expired_day" Type="DateTime" Precision="3" />
+          <Property Name="i_pic1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_URL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ig_id" Type="Int32" />
+          <Property Name="u_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_unconfirm" Type="Boolean" />
+          <Property Name="ip_discount" Type="Int32" />
+          <Property Name="ip_days" Type="Int32" />
+          <Property Name="bill" Type="Int32" />
+          <Property Name="i_LINE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_location1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="i_location2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_AspNetUsers_Infos">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="i_id" />
+            <PropertyRef Name="i_name" />
+            <PropertyRef Name="i_content" />
+            <PropertyRef Name="i_initial_day" />
+            <PropertyRef Name="i_expired_day" />
+            <PropertyRef Name="ig_id" />
+            <PropertyRef Name="u_id" />
+            <PropertyRef Name="i_unconfirm" />
+            <PropertyRef Name="ip_discount" />
+            <PropertyRef Name="ip_days" />
+            <PropertyRef Name="bill" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="i_id" Type="Int32" Nullable="false" />
+          <Property Name="i_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="i_content" Type="String" MaxLength="600" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="i_initial_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_expired_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_location1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="i_location2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="i_pic1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_URL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ig_id" Type="Int32" Nullable="false" />
+          <Property Name="u_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="i_unconfirm" Type="Boolean" Nullable="false" />
+          <Property Name="ip_discount" Type="Int32" Nullable="false" />
+          <Property Name="ip_days" Type="Int32" Nullable="false" />
+          <Property Name="bill" Type="Int32" Nullable="false" />
+          <Property Name="i_LINE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_User2_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="User2" Type="Self.User2" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User2">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BeaconDev__bpt_i__12C8C788">
+          <End Role="BroadcastPointType" Type="Self.BroadcastPointType" Multiplicity="0..1" />
+          <End Role="BeaconDevice" Type="Self.BeaconDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BroadcastPointType">
+              <PropertyRef Name="bpt_id" />
+            </Principal>
+            <Dependent Role="BeaconDevice">
+              <PropertyRef Name="bpt_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="POPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="BeaconDevice" EntityType="Self.BeaconDevice" />
+          <EntitySet Name="BroadcastPointType" EntityType="Self.BroadcastPointType" />
+          <EntitySet Name="InfoGroupp" EntityType="Self.InfoGroupp" />
+          <EntitySet Name="town" EntityType="Self.town" />
+          <EntitySet Name="User2" EntityType="Self.User2" />
+          <EntitySet Name="AAA" EntityType="Self.AAA" />
+          <EntitySet Name="View_AspNetUsers_Infos" EntityType="Self.View_AspNetUsers_Infos" />
+          <AssociationSet Name="FK_User2_AspNetUsers" Association="Self.FK_User2_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="User2" EntitySet="User2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BeaconDev__bpt_i__12C8C788" Association="Self.FK__BeaconDev__bpt_i__12C8C788">
+            <End Role="BroadcastPointType" EntitySet="BroadcastPointType" />
+            <End Role="BeaconDevice" EntitySet="BeaconDevice" />
+          </AssociationSet>
+          <EntitySet Name="P_InfoPrice" EntityType="POPModel.P_InfoPrice" />
+          <EntitySet Name="uv_ConditionalSearchPushAdvertisin" EntityType="POPModel.uv_ConditionalSearchPushAdvertisin" />
+          <FunctionImport Name="usp_PushAdvertisingStatistics" ReturnType="Collection(POPModel.usp_PushAdvertisingStatistics_Result)">
+            <Parameter Name="GetAllData" Mode="In" Type="Boolean" />
+            <Parameter Name="CountyCity" Mode="In" Type="String" />
+            <Parameter Name="TownshipCity" Mode="In" Type="String" />
+            <Parameter Name="BdfBroadcastPoint" Mode="In" Type="String" />
+            <Parameter Name="DName" Mode="In" Type="String" />
+            <Parameter Name="NowDatetime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="uv_AllBroadcast" EntityType="POPModel.uv_AllBroadcast" />
+          <EntitySet Name="BeaconDeviceFlow" EntityType="POPModel.BeaconDeviceFlow" />
+          <EntitySet Name="InvoiceType" EntityType="POPModel.InvoiceType" />
+          <EntitySet Name="sales" EntityType="POPModel.sales" />
+          <EntitySet Name="uv_PublishedInquire" EntityType="POPModel.uv_PublishedInquire" />
+          <EntitySet Name="Infos" EntityType="POPModel.Infos" />
+          <AssociationSet Name="FK_Info_InfoGroup" Association="POPModel.FK_Info_InfoGroup">
+            <End Role="InfoGroupp" EntitySet="InfoGroupp" />
+            <End Role="Infos" EntitySet="Infos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Infos_User2" Association="POPModel.FK_Infos_User2">
+            <End Role="User2" EntitySet="User2" />
+            <End Role="Infos" EntitySet="Infos" />
+          </AssociationSet>
+          <AssociationSet Name="DeviceUsers" Association="POPModel.DeviceUsers">
+            <End Role="BeaconDevice" EntitySet="BeaconDevice" />
+            <End Role="User2" EntitySet="User2" />
+          </AssociationSet>
+          <AssociationSet Name="DeviceInfo" Association="POPModel.DeviceInfo">
+            <End Role="BeaconDevice" EntitySet="BeaconDevice" />
+            <End Role="Infos" EntitySet="Infos" />
+          </AssociationSet>
+          <EntitySet Name="uv_AdvertisingCategoryCount" EntityType="POPModel.uv_AdvertisingCategoryCount" />
+          <EntitySet Name="uv_ClassifiedAdsSearch" EntityType="POPModel.uv_ClassifiedAdsSearch" />
+          <EntitySet Name="OrderRecord" EntityType="POPModel.OrderRecord" />
+          <AssociationSet Name="FK__OrderRecor__u_id__125EB334" Association="POPModel.FK__OrderRecor__u_id__125EB334">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="OrderRecord" EntitySet="OrderRecord" />
+          </AssociationSet>
+          
+        </EntityContainer>
+        <EntityType Name="P_InfoPrice">
+          <Key>
+            <PropertyRef Name="ip_id" />
+          </Key>
+          <Property Name="ip_id" Type="Int32" Nullable="false" />
+          <Property Name="ip_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ip_discount" Type="Int32" Nullable="false" />
+          <Property Name="ip_days" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uv_ConditionalSearchPushAdvertisin">
+          <Key>
+            <PropertyRef Name="i_id" />
+          </Key>
+          <Property Name="d_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_id" Type="Int32" Nullable="false" />
+          <Property Name="d_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="d_out_day" Type="DateTime" Precision="3" />
+          <Property Name="d_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_location3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_location4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_holder" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="d_memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="belongto" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="d_owner" Type="Boolean" />
+          <Property Name="bdf_id" Type="Int32" />
+          <Property Name="bpt_id" Type="Int32" />
+          <Property Name="bpt_broadcastPoint" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="bdf_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bdf_content" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bdf_price" Type="Int32" />
+          <Property Name="i_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="i_content" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="i_initial_day" Type="DateTime" Precision="3" />
+          <Property Name="i_expired_day" Type="DateTime" Precision="3" />
+          <Property Name="i_location1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="i_location2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="i_pic1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_URL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ig_id" Type="Int32" />
+          <Property Name="u_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_unconfirm" Type="Boolean" />
+          <Property Name="ip_discount" Type="Int32" />
+          <Property Name="ip_days" Type="Int32" />
+          <Property Name="bill" Type="Int32" />
+          <Property Name="i_LINE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_open" Type="Boolean" />
+          <Property Name="ig_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ig_pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ig_price" Type="Int32" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="U2_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="free_id" Type="Int32" />
+          <Property Name="co_id" Type="Int32" />
+          <Property Name="co_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="co_belong" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="co_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="co_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="co_location3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="co_location4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ac_Id" Type="Int32" />
+          <Property Name="ac_zipcode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ac_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ac_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ac_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ac_location3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ac_belong" Type="Int32" />
+          <Property Name="ac_family" Type="Int32" />
+          <Property Name="ac_building" Type="Int32" />
+          <Property Name="cl_id" Type="Int32" />
+          <Property Name="cl_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cl_belong" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="cl_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cl_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cl_location3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cl_location4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="usp_PushAdvertisingStatistics_Result">
+          <Property Type="Int64" Name="rowNumber" Nullable="true" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
+          <Property Type="String" Name="bpt_broadcastPoint" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="bdf_name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="d_name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="d_location3" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="d_location4" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="bdf_price" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="uv_AllBroadcast">
+          <Key>
+            <PropertyRef Name="d_id" />
+            <PropertyRef Name="d_name" />
+            <PropertyRef Name="d_out_day" />
+            <PropertyRef Name="d_location1" />
+            <PropertyRef Name="d_location2" />
+            <PropertyRef Name="d_location3" />
+            <PropertyRef Name="d_location4" />
+            <PropertyRef Name="d_holder" />
+            <PropertyRef Name="belongto" />
+          </Key>
+          <Property Name="d_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="d_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="d_out_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="d_location1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_location2" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_location3" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_location4" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_holder" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="d_memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="belongto" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="d_owner" Type="Boolean" />
+          <Property Name="bdf_id" Type="Int32" />
+          <Property Name="bpt_id" Type="Int32" />
+          <Property Name="bpt_broadcastPoint" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="bdf_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bdf_content" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bdf_price" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BeaconDeviceFlow">
+          <Key>
+            <PropertyRef Name="bdf_id" />
+          </Key>
+          <Property Name="bdf_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bdf_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bdf_content" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bdf_price" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InvoiceType">
+          <Key>
+            <PropertyRef Name="inv_id" />
+          </Key>
+          <Property Name="inv_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="inv_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="inv_description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sales">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" />
+          <Property Name="s_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_expired_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="bill" Type="Int32" Nullable="false" />
+          <Property Name="ip_discount" Type="Int32" Nullable="false" />
+          <Property Name="i_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ip_days" Type="Int32" Nullable="false" />
+          <Property Name="u_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="u_mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="u_phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="u_id" Type="Int32" Nullable="false" />
+          <Property Name="belongto" Type="Int32" Nullable="false" />
+          <Property Name="ifout" Type="Boolean" Nullable="false" />
+          <Property Name="invoice_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="uv_PublishedInquire">
+          <Key>
+            <PropertyRef Name="i_id" />
+            <PropertyRef Name="i_name" />
+            <PropertyRef Name="i_content" />
+            <PropertyRef Name="i_initial_day" />
+            <PropertyRef Name="i_expired_day" />
+            <PropertyRef Name="ig_id" />
+            <PropertyRef Name="u_id" />
+            <PropertyRef Name="i_unconfirm" />
+            <PropertyRef Name="ip_discount" />
+            <PropertyRef Name="ip_days" />
+            <PropertyRef Name="bill" />
+            <PropertyRef Name="i_open" />
+          </Key>
+          <Property Name="i_id" Type="Int32" Nullable="false" />
+          <Property Name="i_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="i_content" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="i_initial_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_expired_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_location1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_location2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_pic1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_URL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ig_id" Type="Int32" Nullable="false" />
+          <Property Name="u_id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_unconfirm" Type="Boolean" Nullable="false" />
+          <Property Name="ip_discount" Type="Int32" Nullable="false" />
+          <Property Name="ip_days" Type="Int32" Nullable="false" />
+          <Property Name="bill" Type="Int32" Nullable="false" />
+          <Property Name="i_LINE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_open" Type="Boolean" Nullable="false" />
+          <Property Name="or_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_create_datetime" Type="DateTime" Precision="3" />
+          <Property Name="i_probation" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="i_formal_period" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ig_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ig_pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ig_price" Type="Int32" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="or_id" Type="Int32" />
+          <Property Name="or_create_datetime" Type="DateTime" Precision="3" />
+          <Property Name="or_invoice_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="or_invoice_address" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="or_invoice_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="inv_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="or_invoice_public" Type="Boolean" />
+          <Property Name="or_payment_status" Type="Boolean" />
+          <Property Name="or_payment_confirmed" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Infos">
+          <Key>
+            <PropertyRef Name="i_id" />
+          </Key>
+          <Property Name="i_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="i_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="i_content" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="i_initial_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_expired_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_location1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_location2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_pic1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_URL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ig_id" Type="Int32" Nullable="false" />
+          <Property Name="u_id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_unconfirm" Type="Boolean" Nullable="false" />
+          <Property Name="ip_discount" Type="Int32" Nullable="false" />
+          <Property Name="ip_days" Type="Int32" Nullable="false" />
+          <Property Name="bill" Type="Int32" Nullable="false" />
+          <Property Name="i_LINE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_open" Type="Boolean" Nullable="false" />
+          <Property Name="or_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_create_datetime" Type="DateTime" Precision="3" />
+          <Property Name="i_probation" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="i_formal_period" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InfoGroupp" Relationship="POPModel.FK_Info_InfoGroup" FromRole="Infos" ToRole="InfoGroupp" />
+          <NavigationProperty Name="User2" Relationship="POPModel.FK_Infos_User2" FromRole="Infos" ToRole="User2" />
+          <NavigationProperty Name="BeaconDevice" Relationship="POPModel.DeviceInfo" FromRole="Infos" ToRole="BeaconDevice" />
+        </EntityType>
+        <Association Name="FK_Info_InfoGroup">
+          <End Type="POPModel.InfoGroupp" Role="InfoGroupp" Multiplicity="1" />
+          <End Type="POPModel.Infos" Role="Infos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoGroupp">
+              <PropertyRef Name="ig_id" />
+            </Principal>
+            <Dependent Role="Infos">
+              <PropertyRef Name="ig_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Infos_User2">
+          <End Type="POPModel.User2" Role="User2" Multiplicity="1" />
+          <End Type="POPModel.Infos" Role="Infos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User2">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Infos">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DeviceUsers">
+          <End Type="POPModel.BeaconDevice" Role="BeaconDevice" Multiplicity="*" />
+          <End Type="POPModel.User2" Role="User2" Multiplicity="*" />
+        </Association>
+        <Association Name="DeviceInfo">
+          <End Type="POPModel.BeaconDevice" Role="BeaconDevice" Multiplicity="*" />
+          <End Type="POPModel.Infos" Role="Infos" Multiplicity="*" />
+        </Association>
+        <EntityType Name="uv_AdvertisingCategoryCount">
+          <Key>
+            <PropertyRef Name="ig_id" />
+          </Key>
+          <Property Name="ig_id" Type="Int32" Nullable="false" />
+          <Property Name="ig_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="uv_ClassifiedAdsSearch">
+          <Key>
+            <PropertyRef Name="i_id" />
+            <PropertyRef Name="i_name" />
+            <PropertyRef Name="i_content" />
+            <PropertyRef Name="i_initial_day" />
+            <PropertyRef Name="i_expired_day" />
+            <PropertyRef Name="ig_id" />
+            <PropertyRef Name="u_id" />
+            <PropertyRef Name="i_unconfirm" />
+            <PropertyRef Name="ip_discount" />
+            <PropertyRef Name="ip_days" />
+            <PropertyRef Name="bill" />
+            <PropertyRef Name="i_open" />
+          </Key>
+          <Property Name="i_id" Type="Int32" Nullable="false" />
+          <Property Name="i_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="i_content" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="i_initial_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_expired_day" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_location1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_location2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_pic1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_pic5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_URL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ig_id" Type="Int32" Nullable="false" />
+          <Property Name="u_id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_unconfirm" Type="Boolean" Nullable="false" />
+          <Property Name="ip_discount" Type="Int32" Nullable="false" />
+          <Property Name="ip_days" Type="Int32" Nullable="false" />
+          <Property Name="bill" Type="Int32" Nullable="false" />
+          <Property Name="i_LINE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="i_open" Type="Boolean" Nullable="false" />
+          <Property Name="or_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="i_create_datetime" Type="DateTime" Precision="3" />
+          <Property Name="i_probation" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="i_formal_period" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ig_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ig_pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ig_price" Type="Int32" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="U2_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="free_id" Type="Int32" />
+          <Property Name="co_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="co_belong" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="co_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="co_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="co_location3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="co_location4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cl_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cl_belong" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="cl_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cl_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cl_location3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cl_location4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ac_zipcode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ac_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ac_location1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ac_location2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ac_location3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ac_belong" Type="Int32" />
+          <Property Name="ac_family" Type="Int32" />
+          <Property Name="ac_building" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OrderRecord">
+          <Key>
+            <PropertyRef Name="or_id" />
+          </Key>
+          <Property Name="or_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="or_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="or_create_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="or_invoice_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="or_invoice_address" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="or_invoice_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="inv_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="or_invoice_public" Type="Boolean" Nullable="false" />
+          <Property Name="u_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="bill" Type="Int32" Nullable="false" />
+          <Property Name="or_payment_status" Type="Boolean" Nullable="false" />
+          <Property Name="or_payment_confirmed" Type="Boolean" Nullable="false" />
+          <Property Name="or_remitMoney_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="or_remitMoney_time" Type="DateTime" Precision="3" />
+          <Property Name="or_remitMoney" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="POPModel.FK__OrderRecor__u_id__125EB334" FromRole="OrderRecord" ToRole="AspNetUsers" />
+        </EntityType>
+        <Association Name="FK__OrderRecor__u_id__125EB334">
+          <End Type="POPModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="POPModel.OrderRecord" Role="OrderRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderRecord">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="POPModelStoreContainer" CdmEntityContainer="POPEntities">
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="POPModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BeaconDevice">
+            <EntityTypeMapping TypeName="POPModel.BeaconDevice">
+              <MappingFragment StoreEntitySet="BeaconDevice">
+                <ScalarProperty Name="d_id" ColumnName="d_id" />
+                <ScalarProperty Name="d_name" ColumnName="d_name" />
+                <ScalarProperty Name="d_out_day" ColumnName="d_out_day" />
+                <ScalarProperty Name="d_location1" ColumnName="d_location1" />
+                <ScalarProperty Name="d_location2" ColumnName="d_location2" />
+                <ScalarProperty Name="d_location3" ColumnName="d_location3" />
+                <ScalarProperty Name="d_location4" ColumnName="d_location4" />
+                <ScalarProperty Name="d_holder" ColumnName="d_holder" />
+                <ScalarProperty Name="d_memo" ColumnName="d_memo" />
+                <ScalarProperty Name="belongto" ColumnName="belongto" />
+                <ScalarProperty Name="d_owner" ColumnName="d_owner" />
+                <ScalarProperty Name="bdf_id" ColumnName="bdf_id" />
+                <ScalarProperty Name="bpt_id" ColumnName="bpt_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BroadcastPointType">
+            <EntityTypeMapping TypeName="POPModel.BroadcastPointType">
+              <MappingFragment StoreEntitySet="BroadcastPointType">
+                <ScalarProperty Name="bpt_id" ColumnName="bpt_id" />
+                <ScalarProperty Name="bpt_broadcastPoint" ColumnName="bpt_broadcastPoint" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoGroupp">
+            <EntityTypeMapping TypeName="POPModel.InfoGroupp">
+              <MappingFragment StoreEntitySet="InfoGroupp">
+                <ScalarProperty Name="ig_id" ColumnName="ig_id" />
+                <ScalarProperty Name="ig_name" ColumnName="ig_name" />
+                <ScalarProperty Name="ig_pic" ColumnName="ig_pic" />
+                <ScalarProperty Name="ig_price" ColumnName="ig_price" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="town">
+            <EntityTypeMapping TypeName="POPModel.town">
+              <MappingFragment StoreEntitySet="town">
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="c_county" ColumnName="c_county" />
+                <ScalarProperty Name="c_town" ColumnName="c_town" />
+                <ScalarProperty Name="c_zipcode" ColumnName="c_zipcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User2">
+            <EntityTypeMapping TypeName="POPModel.User2">
+              <MappingFragment StoreEntitySet="User2">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="u_name" ColumnName="u_name" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="CurrentFlag" ColumnName="CurrentFlag" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="receipt" ColumnName="receipt" />
+                <ScalarProperty Name="p_fee" ColumnName="p_fee" />
+                <ScalarProperty Name="p_lastFeeDate" ColumnName="p_lastFeeDate" />
+                <ScalarProperty Name="PhoneNumber1" ColumnName="PhoneNumber1" />
+                <ScalarProperty Name="PhoneNumber2" ColumnName="PhoneNumber2" />
+                <ScalarProperty Name="u_memo" ColumnName="u_memo" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="u_active" ColumnName="u_active" />
+                <ScalarProperty Name="belongto" ColumnName="belongto" />
+                <ScalarProperty Name="CommCircleName" ColumnName="CommCircleName" />
+                <ScalarProperty Name="u_location1" ColumnName="u_location1" />
+                <ScalarProperty Name="u_location2" ColumnName="u_location2" />
+                <ScalarProperty Name="u_location3" ColumnName="u_location3" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="AddressTypedId" ColumnName="AddressTypedId" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="SpatialLocation" ColumnName="SpatialLocation" />
+                <ScalarProperty Name="applyupgrade" ColumnName="applyupgrade" />
+                <ScalarProperty Name="rejectreason" ColumnName="rejectreason" />
+                <ScalarProperty Name="u_occupation1" ColumnName="u_occupation1" />
+                <ScalarProperty Name="u_occupation2" ColumnName="u_occupation2" />
+                <ScalarProperty Name="u_occupation3" ColumnName="u_occupation3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AAA">
+            <EntityTypeMapping TypeName="POPModel.AAA">
+              <MappingFragment StoreEntitySet="AAA">
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="c_county" ColumnName="c_county" />
+                <ScalarProperty Name="c_town" ColumnName="c_town" />
+                <ScalarProperty Name="c_zipcode" ColumnName="c_zipcode" />
+                <ScalarProperty Name="d_id" ColumnName="d_id" />
+                <ScalarProperty Name="d_name" ColumnName="d_name" />
+                <ScalarProperty Name="d_out_day" ColumnName="d_out_day" />
+                <ScalarProperty Name="d_location1" ColumnName="d_location1" />
+                <ScalarProperty Name="d_location2" ColumnName="d_location2" />
+                <ScalarProperty Name="d_location3" ColumnName="d_location3" />
+                <ScalarProperty Name="d_location4" ColumnName="d_location4" />
+                <ScalarProperty Name="d_holder" ColumnName="d_holder" />
+                <ScalarProperty Name="d_memo" ColumnName="d_memo" />
+                <ScalarProperty Name="belongto" ColumnName="belongto" />
+                <ScalarProperty Name="i_id" ColumnName="i_id" />
+                <ScalarProperty Name="i_name" ColumnName="i_name" />
+                <ScalarProperty Name="i_content" ColumnName="i_content" />
+                <ScalarProperty Name="i_initial_day" ColumnName="i_initial_day" />
+                <ScalarProperty Name="i_expired_day" ColumnName="i_expired_day" />
+                <ScalarProperty Name="i_pic1" ColumnName="i_pic1" />
+                <ScalarProperty Name="i_pic2" ColumnName="i_pic2" />
+                <ScalarProperty Name="i_pic3" ColumnName="i_pic3" />
+                <ScalarProperty Name="i_pic4" ColumnName="i_pic4" />
+                <ScalarProperty Name="i_pic5" ColumnName="i_pic5" />
+                <ScalarProperty Name="i_URL" ColumnName="i_URL" />
+                <ScalarProperty Name="ig_id" ColumnName="ig_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="i_unconfirm" ColumnName="i_unconfirm" />
+                <ScalarProperty Name="ip_discount" ColumnName="ip_discount" />
+                <ScalarProperty Name="ip_days" ColumnName="ip_days" />
+                <ScalarProperty Name="bill" ColumnName="bill" />
+                <ScalarProperty Name="i_LINE" ColumnName="i_LINE" />
+                <ScalarProperty Name="i_location1" ColumnName="i_location1" />
+                <ScalarProperty Name="i_location2" ColumnName="i_location2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_AspNetUsers_Infos">
+            <EntityTypeMapping TypeName="POPModel.View_AspNetUsers_Infos">
+              <MappingFragment StoreEntitySet="View_AspNetUsers_Infos">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="i_id" ColumnName="i_id" />
+                <ScalarProperty Name="i_name" ColumnName="i_name" />
+                <ScalarProperty Name="i_content" ColumnName="i_content" />
+                <ScalarProperty Name="i_initial_day" ColumnName="i_initial_day" />
+                <ScalarProperty Name="i_expired_day" ColumnName="i_expired_day" />
+                <ScalarProperty Name="i_location1" ColumnName="i_location1" />
+                <ScalarProperty Name="i_location2" ColumnName="i_location2" />
+                <ScalarProperty Name="i_pic1" ColumnName="i_pic1" />
+                <ScalarProperty Name="i_pic2" ColumnName="i_pic2" />
+                <ScalarProperty Name="i_pic3" ColumnName="i_pic3" />
+                <ScalarProperty Name="i_pic4" ColumnName="i_pic4" />
+                <ScalarProperty Name="i_pic5" ColumnName="i_pic5" />
+                <ScalarProperty Name="i_URL" ColumnName="i_URL" />
+                <ScalarProperty Name="ig_id" ColumnName="ig_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="i_unconfirm" ColumnName="i_unconfirm" />
+                <ScalarProperty Name="ip_discount" ColumnName="ip_discount" />
+                <ScalarProperty Name="ip_days" ColumnName="ip_days" />
+                <ScalarProperty Name="bill" ColumnName="bill" />
+                <ScalarProperty Name="i_LINE" ColumnName="i_LINE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P_InfoPrice">
+            <EntityTypeMapping TypeName="POPModel.P_InfoPrice">
+              <MappingFragment StoreEntitySet="P_InfoPrice">
+                <ScalarProperty Name="ip_days" ColumnName="ip_days" />
+                <ScalarProperty Name="ip_discount" ColumnName="ip_discount" />
+                <ScalarProperty Name="ip_name" ColumnName="ip_name" />
+                <ScalarProperty Name="ip_id" ColumnName="ip_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uv_ConditionalSearchPushAdvertisin">
+            <EntityTypeMapping TypeName="POPModel.uv_ConditionalSearchPushAdvertisin">
+              <MappingFragment StoreEntitySet="uv_ConditionalSearchPushAdvertisin">
+                <ScalarProperty Name="cl_location4" ColumnName="cl_location4" />
+                <ScalarProperty Name="cl_location3" ColumnName="cl_location3" />
+                <ScalarProperty Name="cl_location2" ColumnName="cl_location2" />
+                <ScalarProperty Name="cl_location1" ColumnName="cl_location1" />
+                <ScalarProperty Name="cl_belong" ColumnName="cl_belong" />
+                <ScalarProperty Name="cl_name" ColumnName="cl_name" />
+                <ScalarProperty Name="cl_id" ColumnName="cl_id" />
+                <ScalarProperty Name="ac_building" ColumnName="ac_building" />
+                <ScalarProperty Name="ac_family" ColumnName="ac_family" />
+                <ScalarProperty Name="ac_belong" ColumnName="ac_belong" />
+                <ScalarProperty Name="ac_location3" ColumnName="ac_location3" />
+                <ScalarProperty Name="ac_location2" ColumnName="ac_location2" />
+                <ScalarProperty Name="ac_location1" ColumnName="ac_location1" />
+                <ScalarProperty Name="ac_name" ColumnName="ac_name" />
+                <ScalarProperty Name="ac_zipcode" ColumnName="ac_zipcode" />
+                <ScalarProperty Name="ac_Id" ColumnName="ac_Id" />
+                <ScalarProperty Name="co_location4" ColumnName="co_location4" />
+                <ScalarProperty Name="co_location3" ColumnName="co_location3" />
+                <ScalarProperty Name="co_location2" ColumnName="co_location2" />
+                <ScalarProperty Name="co_location1" ColumnName="co_location1" />
+                <ScalarProperty Name="co_belong" ColumnName="co_belong" />
+                <ScalarProperty Name="co_name" ColumnName="co_name" />
+                <ScalarProperty Name="co_id" ColumnName="co_id" />
+                <ScalarProperty Name="free_id" ColumnName="free_id" />
+                <ScalarProperty Name="U2_id" ColumnName="U2_id" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="ig_price" ColumnName="ig_price" />
+                <ScalarProperty Name="ig_pic" ColumnName="ig_pic" />
+                <ScalarProperty Name="ig_name" ColumnName="ig_name" />
+                <ScalarProperty Name="i_open" ColumnName="i_open" />
+                <ScalarProperty Name="i_LINE" ColumnName="i_LINE" />
+                <ScalarProperty Name="bill" ColumnName="bill" />
+                <ScalarProperty Name="ip_days" ColumnName="ip_days" />
+                <ScalarProperty Name="ip_discount" ColumnName="ip_discount" />
+                <ScalarProperty Name="i_unconfirm" ColumnName="i_unconfirm" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="ig_id" ColumnName="ig_id" />
+                <ScalarProperty Name="i_URL" ColumnName="i_URL" />
+                <ScalarProperty Name="i_pic5" ColumnName="i_pic5" />
+                <ScalarProperty Name="i_pic4" ColumnName="i_pic4" />
+                <ScalarProperty Name="i_pic3" ColumnName="i_pic3" />
+                <ScalarProperty Name="i_pic2" ColumnName="i_pic2" />
+                <ScalarProperty Name="i_pic1" ColumnName="i_pic1" />
+                <ScalarProperty Name="i_location2" ColumnName="i_location2" />
+                <ScalarProperty Name="i_location1" ColumnName="i_location1" />
+                <ScalarProperty Name="i_expired_day" ColumnName="i_expired_day" />
+                <ScalarProperty Name="i_initial_day" ColumnName="i_initial_day" />
+                <ScalarProperty Name="i_content" ColumnName="i_content" />
+                <ScalarProperty Name="i_name" ColumnName="i_name" />
+                <ScalarProperty Name="bdf_price" ColumnName="bdf_price" />
+                <ScalarProperty Name="bdf_content" ColumnName="bdf_content" />
+                <ScalarProperty Name="bdf_name" ColumnName="bdf_name" />
+                <ScalarProperty Name="bpt_broadcastPoint" ColumnName="bpt_broadcastPoint" />
+                <ScalarProperty Name="bpt_id" ColumnName="bpt_id" />
+                <ScalarProperty Name="bdf_id" ColumnName="bdf_id" />
+                <ScalarProperty Name="d_owner" ColumnName="d_owner" />
+                <ScalarProperty Name="belongto" ColumnName="belongto" />
+                <ScalarProperty Name="d_memo" ColumnName="d_memo" />
+                <ScalarProperty Name="d_holder" ColumnName="d_holder" />
+                <ScalarProperty Name="d_location4" ColumnName="d_location4" />
+                <ScalarProperty Name="d_location3" ColumnName="d_location3" />
+                <ScalarProperty Name="d_location2" ColumnName="d_location2" />
+                <ScalarProperty Name="d_location1" ColumnName="d_location1" />
+                <ScalarProperty Name="d_out_day" ColumnName="d_out_day" />
+                <ScalarProperty Name="d_name" ColumnName="d_name" />
+                <ScalarProperty Name="i_id" ColumnName="i_id" />
+                <ScalarProperty Name="d_id" ColumnName="d_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_PushAdvertisingStatistics" FunctionName="POPModel.Store.usp_PushAdvertisingStatistics">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="POPModel.usp_PushAdvertisingStatistics_Result">
+                <ScalarProperty Name="rowNumber" ColumnName="rowNumber" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="bpt_broadcastPoint" ColumnName="bpt_broadcastPoint" />
+                <ScalarProperty Name="bdf_name" ColumnName="bdf_name" />
+                <ScalarProperty Name="d_name" ColumnName="d_name" />
+                <ScalarProperty Name="d_location3" ColumnName="d_location3" />
+                <ScalarProperty Name="d_location4" ColumnName="d_location4" />
+                <ScalarProperty Name="bdf_price" ColumnName="bdf_price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="uv_AllBroadcast">
+            <EntityTypeMapping TypeName="POPModel.uv_AllBroadcast">
+              <MappingFragment StoreEntitySet="uv_AllBroadcast">
+                <ScalarProperty Name="bdf_price" ColumnName="bdf_price" />
+                <ScalarProperty Name="bdf_content" ColumnName="bdf_content" />
+                <ScalarProperty Name="bdf_name" ColumnName="bdf_name" />
+                <ScalarProperty Name="bpt_broadcastPoint" ColumnName="bpt_broadcastPoint" />
+                <ScalarProperty Name="bpt_id" ColumnName="bpt_id" />
+                <ScalarProperty Name="bdf_id" ColumnName="bdf_id" />
+                <ScalarProperty Name="d_owner" ColumnName="d_owner" />
+                <ScalarProperty Name="belongto" ColumnName="belongto" />
+                <ScalarProperty Name="d_memo" ColumnName="d_memo" />
+                <ScalarProperty Name="d_holder" ColumnName="d_holder" />
+                <ScalarProperty Name="d_location4" ColumnName="d_location4" />
+                <ScalarProperty Name="d_location3" ColumnName="d_location3" />
+                <ScalarProperty Name="d_location2" ColumnName="d_location2" />
+                <ScalarProperty Name="d_location1" ColumnName="d_location1" />
+                <ScalarProperty Name="d_out_day" ColumnName="d_out_day" />
+                <ScalarProperty Name="d_name" ColumnName="d_name" />
+                <ScalarProperty Name="d_id" ColumnName="d_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BeaconDeviceFlow">
+            <EntityTypeMapping TypeName="POPModel.BeaconDeviceFlow">
+              <MappingFragment StoreEntitySet="BeaconDeviceFlow">
+                <ScalarProperty Name="bdf_price" ColumnName="bdf_price" />
+                <ScalarProperty Name="bdf_content" ColumnName="bdf_content" />
+                <ScalarProperty Name="bdf_name" ColumnName="bdf_name" />
+                <ScalarProperty Name="bdf_id" ColumnName="bdf_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceType">
+            <EntityTypeMapping TypeName="POPModel.InvoiceType">
+              <MappingFragment StoreEntitySet="InvoiceType">
+                <ScalarProperty Name="inv_description" ColumnName="inv_description" />
+                <ScalarProperty Name="inv_type" ColumnName="inv_type" />
+                <ScalarProperty Name="inv_id" ColumnName="inv_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales">
+            <EntityTypeMapping TypeName="POPModel.sales">
+              <MappingFragment StoreEntitySet="sales">
+                <ScalarProperty Name="invoice_code" ColumnName="invoice_code" />
+                <ScalarProperty Name="ifout" ColumnName="ifout" />
+                <ScalarProperty Name="belongto" ColumnName="belongto" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="u_phone" ColumnName="u_phone" />
+                <ScalarProperty Name="u_mail" ColumnName="u_mail" />
+                <ScalarProperty Name="u_name" ColumnName="u_name" />
+                <ScalarProperty Name="ip_days" ColumnName="ip_days" />
+                <ScalarProperty Name="i_content" ColumnName="i_content" />
+                <ScalarProperty Name="i_name" ColumnName="i_name" />
+                <ScalarProperty Name="ip_discount" ColumnName="ip_discount" />
+                <ScalarProperty Name="bill" ColumnName="bill" />
+                <ScalarProperty Name="i_expired_day" ColumnName="i_expired_day" />
+                <ScalarProperty Name="i_day" ColumnName="i_day" />
+                <ScalarProperty Name="s_day" ColumnName="s_day" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uv_PublishedInquire">
+            <EntityTypeMapping TypeName="POPModel.uv_PublishedInquire">
+              <MappingFragment StoreEntitySet="uv_PublishedInquire">
+                <ScalarProperty Name="or_payment_confirmed" ColumnName="or_payment_confirmed" />
+                <ScalarProperty Name="or_payment_status" ColumnName="or_payment_status" />
+                <ScalarProperty Name="or_invoice_public" ColumnName="or_invoice_public" />
+                <ScalarProperty Name="inv_type" ColumnName="inv_type" />
+                <ScalarProperty Name="or_invoice_code" ColumnName="or_invoice_code" />
+                <ScalarProperty Name="or_invoice_address" ColumnName="or_invoice_address" />
+                <ScalarProperty Name="or_invoice_title" ColumnName="or_invoice_title" />
+                <ScalarProperty Name="or_create_datetime" ColumnName="or_create_datetime" />
+                <ScalarProperty Name="or_id" ColumnName="or_id" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="ig_price" ColumnName="ig_price" />
+                <ScalarProperty Name="ig_pic" ColumnName="ig_pic" />
+                <ScalarProperty Name="ig_name" ColumnName="ig_name" />
+                <ScalarProperty Name="i_formal_period" ColumnName="i_formal_period" />
+                <ScalarProperty Name="i_probation" ColumnName="i_probation" />
+                <ScalarProperty Name="i_create_datetime" ColumnName="i_create_datetime" />
+                <ScalarProperty Name="or_number" ColumnName="or_number" />
+                <ScalarProperty Name="i_open" ColumnName="i_open" />
+                <ScalarProperty Name="i_LINE" ColumnName="i_LINE" />
+                <ScalarProperty Name="bill" ColumnName="bill" />
+                <ScalarProperty Name="ip_days" ColumnName="ip_days" />
+                <ScalarProperty Name="ip_discount" ColumnName="ip_discount" />
+                <ScalarProperty Name="i_unconfirm" ColumnName="i_unconfirm" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="ig_id" ColumnName="ig_id" />
+                <ScalarProperty Name="i_URL" ColumnName="i_URL" />
+                <ScalarProperty Name="i_pic5" ColumnName="i_pic5" />
+                <ScalarProperty Name="i_pic4" ColumnName="i_pic4" />
+                <ScalarProperty Name="i_pic3" ColumnName="i_pic3" />
+                <ScalarProperty Name="i_pic2" ColumnName="i_pic2" />
+                <ScalarProperty Name="i_pic1" ColumnName="i_pic1" />
+                <ScalarProperty Name="i_location2" ColumnName="i_location2" />
+                <ScalarProperty Name="i_location1" ColumnName="i_location1" />
+                <ScalarProperty Name="i_expired_day" ColumnName="i_expired_day" />
+                <ScalarProperty Name="i_initial_day" ColumnName="i_initial_day" />
+                <ScalarProperty Name="i_content" ColumnName="i_content" />
+                <ScalarProperty Name="i_name" ColumnName="i_name" />
+                <ScalarProperty Name="i_id" ColumnName="i_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Infos">
+            <EntityTypeMapping TypeName="POPModel.Infos">
+              <MappingFragment StoreEntitySet="Infos">
+                <ScalarProperty Name="i_formal_period" ColumnName="i_formal_period" />
+                <ScalarProperty Name="i_probation" ColumnName="i_probation" />
+                <ScalarProperty Name="i_create_datetime" ColumnName="i_create_datetime" />
+                <ScalarProperty Name="or_number" ColumnName="or_number" />
+                <ScalarProperty Name="i_open" ColumnName="i_open" />
+                <ScalarProperty Name="i_LINE" ColumnName="i_LINE" />
+                <ScalarProperty Name="bill" ColumnName="bill" />
+                <ScalarProperty Name="ip_days" ColumnName="ip_days" />
+                <ScalarProperty Name="ip_discount" ColumnName="ip_discount" />
+                <ScalarProperty Name="i_unconfirm" ColumnName="i_unconfirm" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="ig_id" ColumnName="ig_id" />
+                <ScalarProperty Name="i_URL" ColumnName="i_URL" />
+                <ScalarProperty Name="i_pic5" ColumnName="i_pic5" />
+                <ScalarProperty Name="i_pic4" ColumnName="i_pic4" />
+                <ScalarProperty Name="i_pic3" ColumnName="i_pic3" />
+                <ScalarProperty Name="i_pic2" ColumnName="i_pic2" />
+                <ScalarProperty Name="i_pic1" ColumnName="i_pic1" />
+                <ScalarProperty Name="i_location2" ColumnName="i_location2" />
+                <ScalarProperty Name="i_location1" ColumnName="i_location1" />
+                <ScalarProperty Name="i_expired_day" ColumnName="i_expired_day" />
+                <ScalarProperty Name="i_initial_day" ColumnName="i_initial_day" />
+                <ScalarProperty Name="i_content" ColumnName="i_content" />
+                <ScalarProperty Name="i_name" ColumnName="i_name" />
+                <ScalarProperty Name="i_id" ColumnName="i_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="DeviceUsers" TypeName="POPModel.DeviceUsers" StoreEntitySet="DeviceUsers">
+            <EndProperty Name="User2">
+              <ScalarProperty Name="Id" ColumnName="u_id" />
+            </EndProperty>
+            <EndProperty Name="BeaconDevice">
+              <ScalarProperty Name="d_id" ColumnName="d_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DeviceInfo" TypeName="POPModel.DeviceInfo" StoreEntitySet="DeviceInfo">
+            <EndProperty Name="Infos">
+              <ScalarProperty Name="i_id" ColumnName="i_id" />
+            </EndProperty>
+            <EndProperty Name="BeaconDevice">
+              <ScalarProperty Name="d_id" ColumnName="d_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="uv_AdvertisingCategoryCount">
+            <EntityTypeMapping TypeName="POPModel.uv_AdvertisingCategoryCount">
+              <MappingFragment StoreEntitySet="uv_AdvertisingCategoryCount">
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="ig_name" ColumnName="ig_name" />
+                <ScalarProperty Name="ig_id" ColumnName="ig_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uv_ClassifiedAdsSearch">
+            <EntityTypeMapping TypeName="POPModel.uv_ClassifiedAdsSearch">
+              <MappingFragment StoreEntitySet="uv_ClassifiedAdsSearch">
+                <ScalarProperty Name="ac_building" ColumnName="ac_building" />
+                <ScalarProperty Name="ac_family" ColumnName="ac_family" />
+                <ScalarProperty Name="ac_belong" ColumnName="ac_belong" />
+                <ScalarProperty Name="ac_location3" ColumnName="ac_location3" />
+                <ScalarProperty Name="ac_location2" ColumnName="ac_location2" />
+                <ScalarProperty Name="ac_location1" ColumnName="ac_location1" />
+                <ScalarProperty Name="ac_name" ColumnName="ac_name" />
+                <ScalarProperty Name="ac_zipcode" ColumnName="ac_zipcode" />
+                <ScalarProperty Name="cl_location4" ColumnName="cl_location4" />
+                <ScalarProperty Name="cl_location3" ColumnName="cl_location3" />
+                <ScalarProperty Name="cl_location2" ColumnName="cl_location2" />
+                <ScalarProperty Name="cl_location1" ColumnName="cl_location1" />
+                <ScalarProperty Name="cl_belong" ColumnName="cl_belong" />
+                <ScalarProperty Name="cl_name" ColumnName="cl_name" />
+                <ScalarProperty Name="co_location4" ColumnName="co_location4" />
+                <ScalarProperty Name="co_location3" ColumnName="co_location3" />
+                <ScalarProperty Name="co_location2" ColumnName="co_location2" />
+                <ScalarProperty Name="co_location1" ColumnName="co_location1" />
+                <ScalarProperty Name="co_belong" ColumnName="co_belong" />
+                <ScalarProperty Name="co_name" ColumnName="co_name" />
+                <ScalarProperty Name="free_id" ColumnName="free_id" />
+                <ScalarProperty Name="U2_id" ColumnName="U2_id" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="ig_price" ColumnName="ig_price" />
+                <ScalarProperty Name="ig_pic" ColumnName="ig_pic" />
+                <ScalarProperty Name="ig_name" ColumnName="ig_name" />
+                <ScalarProperty Name="i_formal_period" ColumnName="i_formal_period" />
+                <ScalarProperty Name="i_probation" ColumnName="i_probation" />
+                <ScalarProperty Name="i_create_datetime" ColumnName="i_create_datetime" />
+                <ScalarProperty Name="or_number" ColumnName="or_number" />
+                <ScalarProperty Name="i_open" ColumnName="i_open" />
+                <ScalarProperty Name="i_LINE" ColumnName="i_LINE" />
+                <ScalarProperty Name="bill" ColumnName="bill" />
+                <ScalarProperty Name="ip_days" ColumnName="ip_days" />
+                <ScalarProperty Name="ip_discount" ColumnName="ip_discount" />
+                <ScalarProperty Name="i_unconfirm" ColumnName="i_unconfirm" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="ig_id" ColumnName="ig_id" />
+                <ScalarProperty Name="i_URL" ColumnName="i_URL" />
+                <ScalarProperty Name="i_pic5" ColumnName="i_pic5" />
+                <ScalarProperty Name="i_pic4" ColumnName="i_pic4" />
+                <ScalarProperty Name="i_pic3" ColumnName="i_pic3" />
+                <ScalarProperty Name="i_pic2" ColumnName="i_pic2" />
+                <ScalarProperty Name="i_pic1" ColumnName="i_pic1" />
+                <ScalarProperty Name="i_location2" ColumnName="i_location2" />
+                <ScalarProperty Name="i_location1" ColumnName="i_location1" />
+                <ScalarProperty Name="i_expired_day" ColumnName="i_expired_day" />
+                <ScalarProperty Name="i_initial_day" ColumnName="i_initial_day" />
+                <ScalarProperty Name="i_content" ColumnName="i_content" />
+                <ScalarProperty Name="i_name" ColumnName="i_name" />
+                <ScalarProperty Name="i_id" ColumnName="i_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderRecord">
+            <EntityTypeMapping TypeName="POPModel.OrderRecord">
+              <MappingFragment StoreEntitySet="OrderRecord">
+                <ScalarProperty Name="or_remitMoney" ColumnName="or_remitMoney" />
+                <ScalarProperty Name="or_remitMoney_time" ColumnName="or_remitMoney_time" />
+                <ScalarProperty Name="or_remitMoney_name" ColumnName="or_remitMoney_name" />
+                <ScalarProperty Name="or_payment_confirmed" ColumnName="or_payment_confirmed" />
+                <ScalarProperty Name="or_payment_status" ColumnName="or_payment_status" />
+                <ScalarProperty Name="bill" ColumnName="bill" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="or_invoice_public" ColumnName="or_invoice_public" />
+                <ScalarProperty Name="inv_type" ColumnName="inv_type" />
+                <ScalarProperty Name="or_invoice_code" ColumnName="or_invoice_code" />
+                <ScalarProperty Name="or_invoice_address" ColumnName="or_invoice_address" />
+                <ScalarProperty Name="or_invoice_title" ColumnName="or_invoice_title" />
+                <ScalarProperty Name="or_create_datetime" ColumnName="or_create_datetime" />
+                <ScalarProperty Name="or_number" ColumnName="or_number" />
+                <ScalarProperty Name="or_id" ColumnName="or_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

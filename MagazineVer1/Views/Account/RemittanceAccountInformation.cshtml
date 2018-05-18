@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "匯款帳號資訊";
+}
+
+@section styles
+{
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css  ">
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div style="text-align:left;">
+    <p>轉帳銀行代號：812 &nbsp;&nbsp;(台新商業銀行代碼，共3位)</p>
+    <br />
+    <p>轉帳帳號：20780100003891</p>
+    <p>訂單編號：<span id="orderNumber"></span></p>
+    <br />
+    <p>轉帳總金額：NT$<span id="totalPrice"></span></p>
+    <br />
+    <br />
+    <p>請於匯款後至『刊登查詢』按『通知付款』鈕，勾選『通知付款』輸入匯款帳號末五碼、姓名、金額，以便核對帳務。</p>
+</div>
+<br />
+<br />
+<div>
+    <button id="confirm">確定</button>&nbsp;&nbsp;<button id="cancel">取消</button>
+</div>
+
+<div id="dialog-saveing" style="display: none;">
+    <p>資料儲存中...</p>
+</div>
+
+<div id="dialog-saveedError" style="display: none;">
+    <p>資料儲存失敗</p>
+</div>
+
+<div id="dialog-saveedSuccess" style="display: none;">
+    <p>您已經下單成功，請於匯款後至『刊登查詢』按『通知付款』鈕通知帳務人員，謝謝。</p>
+</div>
+
+@section scripts
+{
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @Scripts.Render("~/bundles/Account/remittanceAccountInformation")
+}

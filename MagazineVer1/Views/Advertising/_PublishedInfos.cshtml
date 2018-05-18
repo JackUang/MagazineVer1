@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MagazineVer1.Models.uv_PublishedInquire>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ig_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_create_datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_expired_day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_pic1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_pic2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_pic3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_pic4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_pic5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_URL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.i_LINE)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ig_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.i_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.i_create_datetime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.i_expired_day)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.i_pic1)" style="max-width: 150px; max-height: 150px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.i_pic2)" style="max-width: 150px; max-height: 150px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.i_pic3)" style="max-width: 150px; max-height: 150px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.i_pic4)" style="max-width: 150px; max-height: 150px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.i_pic5)" style="max-width: 150px; max-height: 150px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.i_URL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.i_LINE)
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    <p>總共@(Model.Count())則</p>
+</div>

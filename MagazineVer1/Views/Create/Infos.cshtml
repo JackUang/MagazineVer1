@@ -1,0 +1,32 @@
+﻿@model MagazineVer1.Models.Infos
+
+@section scripts
+{
+    @*匯入驗證與AJAX所需的JavaScript*@
+    @Scripts.Render("~/bundles/jqueryval")
+    @*匯入本頁面的JavaScript*@
+    @Scripts.Render("~/jQuery/Home/Infos.js")
+    }
+@*顯示文章詳細內容表格*@
+<div class="page-header">
+    <h1>@Model.i_name</h1>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Html.DisplayNameFor(model=>model.i_content)</h3>
+    </div>
+    <div class="panel-body">
+        @Html.Raw(Model.i_content.Replace("\r\n","<br/>"))
+        <p class="text-right">
+
+        </p>
+    </div>
+    <div class="panel-footer text-right">
+        
+    </div>
+</div>
+
+
+
+@*顯示"返回刊登列表"連結*@
+@Html.ActionLink("返回刊登列表", "Index","Create", null)

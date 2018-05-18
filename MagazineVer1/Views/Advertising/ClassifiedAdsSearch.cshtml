@@ -1,0 +1,28 @@
+﻿@model IPagedList<MagazineVer1.Models.uv_ClassifiedAdsSearch>
+
+@{
+    ViewBag.Title = "分類廣告搜尋結果";
+}
+
+@section styles{
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>
+    @ViewBag.County@ViewBag.Township
+    @if (!string.IsNullOrEmpty(@ViewBag.Category))
+    {
+        <span>></span>
+    }
+    @ViewBag.Category
+</h3>
+<hr />
+
+@Html.Partial("_CategoryPartial", Model)
+
+@section scripts
+{
+    <script src="~/Scripts/Advertising/advertisingList.js"></script>
+}

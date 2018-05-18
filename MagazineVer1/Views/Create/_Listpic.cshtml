@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MagazineVer1.Models.ViewModels.DownloadFile>
+    @*<table class="table col-md-8 text-center">
+    <tr>
+        <th colspan="2">
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+    </tr>*@
+
+    @*本來*@
+        @*<tr height="80px">            
+            @foreach (var item in Model)
+            {                
+                <td>
+                    <img class="img-responsive img-full"
+                         src="@Url.Content("~/pictures/"+@ViewBag.UName+"/"+item.FileName)" alt="" width="55" height="55" />
+                    @*<img src="@Url.Content(Url.Action(item.FileName,"Uploads"))" width="55" height="55"/>*@
+                @*</td>*@               
+            @*}*@
+        @*</tr>*@
+
+    @*買大寫法*@
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-xs-2 col-sm-3 col-md-4">
+                    <div class="thumbnail">
+                        <img class="Adver" src="@Url.Content("~/pictures/"+@ViewBag.UName+"/"+item.FileName)" width="150" height="150" />
+                        <div class="caption"></div>
+                    </div>
+
+                </div>
+
+            }
+       
+        </div>
+
+
+@*</table>*@
+@Html.ActionLink("檔案上傳","Upload","Create","",new { @class = "btn btn-primary" })

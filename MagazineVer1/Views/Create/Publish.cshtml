@@ -1,0 +1,675 @@
+﻿@model MagazineVer1.Models.Infos
+
+@{ 
+    AjaxOptions options = new AjaxOptions();
+    options.Confirm = "確定要提交?";
+    options.HttpMethod = "Post";
+    options.UpdateTargetId = "divResponse";
+    options.InsertionMode = InsertionMode.InsertAfter;
+}
+
+@using (Html.BeginForm("Publish","Create",FormMethod.Post, new { @enctype= "multipart/form-data",style= "margin-top: 5%;" }))
+{
+                @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="margin: auto;text-align: center;width: 47%;display: inline-table;">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.i_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.i_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.i_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.i_content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.i_content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.i_content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.i_initial_day, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.i_initial_day, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.i_initial_day, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.i_expired_day, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.i_expired_day, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.i_expired_day, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <!-- ** -->
+        @*@using (Ajax.BeginForm("Upload", "Create",null,options,new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.TextBox("files", "", new { @type = "file", @multiple = "multiple" })
+                </div>
+               <div class="form-group">
+                    <input id="Submit1" button type="submit" class="btn btn-primary btn-lg fa fa-upload fa-og" value="上傳" />
+               </div>
+                <div id="divResponse"></div>
+            }*@
+
+        <div>
+            @*@Html.AntiForgeryToken()*@
+            <div class="form-group" style="display: -webkit-inline-box;
+                 ">
+                @Html.TextBox("files", "", new { @type = "file", @multiple = "multiple" })
+            </div>
+            @*<div class="form-group">
+                    <button id="Submit1" class="btn btn-primary btn-lg fa fa-upload fa-og">上傳</button>
+                </div>
+                <div id="divResponse"></div>*@
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.i_pic1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.i_pic1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.i_pic1, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg fa fa-upload fa-og">
+                    上傳
+                </button>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.i_pic2, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.i_pic2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.i_pic2, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg fa fa-upload fa-og">
+                        上傳
+                    </button>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.i_pic3, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.i_pic3, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.i_pic3, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg fa fa-upload fa-og">
+                    上傳
+                </button>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.i_pic4, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.i_pic4, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.i_pic4, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg fa fa-upload fa-og">
+                    上傳
+                </button>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.i_pic5, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.i_pic5, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.i_pic5, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg fa fa-upload fa-og">
+                    上傳
+                </button>
+            </div>*@
+
+        <table style="display: -webkit-box;
+               ">
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.i_location1, htmlAttributes: new
+                   {
+                       @class = "inline",
+                       style = "width: 100 %;margin - left: 15 %;"
+                   })
+                    </td>
+                    @*@{ List<SelectList> items=ViewBag.BCounty=="" ? null:(List<SelectList>)ViewBag.BCounty;}*@
+                    <td>
+                        @*@using (Ajax.BeginForm("SelectFromDDL1", new AjaxOptions { UpdateTargetId = "dropdownlist2" }))*@
+                        @*{*@
+
+
+                        <div class="inline">
+
+                            @Html.DropDownList("CountyDDL", new SelectList(ViewBag.BCounty), "請選擇", new { @class = "form-inline" })
+
+                            @Html.ValidationMessageFor(model => model.i_location1, "", new { @class = "text-danger" })
+                        </div>
+                        @*<span class="dropdownlist1">
+                            @Html.DropDownList("VCounty", new SelectList(ViewBag.BCounty), "==請選擇==", new { onchange = "doDdlASubmit($(this).parents('form'));" })
+                        </span>*@
+                        @*}*@
+                    </td>
+                    
+                    <td>
+                        <label class="inline" for="ig_id">鄉鎮市區</label>
+                        <span id="dropdownlist2">
+                            <select id="St" class="inline">
+                                @*<option value="">==請選擇==</option>*@
+                            </select>
+                        </span>
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.ig_id, htmlAttributes: new { @class = "inline" })
+                    </td>
+                    <td>
+                        <div class="form-inline">
+                            @Html.DropDownList("VGroup", new SelectList(ViewBag.BGroup), "請選擇", new { htmlAttributes = new { @class = "form-inline" } })
+                            @Html.ValidationMessageFor(model => model.ig_id, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+
+
+                    @Html.Hidden("hiddenGroup")
+
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="form-group">
+            @Html.Label("刊登佈點", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-group" style="display: -webkit-box;">
+                <div class="controls">                 
+                </div>
+            
+                <div class="controls" style="margin-left: 5%;
+                     ">
+                    @foreach (var item in ViewBag.BBeaconName)
+                {
+                        <label class="checkbox-inline">
+                            <input type="checkbox"
+                                   name="VBeaconName"
+                                   value="@item.Value" @(item.Selected ? "checked" : "") />
+                            @item.Text
+                        </label>
+
+                    }
+
+                </div>
+
+        </div>
+    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.i_URL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.i_URL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.i_URL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ig_id, "ig_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ig_id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ig_id, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.u_id, "u_id", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("u_id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.u_id, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.i_unconfirm, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.i_unconfirm)
+                        @Html.ValidationMessageFor(model => model.i_unconfirm, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ip_discount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ip_discount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ip_discount, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ip_days, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ip_days, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ip_days, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.bill, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bill, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bill, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.i_LINE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.i_LINE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.i_LINE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="資料送出" class="btn btn-default" style="font-size: 20px;
+                       background-color: #f08331;
+                       color: white;
+                       ">
+            </div>
+        </div>
+        @*</div>
+            }*@
+    </div>
+}
+<div>
+    @Html.ActionLink("回上一頁", "Index")
+</div>
+
+
+
+    @*<div class="container-fluid" style="">
+        <div class="row">
+            <div class="row" style="background-color:#ddd;">
+                <button type="button" class="btn btn-default" style="margin-left:59%;">
+                    加入達人家族
+                </button>
+@{var a = @User.Identity.Name; }
+                <ul class="nav navbar-nav navbar-right" style="margin-top: -0.5%;margin-right: 2%;">
+                   @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post,
+                                 new { id = "logoutForm", @class = "navbar-right" }
+                                        ))
+                        {
+                            @Html.AntiForgeryToken()
+                            <li>
+                                @Html.ActionLink("Hello!!! " + @a + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
+                        }
+                    }
+
+                </ul>
+            </div>
+            <h1 style="margin:auto;
+                text-align:center;
+                background-color:#ffffff;
+                font-weight:500;
+                ">會員廣告刊登管理後台<br>
+            </h1>
+            <div class="col-md-12" style="margin-top:5%;">
+                <input type="button" class="btn btn-warning" style="font-size:25px;font-weight:600;
+                        margin:auto;
+                        display:block;
+                        ">
+                <font><font class="">
+                    新增廣告</font></font>
+               <br>
+               @{var c = 50-ViewBag.Total; }  
+               <span id="ContentPlaceHolder1_Label8" style="color: #fff7ce;font-size:Large;margin: auto;display: block;text-align: center;">您還可以新增 @c 則廣告</span>
+
+
+                <div class="col-md-2 column ui-sortable" style="margin-top:1.5%;
+                     "><div class=" list-group" style="margin-top:10%;">
+                    <div class="panel-group" id="accordion" style="background-color: #ffffff;border-radius: 0;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="background-color: #ffffff;">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" class="collapsed">播點管理</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <a href="#" class="list-group-item">播點說明</a><a href="#" class="list-group-item">播點廣告</a><a href="#" class="list-group-item" 
+                                      style="background-color:#dff0d8;">播點管理</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" 
+                         style="border-radius:0px; background-color:#dff0d8;">
+                        <div class="panel-heading" style="">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5" class="collapsed" aria-expanded="false"><font><font class="">廣告刊登</font></font></a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <font>
+                                    <font><a href="#" class="list-group-item">廣告刊登</a></font><font><a href="#" class="list-group-item">本月好康</a></font>
+                                    <font><a href="#" class="list-group-item">在地公益</a></font>
+                                    <font><a href="#" class="list-group-item">找工打工</a></font>
+                                </font>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="list-group-item" style="">刊登紀錄</a>
+                    <a href="#" class="list-group-item">我的點數</a>
+                </div>
+            </div>
+
+            <div class="col-md-10 column ui-sortable" style="background-color: white;margin-top: 3%;">
+                <p style="font-size:25px;font-weight:600;text-align:center;">新增廣告</p>
+                <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin:10px 0 20px 0">
+                    <tbody>
+                        <tr>
+                            <td width="15"><img src="https://member.ruten.com.tw/images/bock_o_left.gif" width="15" height="31"></td>
+                            <td align="left" bgcolor="#FEE7C0" class="bk16b"></td>
+                            <td width="15"><img src="https://member.ruten.com.tw/images/bock_o_right.gif" width="15" height="31"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <label for="sel1"><font><font class="" style="">類別：</font></font></label>
+                    <select class="form-control" id="sel1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                    <table style="
+                           margin-top 2%;
+                           margin-bottom 2%;
+                           ">
+                        <tbody>
+                            <tr>
+                                <td class="auto-style14">原價：</td>
+                                <td class="auto-style19">
+                                    <div id="ContentPlaceHolder1_UpdatePanel5">
+
+                                        <span id="ContentPlaceHolder1_Label11" style="color:#0000CC;">200</span>
+
+                                    </div>
+                                </td>
+                                <td align="right" class="auto-style14" style="
+                                    ">
+                                    打折後：
+                                </td>
+                                <td class="auto-style17">
+                                    <div id="ContentPlaceHolder1_Panel2">
+
+                                        <div id="ContentPlaceHolder1_UpdatePanel3">
+
+                                            <span id="ContentPlaceHolder1_Label9" style="color:Red;">200</span>
+
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td>元</td>
+                            </tr>
+                        </tbody>
+                    </table><font style="
+                                  "><font class=" " style="
+                                  font-weight 600;
+                                  ">刊登期：</font></font>
+                    <select class="form-control" id="sel1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                    <table style="margin-top: 2%;">
+                        <tbody>
+                            <tr>
+                                <td class="auto-style15">天數：</td>
+                                <td class="auto-style18">
+                                    <div id="ContentPlaceHolder1_UpdatePanel4">
+
+                                        <span id="ContentPlaceHolder1_Label10" style="color:Red;">7</span>
+
+                                    </div>
+                                </td>
+                                <td class="auto-style20">天，折數=</td>
+                                <td class="auto-style21">
+                                    <div id="ContentPlaceHolder1_UpdatePanel6">
+
+                                        <span id="ContentPlaceHolder1_Label12" style="color:Red;">100</span>
+
+                                    </div>
+                                </td>
+                                <td>折</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <form role="form" style="
+                          margin-top 2%;
+                          ">
+                        <label class="checkbox-inline" style="
+                               font-weight 600;
+                               ">
+                            <input type="checkbox" id="inlineCheckbox3" value="option3">所屬佈點
+                        </label>
+                        <select class="form-control" id="sel1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+
+
+
+                    </form>
+                    <div style="
+                         background-color #f2dede;
+                         padding-top 2%;
+                         padding-bottom 2%;
+                         padding 2%;
+                         margin-top 2%;
+                         ">
+                        <form role="form" style="
+                              margin-top 2%;
+                              ">
+                            <input type="text" class="form-control" placeholder="請輸入標題" style="
+                                   width 100%;
+                                   ">
+                        </form>
+                        <form role="form" style="
+                              margin-top 1%;
+                              ">
+                            <textarea class="form-control" rows="3" placeholder="請輸入內容" style="
+                                      width 100%;
+                                      height 200px;
+                                      "></textarea>
+                        </form>
+                    </div>
+                    <label class="col-sm-10 control-label" for="formGroupInputSmall" style="width: 15%;padding-left: 6%;padding-top: 0.5%;margin-left: -6%;margin-top: 1%;">到期日:</label>
+
+                    <input class="form-control" type="text" id="formGroupInputSmall" placeholder="有效期限" style="
+                           width 11%;
+                           margin-top 1%;
+                           ">
+                    <form action="upload.php" method="post" enctype="multipart/form-data" style="
+                          margin-top 3%;
+                          margin-bottom 5%;
+                          background-color #fff1c8;
+                          padding-left 3%;
+                          padding-bottom 2%;
+                          padding-top 2%;
+                          "><p style="
+                          font-size 16px;
+                          font-weight 600;
+                          ">請選擇既有圖片或上傳新圖片</p><input type=" file" name="file" id="file" style="
+                          margin-top 2%;
+                          ">
+                        <input type="file" name="file" id="file" style="
+                               margin-top 1%;
+                               ">
+                        <input type="file" name="file" id="file" style="
+                               margin-top 1%;
+                               ">
+                        <input type="file" name="file" id="file" style="
+                               margin-top 1%;
+                               ">
+                        <input type="file" name="file" id="file" style="
+                               margin-top 1%;
+                               "><br>
+                        <input type="submit" name="submit" value="上傳圖片">
+                    </form>
+                    <div style="
+                         background-color #ddd;
+                         padding-bottom 2%;
+                         padding-top 2%;
+                         padding-left 3%;
+                         ">
+                        <font style="
+                              margin-top 2%;
+                              "><font class=" " style="
+                              font-weight 600;
+                              ">URL：</font>
+                        <input type="text" class="form-control" placeholder="請輸入網址" style="
+                               width 45%;
+                               "></font><br><br>
+                        <font style="
+                              margin-top 2%;
+                              "><font class=" " style="
+                              font-weight 600;
+                              ">LINE URL：</font>
+                        <input type="text" class="form-control" placeholder="請輸入網址" style="
+                               width 45%;
+                               "></font>
+                    </div>
+                    <br>
+                    <div style="
+                         ">
+                        <button type="button" class="btn btn-warning" style="
+                                margin-top 5%;
+                                ">確定</button><button type=" button" class="btn btn-warning" style="
+                                margin-top 5%;
+                                margin-left 1%;
+                                ">
+                            取消
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer" style="
+            padding-top 2%;
+            ">
+        <p style="text-align: center;width: 100%;background-color: #ffffff;float: left;"><a style="">關於我們</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a>客服公關</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a>個資保護</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a>廣告政策</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a>使用條款</a></p>
+        <p>&nbsp;</p>
+        <div class="custom" style="
+             background-color rgba(255, 255, 255, 0.6);
+             margin-bottom 3%;
+             margin-top 1%;
+             ">
+            <p style="text-align: center;margin-top: -40px;width: 101%;">
+                <span style="color: #ff9900;"></span><span style="color: #333;font-size: 15px;margin-left: 1%;text-align: center;">相關連結</span> <br><a target="_blank" style="
+                                                                                                                                                      margin-left 0%;
+                                                                                                                                                      ">波寶商店</a>&nbsp;&nbsp;<span>∣</span>&nbsp;&nbsp;<a target=" _blank" style="
+                                                                                                                                                      margin-left 0%;
+                                                                                                                                                      ">我的社區</a>&nbsp;&nbsp;<span>∣</span>&nbsp;&nbsp;<a target=" _blank" style="
+                                                                                                                                                      margin-left 0%;
+                                                                                                                                                      ">在地商圈</a>
+                &nbsp;&nbsp;<span>∣</span>&nbsp;&nbsp;
+                <a target="_blank" style="
+                   margin-left 0%;
+                   ">達人幫幫</a>
+            </p>
+            <p style="text-align: center;width: 101%;"><span style="color: #333;font-size: 14px;">波普系統創新股份有限公司&nbsp;&nbsp;<span>∣</span>&nbsp;&nbsp;桃園市蘆竹區南福街101號<br>電話：0987071547&nbsp;&nbsp;<span>∣</span>&nbsp;&nbsp;電子郵箱：<a href="mailto:service@popfamily.com.tw">service@popfamily.com.tw</a>&nbsp;&nbsp;</span></p>
+        </div>
+    </footer>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>*@
+
+
+
+
+@section scripts
+{
+
+    <script>
+
+        $(function () {
+            $('#CountyDDL').change(function () {
+                $.get("/Create/GetTownByVCounty", { VCounty: $("#CountyDDL").val() }, function (data) {
+                    $("#St").empty();                 
+                    $.each(data,function(index,row){
+                        $("#St").append("<option value='" + row.c_town + "'>" + row.c_town + "</option>")
+                    });        
+                })
+            });
+        });
+               
+        $(function () {
+            $('#St').click(function() {        
+                $("#hiddenGroup").val($("#St").val());
+                    });
+        });
+
+        @*function doDdlASubmit(form) {
+            var county = $("VCounty option:selected").val();
+            if (null == county) { $("ddlError").html("請至少選擇縣市名稱");}
+            @Url.Action("SelectFromDDL1");
+        }*@
+    </script>
+
+
+
+    @*<script>
+        var uploadFiles;
+        $('#files').on('change', function (e) {
+            uploadFiles = e.target.files;
+        })
+
+        $('#Submit1').on('click',function() {
+            if (!uploadFiles || uploadFiles.length <=0) {
+                return;
+            }
+            
+            var token=$('input[name="__RequestVerificationToken"]').val();
+            var data=new FormData();
+
+            data.append("__RequestVerificationToken",token);
+            for (var x=0;x<uploadFiles.length;x++) {
+                data.append("files"+x,uploadFiles[x]);
+            }
+            $.ajax({
+                type:"POST",
+                url:'/Create/UploadFile',
+                contentType:false,
+                processData:false,
+                data:data,
+                success:function (result) {
+                    console.log(result);
+                    $('#divResponse').html(result);
+                },
+                error:function(xhr,status,p3,p4){
+                    var err="Error "+" " + status+" "+p3+" "+p4;
+                    if (xhr.responseText && xhr.responseText[0]=="{")
+                        err=JSON.parse(xhr.responseText).Message;
+                    console.log(err);
+                    $('#divResponse').html(err);
+                }
+            });            
+        })
+    </script>*@    
+}

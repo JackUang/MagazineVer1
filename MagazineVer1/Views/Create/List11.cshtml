@@ -1,0 +1,128 @@
+﻿
+@model MagazineVer1.Models.ViewModels.InfosView
+<div class="col-md-10 column ui-sortable" style="">
+    <table class="auto-style22" style="width: 100%;
+">
+        <tbody>
+            <tr>
+                <td align="center" class="auto-style23" style="background-color: white;
+    border: 1px solid;
+    font-size: 15px;
+    font-weight: bold;
+">
+                    <a id="ContentPlaceHolder1_LinkButton5"
+                        href='javascript:WebForm_DoPostBackWithOptions(
+                       new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$LinkButton5", "", true, "", "", false, true))'>刊登中</a>
+                </td>
+                <td align="center" class="auto-style23" style="background-color: white;
+    border: 1px solid;
+    font-size: 15px;
+    font-weight: bold;
+">
+                    <a id="ContentPlaceHolder1_LinkButton6"
+                        href='javascript:WebForm_DoPostBackWithOptions(
+                       new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$LinkButton6", "", true, "", "", false, true))' style="">確認中</a>
+                </td>
+                <td align="center" class="auto-style23" style="background-color: white;
+    border: 1px solid;
+    font-size: 15px;
+    font-weight: bold;
+">
+                    <a id="ContentPlaceHolder1_LinkButton7" 
+                       href='javascript:WebForm_DoPostBackWithOptions(
+                       new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$LinkButton7", "", true, "", "", false, true))'>已過期</a>
+                </td>
+                <td align="center" class="auto-style23" style="background-color: white;
+    border: 1px solid;
+    font-size: 15px;
+    font-weight: bold;
+">
+                    <a id="ContentPlaceHolder1_LinkButton8" 
+                       href='javascript:WebForm_DoPostBackWithOptions(
+                       new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$LinkButton8", "", true, "", "", false, true))'>顯示全部</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="table table-bordered">
+    @*若資料庫中有文章,將會列出文章*@
+    @if (!Model.DataList.Count.Equals(0))
+    {
+        <thead style="background-color: #f0ad4e;">        
+            <tr>
+                <th style="width: 3.5%;"></th>
+                <th style="width: 5%;text-align: center;">類別</th>
+                <th>標題</th>
+                <th style="width: 5%;text-align: center;">發佈日</th>
+                <th style="width: 5%;text-align: center;">到期日</th>
+                <th style="width: 8%;text-align: center;">圖片一</th>
+                <th style="width: 8%;text-align: center;">圖片二</th>
+                <th style="width: 8%;text-align: center;">圖片三</th>
+                <th style="width: 8%;text-align: center;">圖片四</th>
+                <th style="width: 8%;text-align: center;">圖片五</th>
+                <th style="text-align: center;">URL</th>
+                <th style="text-align: center;">LINE</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: #ffffff;">
+            foreach (var item in Model.DataList)
+            {
+            <tr>
+                <td style="text-align: center;">
+                    @Html.ActionLink("刪除", "Delete", new { Id = item.i_id })
+                </td>
+
+
+                <td style="text-align: center;
+">
+                    Table cell
+                </td>
+                <td style="text-align: center;
+">
+                    Table cell
+                </td>
+                <td style="text-align: center;
+">
+                    Table cell
+                </td>
+                <td style="text-align: center;
+">
+                    Table cell
+                </td>
+                <td style="text-align: center;
+">
+                    <img data-src="holder.js/140x140" class="img-responsive" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true" style="width: 140px; height: 140px;">
+                </td>
+                <td style="text-align: center;
+">
+                    <img data-src="holder.js/140x140" class="img-responsive" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true" style="width: 140px; height: 140px;">
+                </td>
+                <td style="text-align: center;
+">
+                    <img data-src="holder.js/140x140" class="img-responsive" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true" style="width: 140px; height: 140px;">
+                </td>
+                <td style="text-align: center;
+">
+                    <img data-src="holder.js/140x140" class="img-responsive" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true" style="width: 140px; height: 140px;">
+                </td>
+                <td style="text-align: center;
+">
+                    <img data-src="holder.js/140x140" class="img-responsive" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true" style="width: 140px; height: 140px;">
+                </td>
+                <td style="text-align: center;
+">
+                    Table cell
+                </td>
+                <td style="text-align: center;
+">
+                    Table cell
+                </td>
+            </tr>
+            }
+            
+        </tbody>
+    }
+    </table>
+    <span id="ContentPlaceHolder1_Label7" style="color: white;font-size: 15px;">總共有3則廣告</span>
+</div>

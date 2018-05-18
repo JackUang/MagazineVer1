@@ -1,0 +1,46 @@
+﻿@model IPagedList<MagazineVer1.Models.uv_ClassifiedAdsSearch>
+
+@{
+    string strCounty = "";
+    string strTownship = "";
+    string strCategory = "";
+    string strKeyword = "";
+
+    string[] QueryStrings = Request.Url.Query.Substring(1).Split('&');
+    foreach (string item in QueryStrings)
+    {
+        string[] queryString = item.Split('=');
+        if(2 == queryString.Length)
+        {
+            if("county".Equals(queryString[0]))
+            {
+                strCounty = HttpUtility.UrlDecode(queryString[1]);
+            }
+            else if ("township".Equals(queryString[0]))
+            {
+                strTownship = HttpUtility.UrlDecode(queryString[1]);
+            }
+            else if ("category".Equals(queryString[0]))
+            {
+                strCategory = queryString[1];
+            }
+            else if ("keywords".Equals(queryString[0]))
+            {
+                strKeyword = HttpUtility.UrlDecode(queryString[1]);
+            }
+        }
+
+    }
+}
+
+@Html.PagedListPager(Model,
+    page => Url.Action("ClassifiedAdsSearch",
+    new
+    {
+        county = strCounty,
+        township = strTownship,
+        category = strCategory,
+        keywords = strKeyword,
+        Page = page
+    }))
+

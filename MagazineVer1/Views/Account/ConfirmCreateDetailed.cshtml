@@ -1,0 +1,208 @@
+﻿@using Microsoft.AspNet.Identity
+@model MagazineVer1.Models.ViewModels.Web.UserDataViewModels
+
+@{
+    ViewBag.Title = "刊登主資訊及廣告刊登訂單確認";
+}
+
+@section styles
+{
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css  ">
+
+    <style>
+        .inputText{
+            margin-top:10px;
+            width:130%;
+        }
+    </style>
+}
+
+<h2 style="font-weight: bolder;font-size: 20px;">@ViewBag.Title</h2>
+
+@if (true == Request.IsAuthenticated)
+{
+    <div style="text-align: left;">
+        <table>
+            <tr>
+                <td><span style="color:red;">*</span>姓名：</td>
+                <td><input type="text" name="name" value="@Model.UserName" id="userName" class="inputText" disabled="disabled" /></td>
+                <td><p id="requiredUserName" style="color:red;"></p></td>
+            </tr>
+            <tr>
+                <td><span style="color:red;">*</span>電子信箱：</td>
+                <td><input type="email" name="email" value="@Model.Email" id="email" class="inputText" disabled="disabled" /></td>
+                <td><p id="requiredEmail" style="color:red;"></p></td>
+            </tr>
+            <tr>
+                <td><span style="color:red;">*</span>手機號碼(或密碼)：</td>
+                <td><input type="tel" name="telephone" value="@Model.Phone" id="phone" class="inputText" disabled="disabled" /></td>
+                <td><p id="requiredPhone" style="color:red;"></p></td>
+            </tr>
+        </table>
+    </div>
+
+}
+else
+{
+    <div style="text-align: left;">
+        <table>
+            <tr>
+                <td><span style="color:red;">*</span>姓名：</td>
+                <td><input type="text" name="name" value="" id="userName" class="inputText" /></td>
+                <td><p id="requiredUserName" style="color:red;"></p></td>
+            </tr>
+            <tr>
+                <td><span style="color:red;">*</span>電子信箱：</td>
+                <td><input type="email" name="email" value="" id="email" class="inputText" /></td>
+                <td><p id="requiredEmail" style="color:red;"></p></td>
+            </tr>
+            <tr>
+                <td><span style="color:red;">*</span>手機號碼(或密碼)：</td>
+                <td><input type="tel" name="telephone" value="" id="phone" class="inputText" /></td>
+                <td><p id="requiredPhone" style="color:red;"></p></td>
+            </tr>
+        </table>
+    </div>
+}
+<br />
+<div>
+    <table>
+        <tr>
+            <td><span style="color:red;">*</span>是否開立發票?</td>
+            <td>
+                <input type="radio" name="isPublic" value="y"> 是&nbsp;&nbsp;
+                <input type="radio" name="isPublic" value="n" checked> 否
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <input type="radio" name="unifiedInvoiceType" value="3"> 三聯式&nbsp;&nbsp;
+                <input type="radio" name="unifiedInvoiceType" value="2" checked> 二聯式
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>發票抬頭：</td>
+            <td>
+                <input type="text" value="" id="unifiedInvoiceTitle" class="inputText" />
+            </td>
+        </tr>
+        <tr>
+            <td>統一編號：</td>
+            <td>
+                <input type="text" value="" id="unifiedInvoiceNumber" class="inputText" />
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>發票地址：</td>
+            <td>
+                <input type="text" value="" id="unifiedInvoiceAddress" class="inputText" />
+            </td>
+            <td><p id="requiredUnifiedInvoiceAddress" style="color:red;"></p></td>
+        </tr>
+    </table>
+</div>
+
+<div id="pay">
+    <table class="table-responsive" style="display:block;">
+        <thead>
+            <tr>
+                <th>刪除</th>
+                <th>標題</th>
+                <th>小計</th>
+                <th>分類小計</th>
+                <th>播點小計</th>
+                <th>試刊期</th>
+                <th>正式期</th>
+            </tr>
+        </thead>
+        <tbody id="payHtmlTbody">
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>付費項目小計</td>
+                <td><span>0</span>則</td>
+                <td>NT$<span>0</span></td>
+                <td>NT$<span>0</span></td>
+                <td>NT$<span>0</span></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="free" style="text-align: left;">
+    <table class="table-responsive">
+        <thead>
+            <tr>
+                <th>刪除</th>
+                <th>標題</th>
+                <th>小計</th>
+                <th>分類小計</th>
+                <th>播點小計</th>
+                <th>試刊期</th>
+                <th>正式期</th>
+            </tr>
+        </thead>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>免費項目小計</td>
+                <td><span>0</span>則</td>
+                <td>NT$<span>0</span></td>
+                <td>NT$<span>0</span></td>
+                <td>NT$<span>0</span></td>
+                <td></td>
+                <td></td>
+            </tr>
+       
+    </table>
+</div>
+
+<div>
+    <button id="confirm">確定</button>
+    <button id="butDelete">刪除</button>
+    <button id="cancel">取消</button>
+</div>
+
+<div id="dialog-delete" style="display: none;">
+    <p><span id="deleteCount">0</span>則廣告將被您永久刪除，確定刪除?</p>
+</div>
+
+<div id="dialog-accountConfirm" style="display: none;">
+    <p>帳號確認中...</p>
+</div>
+
+<div id="dialog-accountError" style="display: none;">
+    <p>電子信箱或手機號碼錯誤</p>
+</div>
+
+<div id="dialog-serverError" style="display: none;">
+    <p>伺服器錯誤</p>
+</div>
+
+@section scripts
+{
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @Scripts.Render("~/bundles/Account/confirmCreateDetailed")
+}

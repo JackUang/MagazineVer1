@@ -1,0 +1,141 @@
+﻿
+@model MagazineVer1.Models.ViewModels.InfosView
+<div class="col-md-10 column ui-sortable" style="">
+   
+    <table class="simpleTable"style="border: 2px solid #f0ad4e;">
+        @*若資料庫中有文章,將會列出文章*@
+        @if (!Model.DataList.Count.Equals(0))
+        {
+        
+
+            foreach (var item in Model.DataList)
+            {
+                <tbody style="background-color: #ffffff;border: 2px solid #f0ad4e;">
+                
+                    <tr style="display: inline-block;margin: auto;">
+                        <td style="text-align: center;">
+                            @Html.ActionLink("刪除", "Delete", new { Id = item.i_id })
+                        </td>
+
+                        <td style="text-align: center;">
+                            @{
+                                var groupname = Model.GroupList.Where(x =>
+                                (x.ig_id == item.ig_id)).Select(x => x.ig_name).FirstOrDefault();
+                            }
+                            @groupname
+                        </td>
+                        <td style="text-align: center;">
+                            @Html.ActionLink(item.i_name, "Infos", new { Id = item.i_id })
+                        </td>
+                        <td style="text-align: center;">
+                            @item.i_initial_day
+                        </td>
+                        <td style="text-align: center;display: block;">
+                            @item.i_expired_day
+                        </td>
+                        @{var a1 = "http://119.14.169.10:94/pictures/" + User.Identity.Name + "/" + @item.i_pic1;
+                            var a2 = "http://119.14.169.10:94/pictures/" + User.Identity.Name + "/" + @item.i_pic2;
+                            var a3 = "http://119.14.169.10:94/pictures/" + User.Identity.Name + "/" + @item.i_pic3;
+                            var a4 = "http://119.14.169.10:94/pictures/" + User.Identity.Name + "/" + @item.i_pic4;
+                            
+                        }
+
+
+                        <td style="text-align: center;">
+                            @*<img data-src="holder.js/140x140" class="img-responsive" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true" style="width: 140px; height: 140px;">*@
+                            <img src="@Url.Content("~/pictures/" + User.Identity.Name + "/" + item.i_pic1)" title="圖片一" style="width: 100px; height: 100px;" />
+                        </td>
+                        <td style="text-align: center;">
+                            @*<img data-src="holder.js/140x140" class="img-responsive" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true" style="width: 140px; height: 140px;">*@
+                            <img src="@Url.Content("~/pictures/" + User.Identity.Name + "/" + item.i_pic2)" title="圖片二" style="width: 100px; height: 100px;" />
+                        </td>
+                        <td style="text-align: center;">
+                            @*<img data-src="holder.js/140x140" class="img-responsive" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true" style="width: 140px; height: 140px;">*@
+                            <img src="@Url.Content("~/pictures/" + User.Identity.Name + "/" + item.i_pic3)" title="圖片三" style="width: 100px; height: 100px;" />
+                        </td>
+                        <td style="text-align: center;">
+                            @*<img data-src="holder.js/140x140" class="img-responsive" alt="140x140" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+" data-holder-rendered="true" style="width: 140px; height: 140px;">*@
+                            <img src="@Url.Content("~/pictures/" + User.Identity.Name + "/" + item.i_pic4)" title="圖片四" style="width: 100px; height: 100px;" />
+                        </td>
+                        
+                        <td style="text-align: center;display: block;">
+                            @{var ULink = item.i_URL; }
+                            <a href="@ULink">@ULink</a>
+                        </td>
+                        <td style="text-align: center;">
+                            @{var line = item.i_LINE; }
+                            <a href="@line">@line</a>
+                        </td>
+                    </tr>
+            </tbody>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4">
+                                        尚未有廣告刊登
+                                    </td>
+                                </tr>
+                            }
+    </table>
+  
+    <span id="ContentPlaceHolder1_Label7" style="font-size: 15px;">總共有</span>
+    <span id="ContentPlaceHolder1_Label7" style="font-size: 15px;">        @Model.Paging.TotalCount        </span>
+        <span id="ContentPlaceHolder1_Label7" style="font-size: 15px;">則廣告</span>
+
+    <div class="col-xs-12 text-center" style="width: 100%;
+        
+         margin: auto;
+         ">
+        <ul class="pagination" style="margin: -17%;
+    margin-bottom: 0%;
+    margin-top: 0%;">
+            @*顯示上一頁與最前頁按鈕*@
+            <li class="first @((Model.Paging.NowPage > 1) ? "" : " disabled")">
+                @Ajax.ActionLink("<<", "List1",
+                    new { Page = 1, Search = Model.Search },
+                    new AjaxOptions { UpdateTargetId = "InfosListBlock", InsertionMode = InsertionMode.Replace })
+            </li>
+            <li class="pervious @((Model.Paging.NowPage > 1) ? "" : " disabled")">
+                @Ajax.ActionLink("<", "List1",
+                    new { Page = Model.Paging.NowPage - 1, Search = Model.Search },
+                    new AjaxOptions { UpdateTargetId = "InfosListBlock", InsertionMode = InsertionMode.Replace })
+            </li>
+            @*顯示各個頁次按鈕*@
+            @for (var page = (Model.Paging.NowPage - 4);
+                page < (Model.Paging.NowPage + 4); page++)
+            {
+                if ((page > 0) && (page <= Model.Paging.MaxPage))
+                {
+                    if (page == Model.Paging.NowPage)
+                    {
+                        <li class="active">
+                            <a href="#">@page</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            @Ajax.ActionLink(page.ToString(), "List1",
+                    new { Page = page, Search = Model.Search },
+                    new AjaxOptions { UpdateTargetId = "InfosListBlock", InsertionMode = InsertionMode.Replace })
+                        </li>
+                    }
+                }
+            }
+            @*顯示下一頁與最後一頁的按鈕*@
+            <li class="next @(((Model.Paging.NowPage < Model.Paging.MaxPage) ? "" : " disabled"))">
+                @Ajax.ActionLink(">", "List1",
+                    new { Page = Model.Paging.NowPage + 1, Search = Model.Search },
+                    new AjaxOptions { UpdateTargetId = "InfosListBlock", InsertionMode = InsertionMode.Replace })
+            </li>
+            <li class="last @(((Model.Paging.NowPage < Model.Paging.MaxPage) ? "" : " disabled"))">
+                @Ajax.ActionLink(">>", "List1",
+                    new { Page = Model.Paging.MaxPage, Search = Model.Search },
+                    new AjaxOptions { UpdateTargetId = "InfosListBlock", InsertionMode = InsertionMode.Replace })
+            </li>
+        </ul>
+    </div>
+
+</div>

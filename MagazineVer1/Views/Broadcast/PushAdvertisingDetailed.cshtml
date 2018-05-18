@@ -1,0 +1,140 @@
+﻿@model MagazineVer1.Models.uv_ConditionalSearchPushAdvertisin
+
+@{
+    ViewBag.Title = "推播廣告搜尋結果";
+}
+
+@section styles{
+    <link href="~/Content/Magazine/carousel.css" rel="stylesheet" />
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>
+        @Model.d_location1@Model.d_location2
+        @if (!string.IsNullOrEmpty(Model.d_location1) || !string.IsNullOrEmpty(Model.d_location2))
+        {
+        <span>></span>
+        }
+        @Model.bpt_broadcastPoint
+        @if (!string.IsNullOrEmpty(Model.bpt_broadcastPoint))
+        {
+            <span>></span>
+        }
+        @Model.d_name
+    </h4>
+    <hr />
+    <table style="margin-left:auto; margin-right:auto;">
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.i_expired_day)</td>
+            <td>@Html.DisplayFor(model => model.i_expired_day)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.i_name)</td>
+            <td>@Html.DisplayFor(model => model.i_name)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.i_content)</td>
+            <td>@Html.DisplayFor(model => model.i_content)</td>
+        </tr>
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.i_URL))
+                {
+                    <img src="~/images/1497035161_www_page.png" />
+                }
+                else
+                {
+                    <img src="~/images/1497035161_www_page-grey.png" />
+                }
+            </td>
+            <td>
+                <a href="@Model.i_URL">@Model.i_URL</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.i_LINE))
+                {
+                    <img src="~/images/1497035361_line.png" />
+                }
+                else
+                {
+                    <img src="~/images/1497035361_line-grey.png" />
+                }
+            </td>
+            <td>
+                <a href="@Model.i_LINE">@Model.i_LINE</a>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.bpt_broadcastPoint)</td>
+            <td>@Html.DisplayFor(model => model.bpt_broadcastPoint)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.bdf_name)</td>
+            <td>@Html.DisplayFor(model => model.bdf_name)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.d_location1)</td>
+            <td>@Html.DisplayFor(model => model.d_location1)@Html.DisplayFor(model => model.d_location2)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.ig_name)</td>
+            <td>@Html.DisplayFor(model => model.ig_name)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.free_id)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.co_name))
+                {
+                    @Html.DisplayFor(model => model.co_name)
+                }
+                else if (!string.IsNullOrEmpty(Model.ac_name))
+                {
+                    @Html.DisplayFor(model => model.ac_name)
+                }
+                else if (!string.IsNullOrEmpty(Model.cl_name))
+                {
+                    @Html.DisplayFor(model => model.cl_name)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.i_pic1)</td>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.i_pic1) || !string.IsNullOrEmpty(Model.i_pic2) ||
+                !string.IsNullOrEmpty(Model.i_pic3) || !string.IsNullOrEmpty(Model.i_pic4) ||
+                !string.IsNullOrEmpty(Model.i_pic5))
+                {
+                    <div id="slide">
+                        @if (!string.IsNullOrEmpty(Model.i_pic1))
+                        {
+                            <img src="@Model.i_pic1" />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.i_pic2))
+                        {
+                            <img src="@Model.i_pic2" />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.i_pic3))
+                        {
+                            <img src="@Model.i_pic3" />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.i_pic4))
+                        {
+                            <img src="@Model.i_pic4" />
+                        }
+                        @if (!string.IsNullOrEmpty(Model.i_pic5))
+                        {
+                            <img src="@Model.i_pic5" />
+                        }
+                    </div>
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+@section scripts{
+    <script src="~/Scripts/Magazine/carousel.js"></script>
+}

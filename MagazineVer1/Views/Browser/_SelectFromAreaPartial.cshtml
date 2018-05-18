@@ -1,0 +1,12 @@
+﻿@using (Ajax.BeginForm("SelectFromDDL2", new AjaxOptions { UpdateTargetId = "dropdownlist3" }))
+{
+    @Html.AntiForgeryToken()
+    <span>
+        @Html.DropDownList("town",new SelectList(ViewBag.Town),"==請選擇==",new { onchange="doDdl2Submit($(this).parents('form'));"})
+        @Html.Hidden("hiddenCounty",(string)ViewBag.County)
+        @Html.Hidden("hiddenGroup")
+    </span>
+}
+
+
+                                                                                

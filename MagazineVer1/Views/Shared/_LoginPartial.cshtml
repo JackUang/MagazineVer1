@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
+
+        <li>
+            <a class="btn btn-success btn btn-right" href="/Advertising/Create" style="float: right;
+               color: white;
+               line-height: 0.5;
+               margin-top: 10%;
+               ">我要刊登</a>
+        </li>
+
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">      
+        <li>@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "glyphicon glyphicon-user" })</li>
+        <li>@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "glyphicon glyphicon-log-in" })</li>
+
+        <li>
+            <a class="btn btn-success btn btn-right" href="/Advertising/Create" style="float: right;
+               color: white;
+               line-height: 0.5;
+               margin-top: 10%;
+               ">我要刊登</a>
+        </li>
+    </ul>
+}

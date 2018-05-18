@@ -1,0 +1,29 @@
+﻿@model IEnumerable<string>
+
+@using (Ajax.BeginForm("SelectFromDDL1", new AjaxOptions { UpdateTargetId = "dropdownlist2" }))
+{
+    <div class="dropdownlist">
+        @Html.DropDownList("CustomerID", new SelectList(Model), new
+   { onchange = "doSubmit($(this).parents('form'));" })
+    </div>
+}
+
+<div id="dropdownlist2">
+</div>
+<div id="OrderDetails">
+</div>
+
+@section scripts
+{
+    <script>
+        function doSubmit(form) {
+            form.submit();
+        }
+
+        function doOrderIDSubmit(form) {
+            var ddl1 = $("#CustomerID option:selected").val();
+            $("#ddl1").val(ddl1);
+            form.submit();
+        }
+    </script>
+}

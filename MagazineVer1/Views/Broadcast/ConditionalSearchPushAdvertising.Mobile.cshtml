@@ -1,0 +1,234 @@
+﻿@model IPagedList<MagazineVer1.Models.uv_ConditionalSearchPushAdvertisin>
+
+@{
+    ViewBag.Title = "推播廣告搜尋結果";
+    string broadcastPoin = ViewBag.BroadcastPoint;
+    string beaconDeviceName = ViewBag.BeaconDeviceName;
+    string bdfName = "";
+    string bdl3 = "";
+    string bdl4 = "";
+    string county = "";
+    string township = "";
+
+    string[] QueryStrings = Request.Url.Query.Substring(1).Split('&');
+    foreach (string item in QueryStrings)
+    {
+        string[] queryString = item.Split('=');
+        if (2 == queryString.Length)
+        {
+            if ("bdf_name".Equals(queryString[0]))
+            {
+                bdfName = HttpUtility.UrlDecode(queryString[1]);
+            }
+            else if ("bdl3".Equals(queryString[0]))
+            {
+                bdl3 = HttpUtility.UrlDecode(queryString[1]);
+            }
+            else if ("bdl4".Equals(queryString[0]))
+            {
+                bdl4 = queryString[1];
+            }
+            else if ("county".Equals(queryString[0]))
+            {
+                county = HttpUtility.UrlDecode(queryString[1]);
+            }
+            else if ("township".Equals(queryString[0]))
+            {
+                township = HttpUtility.UrlDecode(queryString[1]);
+            }
+        }
+
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (null == Model || 0 >= Model.Count())
+{
+    <h2 style="color:red;">查無資料</h2>
+}
+else
+{
+    <h3>
+        @foreach (var item in Model)
+        {
+            <span>@item.d_location1@item.d_location2</span>
+            if (!string.IsNullOrEmpty(item.d_location1) && !string.IsNullOrEmpty(item.d_location2))
+            {
+                <span>></span>
+            }
+            break;
+        }
+        <span>@broadcastPoin</span>
+        @if (!string.IsNullOrEmpty(broadcastPoin))
+        {
+            <span>></span>
+        }
+        <span>@beaconDeviceName</span>
+    </h3>
+    <hr />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ig_pic)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_pic1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_expired_day)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().bpt_broadcastPoint)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().bdf_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().d_location1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().d_location2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().free_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_URL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_LINE)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr data-href="@Url.Action("PushAdvertisingDetailed", new { did = item.d_id, iid = item.i_id })">
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.ig_pic)*@
+                        @if (!string.IsNullOrEmpty(item.ig_pic))
+                        {
+                            <img src="@item.ig_pic" alt="@item.ig_name" style="width:30%;height:30%;">
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.i_pic1)*@
+                        @if (!string.IsNullOrEmpty(item.i_pic1))
+                        {
+                            <img src="@item.i_pic1" style="width:30%;height:30%;">
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.i_expired_day)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bpt_broadcastPoint)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bdf_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.d_location1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.d_location2)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.free_id)*@
+                        @if (!string.IsNullOrEmpty(item.co_name))
+                        {
+                            @Html.DisplayFor(modelItem => item.co_name)
+                        }
+                        else if (!string.IsNullOrEmpty(item.ac_name))
+                        {
+                            @Html.DisplayFor(modelItem => item.ac_name)
+                        }
+                        else if (!string.IsNullOrEmpty(item.cl_name))
+                        {
+                            @Html.DisplayFor(modelItem => item.cl_name)
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.i_name)*@
+                        @if (item.i_name.Length > 15)
+                        {
+                            @*<a href="@Url.Action("PushAdvertisingDetailed", new { did = item.d_id, iid = item.i_id })" title="@item.i_name.Substring(0, 15)...">@item.i_name.Substring(0, 15)...</a>*@
+                            @(item.i_name.Substring(0, 15) + "...")
+                        }
+                        else
+                        {
+                            @*<a href="@Url.Action("PushAdvertisingDetailed", new { did = item.d_id, iid = item.i_id })" title="@item.i_name">@item.i_name</a>*@
+                            @item.i_name
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.i_content)*@
+                        @if (item.i_content.Length > 40)
+                        {
+                            <p>@item.i_content.Substring(0, 40)...</p>
+                        }
+                        else
+                        {
+                            <p>@item.i_content</p>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.i_URL)*@
+                        @if (!string.IsNullOrEmpty(item.i_URL))
+                        {
+                            <a href="@item.i_URL">
+                                <img src="~/images/1497035161_www_page.png" />
+                            </a>
+                        }
+                        else
+                        {
+                            <img src="~/images/1497035161_www_page-grey.png" />
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.i_LINE)*@
+                        @if (!string.IsNullOrEmpty(item.i_LINE))
+                        {
+                            <a href="@item.i_LINE">
+                                <img src="~/images/1497035361_line.png" />
+                            </a>
+                        }
+                        else
+                        {
+                            <img src="~/images/1497035361_line-grey.png" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @Html.PagedListPager(Model,
+        page => Url.Action("ConditionalSearchPushAdvertising",
+            new
+            {
+                bp = broadcastPoin,
+                bdf_name = bdfName,
+                bd_name = beaconDeviceName,
+                bdl3 = HttpUtility.UrlDecode(bdl3),
+                bdl4 = HttpUtility.UrlDecode(bdl4),
+                county = county,
+                township = township,
+                Page = page
+            }))
+
+    <h3>總共 @Model.PageCount 頁，總共 @Model.TotalItemCount 則資訊</h3>
+}
+
+@section scripts
+{
+    <script src="~/Scripts/Advertising/advertisingList.js"></script>
+}

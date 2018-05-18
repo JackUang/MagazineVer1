@@ -1,0 +1,152 @@
+﻿@model IPagedList<MagazineVer1.Models.uv_ClassifiedAdsSearch>
+
+@if (null == Model || 0 >= Model.Count())
+{
+    <h2 style="color:red;">查無資料</h2>
+}
+else
+{
+    <table class="table table-hover" style="width:100%;">
+        @*<thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ig_pic)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_pic1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_expired_day)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_location1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_location2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().free_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_URL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().i_LINE)
+                </th>
+            </tr>
+        </thead>*@
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (false == item.i_open)
+                {
+                    continue;
+                }
+                <tr data-href="@Url.Action("CategoryDetailed", new { id = item.i_id })">
+                    @*<td style="padding: 5px;white-space: nowrap;display: inline-block;">*@
+                        @*@Html.DisplayFor(modelItem => item.ig_pic)*@
+                        @if (!string.IsNullOrEmpty(item.ig_pic))
+                        {
+                            @*<img src="@item.ig_pic" alt="@item.ig_name" style="width:30%;height:30%;">*@
+                        }
+                    @*</td>*@
+                    <td style="padding:2px;">
+                        @if (!string.IsNullOrEmpty(item.i_pic1))
+                        {
+                            <img src="@item.i_pic1" style="width:30%;height:30%;">
+                        }
+                    </td>
+                    <td style="padding:2px;">
+                        @Html.DisplayFor(modelItem => item.i_expired_day)
+                    </td>
+                    <td style="padding:2px;">
+                        @Html.DisplayFor(modelItem => item.i_location1)
+                    </td>
+                    <td style="padding:2px;">
+                        @Html.DisplayFor(modelItem => item.i_location2)
+                    </td>
+                    <td style="padding:2px;">
+                        @*@Html.DisplayFor(modelItem => item.free_id)*@
+                        @if (!string.IsNullOrEmpty(item.co_name))
+                        {
+                            @Html.DisplayFor(modelItem => item.co_name)
+                        }
+                        else if (!string.IsNullOrEmpty(item.ac_name))
+                        {
+                            @Html.DisplayFor(modelItem => item.ac_name)
+                        }
+                        else if (!string.IsNullOrEmpty(item.cl_name))
+                        {
+                            @Html.DisplayFor(modelItem => item.cl_name)
+                        }
+                    </td>
+                    <td style="padding:2px;">
+                        @*@Html.DisplayFor(modelItem => item.i_name)*@
+                        @if (item.i_name.Length > 15)
+                        {
+                            @(item.i_name.Substring(0, 15) + "...")
+                        }
+                        else
+                        {
+                            @item.i_name
+                        }
+                    </td>
+                    <td style="padding:2px;">
+                        @*@Html.DisplayFor(modelItem => item.i_content)*@
+                        @if (item.i_content.Length > 40)
+                        {
+                            <p>@item.i_content.Substring(0, 40)...</p>
+                        }
+                        else
+                        {
+                            <p>@item.i_content</p>
+                        }
+                    </td>
+                    <td style="padding:2px;">
+                        @*@Html.DisplayFor(modelItem => item.i_URL)*@
+                        @if (!string.IsNullOrEmpty(item.i_URL))
+                        {
+                            <a href="@item.i_URL">
+                                <img src="~/images/1497035161_www_page.png" />
+                            </a>
+                        }
+                        else
+                        {
+                            <img src="~/images/1497035161_www_page-grey.png" />
+                        }
+                    </td>
+                    <td style="padding:2px;">
+                        @*@Html.DisplayFor(modelItem => item.i_LINE)*@
+                        @if (!string.IsNullOrEmpty(item.i_LINE))
+                        {
+                            <a href="@item.i_LINE">
+                                <img src="~/images/1497035361_line.png" />
+                            </a>
+                        }
+                        else
+                        {
+                            <img src="~/images/1497035361_line-grey.png" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    if ("ClassifiedAdsSearch".Equals(ViewContext.RouteData.Values["action"].ToString()))
+    {
+        @Html.Partial("_ClassifiedAdsSearchPageNumberPartial", Model)
+    }
+    else if ("Category".Equals(ViewContext.RouteData.Values["action"].ToString()))
+    {
+        @Html.Partial("_CategoryPageNumberPartial", Model)
+    }
+
+    <h3>總共 @Model.PageCount 頁，總共 @Model.TotalItemCount 則資訊</h3>
+}

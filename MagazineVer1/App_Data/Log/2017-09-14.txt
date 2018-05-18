@@ -1,0 +1,153 @@
+2017/9/14 上午 10:05:08
+System.Data.Entity.Validation.DbEntityValidationException: 一個或多個實體的驗證失敗。如需詳細資料，請參閱 'EntityValidationErrors' 屬性。
+   於 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   於 System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   於 System.Data.Entity.DbContext.SaveChanges()
+   於 MagazineVer1.Services.DBServices.AdvertisingServices.SetInfos(Sessionstoragedata[] sessionStorageData, String folderPath, String imagePath, String fileUrl, String orderNumber, Unifiedinvoice unifiedInvoice, String userId) 於 C:\Users\Test\Desktop\20170711_MVC報馬仔\MagazineVer45-53\MagazineVer1\Services\DBServices\AdvertisingServices.cs: 行 630
+
+2017/9/14 上午 11:21:46
+System.Data.Entity.Core.EntityCommandExecutionException: 執行此命令定義時發生錯誤。如需詳細資料，請參閱內部例外狀況。 ---> System.Data.SqlClient.SqlException: 無效的物件名稱 'dbo.InvoiceType'。
+   於 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   於 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   於 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   於 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   於 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   於 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   於 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   於 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   於 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   於 System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   於 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   於 System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   於 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   於 System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- 內部例外狀況堆疊追蹤的結尾 ---
+   於 System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   於 System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   於 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   於 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   於 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   於 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   於 System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   於 System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   於 System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   於 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   於 System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   於 System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   於 System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   於 System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   於 System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   於 MagazineVer1.Services.DBServices.AdvertisingServices.SetInfos(ReqConfirmCreateDetailedSave model, String folderPath, String imagePath, String fileUrl, String userId) 於 C:\Users\Test\Desktop\20170711_MVC報馬仔\MagazineVer45-53\MagazineVer1\Services\DBServices\AdvertisingServices.cs: 行 625
+
+2017/9/14 上午 11:51:17
+System.Data.Entity.Validation.DbEntityValidationException: 一個或多個實體的驗證失敗。如需詳細資料，請參閱 'EntityValidationErrors' 屬性。
+   於 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   於 System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   於 System.Data.Entity.DbContext.SaveChanges()
+   於 MagazineVer1.Services.DBServices.AdvertisingServices.SetInfos(ReqConfirmCreateDetailedSave model, String folderPath, String imagePath, String fileUrl, String userId) 於 C:\Users\Test\Desktop\20170711_MVC報馬仔\MagazineVer45-53\MagazineVer1\Services\DBServices\AdvertisingServices.cs: 行 646
+
+2017/9/14 上午 11:57:13
+System.Data.Entity.Infrastructure.DbUpdateException: 更新實體時發生錯誤。如需詳細資料，請參閱內部例外狀況。 ---> System.Data.Entity.Core.UpdateException: 更新實體時發生錯誤。如需詳細資料，請參閱內部例外狀況。 ---> System.Data.SqlClient.SqlException: 當 IDENTITY_INSERT 設為 OFF 時，無法將外顯值插入資料表 'sales' 的識別欄位中。
+   於 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   於 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   於 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   於 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   於 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   於 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<NonQuery>b__0(DbCommand t, DbCommandInterceptionContext`1 c)
+   於 System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   於 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.NonQuery(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   於 System.Data.Entity.Internal.InterceptableDbCommand.ExecuteNonQuery()
+   於 System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   於 System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- 內部例外狀況堆疊追蹤的結尾 ---
+   於 System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   於 System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   於 System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   於 System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   於 System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   於 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   於 System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   於 System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   於 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   於 System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   於 System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   於 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- 內部例外狀況堆疊追蹤的結尾 ---
+   於 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   於 System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   於 System.Data.Entity.DbContext.SaveChanges()
+   於 MagazineVer1.Services.DBServices.AdvertisingServices.SetInfos(ReqConfirmCreateDetailedSave model, String folderPath, String imagePath, String fileUrl, String userId) 於 C:\Users\Test\Desktop\20170711_MVC報馬仔\MagazineVer45-53\MagazineVer1\Services\DBServices\AdvertisingServices.cs: 行 646
+
+2017/9/14 下午 02:04:46
+System.InvalidOperationException: 型別 'MagazineVer1.Models.Infos' 的關聯中繼資料型別包含下列未知的屬性或欄位: s_order_number。請確定這些成員的名稱與主要型別之屬性的名稱相符。
+   於 System.ComponentModel.DataAnnotations.AssociatedMetadataTypeTypeDescriptor.TypeDescriptorCache.CheckAssociatedMetadataType(Type mainType, Type associatedMetadataType)
+   於 System.ComponentModel.DataAnnotations.AssociatedMetadataTypeTypeDescriptor.TypeDescriptorCache.ValidateMetadataType(Type type, Type associatedType)
+   於 System.ComponentModel.DataAnnotations.AssociatedMetadataTypeTypeDescriptor..ctor(ICustomTypeDescriptor parent, Type type, Type associatedMetadataType)
+   於 System.ComponentModel.DataAnnotations.AssociatedMetadataTypeTypeDescriptionProvider.GetTypeDescriptor(Type objectType, Object instance)
+   於 System.Data.Entity.ModelConfiguration.Utilities.AttributeProvider.<GetAttributes>b__3(PropertyInfo pi)
+   於 System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   於 System.Data.Entity.ModelConfiguration.Utilities.AttributeProvider.GetAttributes(PropertyInfo propertyInfo)
+   於 System.Data.Entity.Internal.Validation.EntityValidatorBuilder.BuildPropertyValidator(PropertyInfo clrProperty, EdmProperty edmProperty, Boolean buildFacetValidators)
+   於 System.Data.Entity.Internal.Validation.EntityValidatorBuilder.BuildValidatorsForProperties(IEnumerable`1 clrProperties, IEnumerable`1 edmProperties, IEnumerable`1 navigationProperties)
+   於 System.Data.Entity.Internal.Validation.EntityValidatorBuilder.BuildTypeValidator[T](Type clrType, IEnumerable`1 edmProperties, IEnumerable`1 navigationProperties, Func`3 validatorFactoryFunc)
+   於 System.Data.Entity.Internal.Validation.EntityValidatorBuilder.BuildEntityValidator(InternalEntityEntry entityEntry)
+   於 System.Data.Entity.Internal.Validation.ValidationProvider.GetEntityValidator(InternalEntityEntry entityEntry)
+   於 System.Data.Entity.Internal.InternalEntityEntry.GetValidationResult(IDictionary`2 items)
+   於 System.Data.Entity.DbContext.ValidateEntity(DbEntityEntry entityEntry, IDictionary`2 items)
+   於 System.Data.Entity.DbContext.GetValidationErrors()
+   於 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   於 System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   於 System.Data.Entity.DbContext.SaveChanges()
+   於 MagazineVer1.Services.DBServices.AdvertisingServices.SetInfos(ReqConfirmCreateDetailedSave model, String folderPath, String imagePath, String fileUrl, String userId) 於 C:\Users\Test\Desktop\20170711_MVC報馬仔\MagazineVer45-53\MagazineVer1\Services\DBServices\AdvertisingServices.cs: 行 648
+
+2017/9/14 下午 04:34:06
+System.Data.Entity.Infrastructure.DbUpdateException: 更新實體時發生錯誤。如需詳細資料，請參閱內部例外狀況。 ---> System.Data.Entity.Core.UpdateException: 更新實體時發生錯誤。如需詳細資料，請參閱內部例外狀況。 ---> System.Data.SqlClient.SqlException: 無效的資料行名稱 'i_payment_status'。
+無效的資料行名稱 'i_payment_confirmed'。
+   於 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   於 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   於 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   於 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   於 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   於 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   於 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   於 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   於 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   於 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   於 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   於 System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   於 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   於 System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   於 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   於 System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   於 System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- 內部例外狀況堆疊追蹤的結尾 ---
+   於 System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   於 System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   於 System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   於 System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   於 System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   於 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   於 System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   於 System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   於 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   於 System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   於 System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   於 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- 內部例外狀況堆疊追蹤的結尾 ---
+   於 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   於 System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   於 System.Data.Entity.DbContext.SaveChanges()
+   於 MagazineVer1.Services.DBServices.AdvertisingServices.SetInfos(ReqConfirmCreateDetailedSave model, String folderPath, String imagePath, String fileUrl, String userId) 於 C:\Users\Test\Desktop\20170711_MVC報馬仔\MagazineVer45-53\MagazineVer1\Services\DBServices\AdvertisingServices.cs: 行 655
+

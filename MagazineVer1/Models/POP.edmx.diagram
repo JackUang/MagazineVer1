@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aa9614160e1b4ce0930c2a4f5676c849" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="POPModel.AspNetUsers" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="POPModel.BeaconDevice" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="POPModel.BroadcastPointType" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="POPModel.InfoGroupp" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="POPModel.town" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="POPModel.User2" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="POPModel.AAA" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="POPModel.View_AspNetUsers_Infos" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="POPModel.FK_User2_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="POPModel.FK__BeaconDev__bpt_i__12C8C788" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="POPModel.P_InfoPrice" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="POPModel.uv_ConditionalSearchPushAdvertisin" Width="1.5" PointX="14.375" PointY="11.75" />
+        <EntityTypeShape EntityType="POPModel.uv_AllBroadcast" Width="1.5" PointX="8.375" PointY="8.75" />
+        <EntityTypeShape EntityType="POPModel.BeaconDeviceFlow" Width="1.5" PointX="10.375" PointY="11.75" />
+        <AssociationConnector Association="POPModel.DeviceInfo1" />
+        <EntityTypeShape EntityType="POPModel.InvoiceType" Width="1.5" PointX="10.375" PointY="14.75" />
+        <EntityTypeShape EntityType="POPModel.sales" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="POPModel.uv_PublishedInquire" Width="1.5" PointX="16.375" PointY="5.75" />
+        <EntityTypeShape EntityType="POPModel.Infos" Width="1.5" PointX="5.25" PointY="1.375" />
+        <AssociationConnector Association="POPModel.FK_Info_InfoGroup" />
+        <AssociationConnector Association="POPModel.FK_Infos_User2" />
+        <AssociationConnector Association="POPModel.DeviceUsers" />
+        <AssociationConnector Association="POPModel.DeviceInfo" />
+        <EntityTypeShape EntityType="POPModel.uv_AdvertisingCategoryCount" Width="1.5" PointX="16.375" PointY="15.75" />
+        <EntityTypeShape EntityType="POPModel.uv_ClassifiedAdsSearch" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="POPModel.OrderRecord" Width="1.5" PointX="3" PointY="12.75" />
+        <AssociationConnector Association="POPModel.FK__OrderRecor__u_id__125EB334" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

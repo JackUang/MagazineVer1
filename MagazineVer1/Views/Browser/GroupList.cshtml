@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MagazineVer1.Models.View_AspNetUsers_Infos>
+
+@{ 
+    ViewBag.Title = "類別清單";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    //var groupList = new List<MagazineVer1.Models.Info>();
+    //using (MagazineVer1.Models.POP_AdvertisementsEntities db = new MagazineVer1.Models.POP_AdvertisementsEntities())
+    //{
+    //    //groupList = (from s in db.Info
+    //    //             where this.Model.ig_id == s.ig_id
+    //    //             select s).ToList();
+    
+    //    groupList = (from s in db.Info
+    //                 where s.ig_id == this.Model.ig_id
+    //                 select s).ToList();
+
+    //}
+
+}
+
+<h2>類別列表</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            
+        </dt>
+        <dd>
+            @*<img src="@this.Model.ig_id" width="200" />*@
+        </dd>
+
+
+    </dl>
+    <table class="simpleTable" style="margin: auto;display: -webkit-inline-box;">
+      
+        <tbody>
+            @foreach (var item in this.Model)
+            {
+                <tr style="display: block;margin: auto;">
+                    <td>@item.i_name</td>
+                    <td style="display: block;">@item.i_content</td>
+                    <td><img src="@Url.Content("~/pictures/"+item.UserName+"/"+item.i_pic1)" border="0" width="100" height="100" /></td>
+                    <td><img src="@Url.Content("~/pictures/"+item.UserName+"/"+item.i_pic2)" border="0" width="100" height="100" /></td>
+                    <td><img src="@Url.Content("~/pictures/"+item.UserName+"/"+item.i_pic3)" border="0" width="100" height="100" /></td>
+                    <td><img src="@Url.Content("~/pictures/"+item.UserName+"/"+item.i_pic4)" width="100" height="100" /></td>
+                    
+                    <td style="text-align: center;">
+                        @{var ULink = item.i_URL; }
+                        <a href="@ULink">@ULink</a>
+                    </td>
+
+                    <td style="text-align: center;">
+                        @{var LINELink = item.i_URL; }
+                        <a href="@LINELink">@LINELink</a>
+                    </td>
+
+                </tr>
+                            }
+        </tbody>
+    </table>
+
+
+
+
+</div>

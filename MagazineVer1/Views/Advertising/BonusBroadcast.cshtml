@@ -1,0 +1,124 @@
+﻿@model MagazineVer1.Models.usp_PushAdvertisingStatistics_Result
+
+@{
+    ViewBag.Title = "加值播點";
+}
+
+@section styles{
+    <style>
+        .table-hidden tbody {
+            overflow-y: auto; /*設定卷軸 auto 是有超過我的高度的時候才會出現卷軸*/
+            height: 350px; /*自己設定*/
+            display: block;
+        }
+
+        .table-hidden tr {
+            width: 100%;
+            display: inline-table;
+        }
+        /*因為 display: block 打壞了 tbody 的結構，
+          所以 thead 的 tr 跟 tbody 的 td 寬度拆開了，
+          所以必須重新設定表格的寬度，
+          但是 tbody 有包括卷軸 針對bootstrap 去修正卷軸
+        */
+        .table-hidden thead th {
+            width: 400px;
+        }
+        /*因為 tbody 多了卷軸 尺寸多了 17px*/
+        .table-hidden tbody td {
+            width: 383px;
+        }
+
+        #statistics {
+            padding-top: 10px;
+        }
+    </style>
+}
+
+<h2 style="display: inline-block;
+    font-weight: bolder;">
+    @ViewBag.Title
+</h2>
+
+<div>
+    <div>
+        <div style="display: -webkit-inline-box;">
+            <p>縣市</p><select id="countyCity">
+                <option value="">== 請選擇 ==</option>
+            </select><p>鄉鎮市區</p>
+            <select id="townshipCity">
+                <option value="">== 請選擇 ==</option>
+            </select>
+        </div>
+        <div style="display: -webkit-inline-box;">
+            <div style="text-align: left;">
+                <p>播點種類</p>
+                <select id="broadcastType">
+                    <option value="">== 請選擇 ==</option>
+                </select>
+            </div>
+            <div style="text-align: left;margin-left: 3%;">
+                <p>播點名稱</p>
+                <input type="text" id="keywords" name="keywords" value="" />
+                <button id="search" name="search" onclick="search();">搜尋</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p id="searchError" style="color:red;"></p>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table-responsive" style="text-align:left;width:100%;">
+        <thead class="table-only-hide">
+            <tr>
+
+                <th style="margin-left: 2%;">
+                    @Html.DisplayNameFor(model => model.bpt_broadcastPoint)
+                </th>
+                <th style="margin-left: 2%;">
+                    @Html.DisplayNameFor(model => model.bdf_name)
+                </th>
+                <th style="margin-left: 2%;">
+                    @Html.DisplayNameFor(model => model.d_name)
+                </th>
+                <th style="margin-left: 2%;">
+                    @Html.DisplayNameFor(model => model.d_location3)
+                </th>
+                <th style="margin-left: 2%;">
+                    @Html.DisplayNameFor(model => model.d_location4)
+                </th>
+                <th style="margin-left: 2%;">
+                    @Html.DisplayNameFor(model => model.bdf_price)
+                </th>
+            </tr>
+        </thead>
+        <tbody id="pushAdvertisingStatistics">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <img src="~/Content/ajax-loader.gif" />
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="statistics" style="text-align: left;">
+    <p>總共有<span id="total">0</span>個播點</p>
+    <p>共加值了<span id="bonusTotal">0</span>個播點</p>
+    <p>播點價格總計：<span id="totalPrice">0</span>元(系統自動帶出)</p>
+</div>
+<div>
+    <button id="confirm">確定</button>&nbsp;&nbsp;<button id="cancel">取消</button>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/Advertising/bonusBroadcast")
+}

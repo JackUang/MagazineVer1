@@ -1,0 +1,145 @@
+﻿@model MagazineVer1.Models.ViewModels.Web.ResAdvertisingPublishedContent
+@{
+    ViewBag.Title = "廣告刊登內容";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<span style="color:red"></span>
+<div>
+    <table>
+        <tr>
+            <td>類別：<span style="color:red">@Model.ig_name</span></td>
+            <td>
+                &nbsp;
+            </td>
+            <td rowspan="2">
+                是否公開您的廣告?(公開廣告可讓非社區、社群、社團成員看到您的廣告)：
+                <span style="color:red">
+                    @if (@Model.i_open)
+                    {
+                        <p>是</p>
+                    }
+                    else
+                    {
+                        <p>否</p>
+                    }
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>原價：<span style="color:red">@Model.ig_price</span></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>刊登期：<span style="color:red">@Model.ip_name</span></td>
+            <td>
+                &nbsp;
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td rowspan="3">天數：<span style="color:red">@Model.ip_day</span>&nbsp;天&nbsp;&nbsp;折數=<span style="color:red">@Model.ip_discount</span>&nbsp;折&nbsp;&nbsp;打折後：<span style="color:red">@(Model.ig_price * Model.ip_discount / 100)</span>&nbsp;元</td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <div>
+        刊登地點&nbsp;&nbsp;縣市：
+        <span style="color:red">
+            @Model.i_location1
+        </span>
+        &nbsp;&nbsp;&nbsp;
+        鄉鎮市區：
+        <span style="color:red">
+            @Model.i_location2
+        </span>
+    </div>
+    <br />
+    <div>
+        標題：<span style="color:red">@Model.i_name</span>
+    </div>
+    <br />
+    <div>
+        <p>內容：</p>
+        <p style="color:red">@Model.i_content</p>
+    </div>
+</div>
+<div>
+    到期日：<span style="color:red">@Model.i_expired_day.ToString("yyyy/MM/dd")</span>
+</div>
+<div>
+    <div>既有圖片或上傳新的圖片(最多共五張)</div>
+    <div>
+        @if (!string.IsNullOrEmpty(Model.i_pic1))
+        {
+            <img src="@Model.i_pic1" style="max-width: 150px; max-height: 150px;" />
+        }
+        @if (!string.IsNullOrEmpty(Model.i_pic2))
+        {
+            <img src="@Model.i_pic2" style="max-width: 150px; max-height: 150px;" />
+        }
+        @if (!string.IsNullOrEmpty(Model.i_pic3))
+        {
+            <img src="@Model.i_pic3" style="max-width: 150px; max-height: 150px;" />
+        }
+        @if (!string.IsNullOrEmpty(Model.i_pic4))
+        {
+            <img src="@Model.i_pic4" style="max-width: 150px; max-height: 150px;" />
+        }
+        @if (!string.IsNullOrEmpty(Model.i_pic5))
+        {
+            <img src="@Model.i_pic5" style="max-width: 150px; max-height: 150px;" />
+        }
+    </div>
+</div>
+<div class="col-sm-12">
+    <p>
+        <label>URL：</label><span style="color:red">@Model.i_URL</span>
+    </p>
+    <p>
+        <label>LINE URL：</label><span style="color:red">@Model.i_LINE</span>
+    </p>
+</div>
+
+<div>
+    <p>
+        共加值了
+        @if (null == Model.BeaconDevices || 0 >= Model.BeaconDevices.Count)
+        {
+            <span style="color:red">0</span>
+        }
+        else
+        {
+            <span style="color:red">@Model.BeaconDevices.Count</span>
+        }
+        個播點
+    </p>
+    <br />
+    <p>
+        @if (null != Model.BeaconDevices && 0 < Model.BeaconDevices.Count)
+        {
+            foreach (var item in Model.BeaconDevices)
+            {
+                <span style="color:red">@item.d_name</span><span>&nbsp;&nbsp;</span>
+            }
+        }
+    </p>
+</div>
+<br />
+<br />
+<div>
+    <button id="confirm">確定</button>
+</div>
+
+@section scripts
+{
+    <script>
+        $('#confirm').click(function () {
+            window.history.back();
+        });
+    </script>
+}
+

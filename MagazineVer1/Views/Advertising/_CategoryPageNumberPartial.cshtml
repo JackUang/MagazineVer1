@@ -1,0 +1,9 @@
+﻿@model IPagedList<MagazineVer1.Models.uv_ClassifiedAdsSearch>
+
+@Html.PagedListPager(Model,
+    page => Url.Action("Category",
+    new
+    {
+        id = @Url.RequestContext.RouteData.Values["id"],
+        Page = page
+    }))

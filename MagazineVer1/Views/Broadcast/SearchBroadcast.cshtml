@@ -1,0 +1,141 @@
+﻿@model IEnumerable<MagazineVer1.Models.ViewModels.Web.BroadcastViewModels>
+
+@{
+    ViewBag.Title = "推播廣告";
+}
+
+<div>
+    <table style="margin-left:auto; margin-right:auto;">
+        <tr>
+            <td style="padding: 2px;display: inline-block;">縣市</td>
+            <td style="padding: 2px;display: inline-block;">
+                @using (Ajax.BeginForm("GetTownshipCityList", new AjaxOptions { UpdateTargetId = "ddlTownshipCityList" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <span class="dropdownlist1">
+                        @Html.DropDownList("ddlCountyCity", ViewBag.DDLCountyCityList as IEnumerable<SelectListItem>, new { onchange = "ddlCountyCitySubmit($(this).parents('form'));" })
+                    </span>
+                }
+            </td>
+            <td style="padding: 2px;display: inline-block;">鄉鎮市區</td>
+            <td style="padding: 2px;display: inline-block;">
+                <span id="ddlTownshipCityList">
+                    <select>
+                        <option value="">請選擇</option>
+                    </select>
+                </span>
+            </td>
+            <td style="padding: 2px;display: inline-block;">播點種類</td>
+            <td style="padding: 2px;display: inline-block;">
+                <span id="ddlBroadcastTypeList">
+                    <select>
+                        <option value="">請選擇</option>
+                    </select>
+                </span>
+            </td>
+            <td style="padding: 2px;display: inline-block;">播點名稱</td>
+            <td style="padding: 2px;display: inline-block;">
+                <input type="text" id="keywords" name="keywords" value="" />
+            </td>
+            <td style="padding: 2px;display: inline-block;">
+                <button id="search" name="search" onclick="search();">搜尋</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" style="padding: 2px;display: inline-block;">
+                <p id="searchError" style="color:red;"></p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="searchResult">
+    @Html.Partial("_SearchBroadcastResultPartial", Model)
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/Broadcast/broadcastList.js"></script>
+    <script>
+        function ddlCountyCitySubmit(form) {
+
+            // 清空 鄉鎮市區 與 類別 選單內容
+            if ('' === form.context.value) {
+                $("#ddlTownshipCityList").html('<select><option value="">請選擇</option></select>');
+                $("#ddlBroadcastPointType").html('<select><option value="">請選擇</option></select>');
+                return;
+            }
+            form.submit();
+        }
+
+        function ddlTownshipCitySubmit(form) {
+            form.submit();
+        }
+
+        function search() {
+            var county = $("#ddlCountyCity option:selected").val();
+            var township = $("#ddlTownshipCity option:selected").val();
+            var broadcastPointType = $("#ddlBroadcastPointType option:selected").val();
+            var keywords = $("#keywords").val();
+            var dataType = 'false';
+
+
+            //if (undefined === county || '' === county || '%' === county) {
+            //    $("#searchError").html('請選擇縣市');
+            //    return;
+            //}
+
+            $("#searchError").html('');
+            if ('' !== county && (undefined === township || '' === township)) {
+                $("#searchError").html('請選擇鄉鎮市區');
+                township = '';
+                return;
+            }
+
+            if ('' === county) {
+                dataType = 'true';
+            }
+
+            var formData = {
+                getDataType: dataType,
+                county: county,
+                township: township,
+                broadcastPointType: broadcastPointType,
+                keywords: keywords
+            };
+
+            $.ajax({
+                url: "@Url.Action("SearchBroadcastResult")",
+                type: "POST",
+                data: formData,
+                success: function (data, textStatus, jqXHR) {
+                    $("#searchResult").html(data);
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+
+        }
+
+        var refresh = window.sessionStorage["SearchBroadcast"];
+        $(window).load(function () {
+            if (undefined !== refresh) {
+                refresh = true;
+                location.reload();
+            }
+        });
+
+        window.onunload = SayGoodbye;
+        function SayGoodbye() {
+            if (undefined === refresh) {
+                window.sessionStorage["SearchBroadcast"] = true;
+            }
+            if (true === refresh) {
+                sessionStorage.removeItem('SearchBroadcast');
+            }
+        }
+    </script>
+}
+

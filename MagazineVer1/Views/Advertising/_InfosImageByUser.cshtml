@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MagazineVer1.Models.Infos>
+
+
+<table class="table-hidden">
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (!string.IsNullOrEmpty(item.i_pic1))
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="infosImage" value="@item.i_pic1">
+                    </td>
+                    <td>
+                        <img src="@item.i_pic1" alt="" class="img" />
+                    </td>
+                </tr>
+            }
+            if (!string.IsNullOrEmpty(item.i_pic2))
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="infosImage" value="@item.i_pic2">
+                    </td>
+                    <td>
+                        <img src="@item.i_pic2" alt="" class="img" />
+                    </td>
+                </tr>
+            }
+            if (!string.IsNullOrEmpty(item.i_pic3))
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="infosImage" value="@item.i_pic3">
+                    </td>
+                    <td>
+                        <img src="@item.i_pic3" alt="" class="img" />
+                    </td>
+                </tr>
+            }
+            if (!string.IsNullOrEmpty(item.i_pic4))
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="infosImage" value="@item.i_pic4">
+                    </td>
+                    <td>
+                        <img src="@item.i_pic4" alt="" class="img" />
+                    </td>
+                </tr>
+            }
+            if (!string.IsNullOrEmpty(item.i_pic5))
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="infosImage" value="@item.i_pic5">
+                    </td>
+                    <td>
+                        <img src="@item.i_pic5" alt="" class="img" />
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

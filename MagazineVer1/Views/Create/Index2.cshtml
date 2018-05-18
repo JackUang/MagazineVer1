@@ -1,0 +1,51 @@
+﻿@model MagazineVer1.Models.ViewModels.InfosView
+@*匯入JavaScript*@
+@section scripts
+{
+    @*匯入驗證與AJAX所須的JavaScript*@
+    @Scripts.Render("~/bundles/jqueryval")
+    @*匯入本頁面的JavaScript*@
+    @Scripts.Render("~/jQuery/Home/InfosList.js")
+}
+@*標題*@
+<div class="page-header">
+    <h1>廣告列表</h1>
+</div>
+@*建立搜尋文章所須的表單*@
+@using (Ajax.BeginForm("List", "Create", new AjaxOptions { UpdateTargetId = "InfosListBlock", InsertionMode = InsertionMode.Replace }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model=>model.Search,new { @class = "col-xs-4 col-md-1 form-label" })
+        <div class="col-xs-8 col-md-3 input-group">
+            @Html.TextBoxFor(model=>model.Search,new { @class="form-control"})
+            <div class="input-group-btn">
+                <input class="btn btn-primary" type="submit" value="搜尋" />
+            </div>
+        </div>
+    </div>
+}
+
+@*載入文章列表內容*@
+<div id="InfosListBlock">
+    @Html.Action("List","Create")
+</div>
+@*判斷是否有登入，登入後才可使用新增文章*@
+@if (User.Identity.IsAuthenticated)
+{
+    @*新增文章按鈕，並設定使用AJAX取得內容後開啟跳窗*@
+    @Ajax.ActionLink("新增文章", "Add", "Create", null,
+        new AjaxOptions { UpdateTargetId = "CreateInfosModal", InsertionMode = InsertionMode.Replace },
+        new { @class = "btn btn-default", @data_toggle = "modal", @data_target = "#CreateInfosModal" })
+    @*新增文章預留表單跳窗*@
+    <div>
+        <div class="modal fade" id="CreateInfosModal" tabindex="-1" role="dialog" aria-labelledby="CreateInfosModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="margin-right: 70%;margin-left: -20%;" >
+            </div>
+            </div>
+    </div>
+}
+@*else
+{
+    <text>要新增文章請先</text>
+    @Html.ActionLink("登入", "Login", "Account")
+}*@

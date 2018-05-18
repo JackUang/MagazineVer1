@@ -1,0 +1,49 @@
+﻿@*@model IEnumerable<MagazineVer1.Models.View_BeaconDevice_LF_DeviceInfo_LF_Info_LF_InfoGroup>*@
+@*@model IEnumerable<MagazineVer1.Models.View_AspNetUsers_Infos>*@
+@model IEnumerable<MagazineVer1.Models.View_AspNetUsers_Infos>
+@{
+
+    ViewBag.Title = "SearchResult";
+}
+
+<h2>SearchResult</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>標題</td>
+            <td>內容</td>
+            <td>圖片1</td>
+            <td>圖片2</td>
+            <td>圖片3</td>
+            <td>圖片4</td>
+            <td>圖片5</td>
+            <td>連結</td>
+            <td>LINE</td>
+        </tr>
+    </thead>
+
+@{
+    var a = @User.Identity.Name;
+    var b="999@b.c";
+}    
+
+    <tbody>
+        @foreach (var item in this.Model)
+        {
+            <tr>
+                @*@Url.Content("~/pictures/" + @ViewBag.UName + "/" + item.FileName)*@
+                <td>@item.i_name</td>
+                <td>@item.i_content</td>
+                <td><img src="@Url.Content("~/pictures/"+item.UserName+"/"+item.i_pic1)" border="0" width="100" height="100" /></td>
+                <td><img src="@Url.Content("~/pictures/"+item.UserName+"/"+item.i_pic2)" border="0" width="100" height="100" /></td>
+                <td><img src="@Url.Content("~/pictures/"+item.UserName+"/"+item.i_pic3)" border="0" width="100" height="100" /></td>
+                <td><img src="@Url.Content("~/pictures/"+item.UserName+"/"+item.i_pic4)" width="100" height="100" /></td>
+                <td><img src="@Url.Content("~/pictures/"+item.UserName+"/"+item.i_pic5)" width="100" height="100" /></td>
+                <td><a href="@Html.DisplayFor(modelItem => item.i_URL)">@Html.DisplayFor(modelItem => item.i_URL)</a></td>
+                <td><a href="@Html.DisplayFor(modelItem => item.i_LINE)">@Html.DisplayFor(modelItem => item.i_LINE)</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+       

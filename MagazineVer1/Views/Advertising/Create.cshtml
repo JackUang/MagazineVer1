@@ -1,0 +1,187 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "新增廣告刊登";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/Content/jquery-ui.css">
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css  ">
+
+    <style type="text/css">
+        /*上傳圖片*/
+        .img {
+            max-width: 150px;
+            max-height: 150px;
+            margin: 5px;
+        }
+
+        .add-file-bottom {
+            display: inline-block;
+            color: #444;
+            border: 1px solid #CCC;
+            background: #DDD;
+            box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+            cursor: pointer;
+            vertical-align: middle;
+            max-width: 100px;
+            padding: 5px;
+            text-align: center;
+        }
+
+            .add-file-bottom:active {
+                color: red;
+                box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+            }
+
+        .table-hidden tbody {
+            overflow-y: auto; /*設定卷軸 auto 是有超過我的高度的時候才會出現卷軸*/
+            height: 350px; /*自己設定*/
+            display: block;
+        }
+
+        .table-hidden tr {
+            width: 100%;
+            display: inline-table;
+        }
+        /*因為 display: block 打壞了 tbody 的結構，
+          所以 thead 的 tr 跟 tbody 的 td 寬度拆開了，
+          所以必須重新設定表格的寬度，
+          但是 tbody 有包括卷軸 針對bootstrap 去修正卷軸
+        */
+        .table-hidden thead th {
+            width: 400px;
+        }
+        /*因為 tbody 多了卷軸 尺寸多了 17px*/
+        .table-hidden tbody td {
+            width: 383px;
+        }
+    </style>
+}
+
+<p style="display: -webkit-inline-box;">目前刊登數量：<span id="createCount">0</span></p>
+
+<h2 style="font-weight: bolder;display:block;">@ViewBag.Title</h2>
+
+<div>
+    <table>
+        <tr style="text-align: left;">
+            <td style="display: inline-block;">類別：</td>
+            <td style="display: inline-block;">
+                <select id="infoGroupp">
+                    <option value="">=== 請選擇 ===</option>
+                </select>
+            </td>
+            <td rowspan="2" style="display: inline-block;">
+                <form>
+                    是否公開您的廣告?(公開廣告可讓非社區、社群、社團成員看到您的廣告)
+                    <input type="radio" name="isPublic" value="y"> 是&nbsp;&nbsp;
+                    <input type="radio" name="isPublic" value="n" checked> 否
+                </form>
+            </td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="display: inline-block;">原價：<span id="infoGrouppPrice">0</span></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="display: inline-block;">刊登期：</td>
+            <td style="display: inline-block;">
+                <select id="infoPrices">
+                    <option value="">=== 請選擇 ===</option>
+                </select>
+            </td>
+            <td style="display: inline-block;">&nbsp;</td>
+        </tr>
+        <tr style="text-align: left;">
+            <td rowspan="3" style="display: inline-block;">天數：<span id="infoPriceDay">0</span>&nbsp;天&nbsp;&nbsp;折數=<span id="infoPriceDiscount">0</span>&nbsp;折&nbsp;&nbsp;打折後：<span id="discountedPrice">0</span>&nbsp;元</td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <div id="inputErrorMsg" style="color:red"></div>
+    <p style="text-align: left;">請選擇刊登地點:</p>
+    <div style="text-align: left;display: -webkit-inline-box;margin-bottom: 3%;margin-top: 3%;">
+        <p>縣市</p>
+        <select id="countyCity">
+            <option value="">== 請選擇 ==</option>
+        </select><p>鄉鎮市區</p>
+        <select id="townshipCity">
+            <option value="">== 請選擇 ==</option>
+        </select>
+    </div>
+    <br />
+    <div>
+        <input id="title" type="text" placeholder="請輸入標題" style="width:500px;" />
+    </div>
+    <br />
+    <div>
+        <textarea id="contents" cols="50" rows="5" placeholder="請輸入內容"></textarea>
+    </div>
+</div>
+<div style="text-align: left;">
+    到期日：<label id="expiredDay"></label>
+</div>
+<div>
+    <div>請選擇既有圖片或上傳新的圖片(最多共五張)</div>
+    @if (true == Request.IsAuthenticated)
+    {
+        <div>
+            <button type="button" class="btn" id="userImage">選擇圖片</button>
+        </div>
+        <br />
+    }
+    <div class="col-sm-12">
+        <label id="uploaderLabel">
+            <input type="file" accept=".jpeg, .jpg, .png, .gif, .bmp" id="uploader" name="file" multiple style="display:none;">
+            <div class="add-file-bottom">上傳圖片</div>
+        </label>
+        <p style="color:red;" id="errorMsg"></p>
+        <p style="color:red;" id="refresh"></p>
+        <div id="previewImg">
+        </div>
+
+    </div>
+</div>
+<div class="col-sm-12" style="display: inline-flex;margin-bottom: 3%;text-align: left;">
+    <p style="margin-right: 2%;">
+        <label>URL：</label><input type="text" name="url" id="url" value="" />
+    </p>
+    <p>
+        <label>LINE URL：</label><input type="text" name="lineUrl" id="lineUrl" value="" />
+    </p>
+</div>
+<div>
+    <button id="confirm">確定</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button id="cancel">取消</button>
+</div>
+
+<div id="dialog-confirm" style="display: none;">
+    <p>請問需要加值播點刊登嗎?</p>
+    <p>是：可以指定加值刊登播點。</p>
+    <p>否：結束新增刊登流程，前往結帳。</p>
+</div>
+
+<div id="dialog-published" style="display: none;">
+    <p>此筆廣告已存放於您的購物車</p>
+</div>
+
+<div id="dialog-limit" style="display: none;">
+    <p>刊登廣告已達上限，請先結帳在重新進入刊登，謝謝~!</p>
+</div>
+
+@if (true == Request.IsAuthenticated)
+{
+    <div id="dialog-images" style="display: none;">
+        @Html.Action("ImageByUser")
+    </div>
+}
+
+@section scripts
+{
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @Scripts.Render("~/bundles/Advertising/create")
+    @*<script src="~/Scripts/Advertising/create.js"></script>*@
+}

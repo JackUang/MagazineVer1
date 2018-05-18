@@ -1,0 +1,11 @@
+﻿@using (Ajax.BeginForm("GetCategory", new AjaxOptions { UpdateTargetId = "ddlCategoryList" }))
+{
+    @Html.AntiForgeryToken()
+    <span>
+        @Html.DropDownList("ddlTownshipCity", ViewBag.DDLTownshipCityList as IEnumerable<SelectListItem>, "請選擇鄉鎮市區", new { onchange= "ddlTownshipCitySubmit($(this).parents('form'));" })    
+        @Html.Hidden("countyCity", (string)ViewBag.County)
+    </span>
+}
+
+
+                                                                                

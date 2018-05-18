@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "廣告文創";
+}
+<div class="tab-content" style="text-align: center; margin-top: 3%; color: #940000;">
+    <div class="tab-pane active" id="panel-767192">
+        <div class="container body-content" style="text-align: center;margin-top: 2%;">
+            @model IEnumerable<MagazineVer1.Models.InfoGroupp>
+            <style>
+                .ProductImg {
+                    height: 20px;
+                }
+            </style>
+
+            <table style="text-align:center;
+                   margin:auto;
+                  ">
+                <tbody>
+                    <tr>
+                        <td style="margin: 0px;">縣市地區:@using (Ajax.BeginForm("SelectFromDDL1", new AjaxOptions { UpdateTargetId = "dropdownlist2" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <span class="dropdownlist1">
+                                    @Html.DropDownList("VCounty", new SelectList(ViewBag.BCounty), "請選擇", new { onchange = "doDdl1Submit($(this).parents('form'));"})
+                                </span>
+                            }
+                        </td>
+                        <td style="margin-left: 1%;">鄉鎮市區:<span id="dropdownlist2">
+                                <select>
+                                    <option value="">請選擇</option>
+                                </select>
+                            </span>
+                        </td>
+                     <td>
+                            <span>廣告類別:</span>
+                        
+                            <span id="dropdownlist3">
+                                <select>
+                                    <option value="">請選擇</option>
+                                </select>
+                            </span>
+                        </td>
+                        <td style="margin: 1px;">
+                            <span>
+                                @Html.AntiForgeryToken()
+                                <input type="text" id="other" name="other"value="關鍵字查詢" />
+                                <button id="search" name="search" onclick="search();">搜尋</button>
+                            </span>
+                        </td>
+                        <td>
+                            <span id="ddlError" style="color:red;">@ViewBag.ErrorMessage</span>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12 col-xs-15" style="top:20px;
+                             text-align:center;">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="thumbnail">
+                                    <a href="@Url.Action("GroupList",new { id=item.ig_id})" class="btn btn-default" role="button">
+                                        <img src="@item.ig_pic" title="@item.ig_name" width="150" />
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="searchResult"></div>
+
+@section scripts
+{
+    <script>
+
+            function doDdl1Submit(form) {
+                form.submit();
+            }
+
+            function doDdl2Submit(form) {
+                form.submit();
+            }
+
+            function doDdl3Submit(form) {
+                form.submit();
+            }
+
+            function search() {
+                $("#searchResult").html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>');
+
+                @*var data = {
+                county: $("#VCounty option:selected").val(),
+                town: $("#town option:selected").val(),
+                group: $("#group option:selected").val(),
+                other: $("#other").val(),
+            };
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("SearchSubmit")',
+                data: data,
+                success: function (data) {
+                    $("#searchResult1").html(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                },
+                dataType: "html"
+            });*@
+                var county = $("#VCounty option:selected").val();
+                var town = $("#town option:selected").val();
+                var group = $("#group option:selected").val();
+                var other = $("#other").val();
+
+                if (null === county || "" === county ) {
+                    $("#ddlError").html('請至少選擇縣市名稱');
+                    return false;
+                }
+
+                window.open("@Url.Action("SearchSubmit")?county=" + county + "&town=" + town + "&group=" + group + "&other=" + other);
+            }
+    </script>
+}
+

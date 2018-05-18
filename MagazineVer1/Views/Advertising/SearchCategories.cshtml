@@ -1,0 +1,140 @@
+﻿@model IEnumerable<MagazineVer1.Models.InfoGroupp>
+
+@{
+    ViewBag.Title = "分類廣告";
+    Dictionary<int, int> advertisingCategoryCount = ViewBag.AdvertisingCategoryCount as Dictionary<int, int>;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <table style="margin-left:auto; margin-right:auto; display:block;">
+        <tr>
+            <td style="padding: 7px;display: inline-block;">縣市</td>
+            <td style="padding: 2px;display: inline-block;">
+                @using (Ajax.BeginForm("GetTownshipCityList", new AjaxOptions { UpdateTargetId = "ddlTownshipCityList" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <span class="dropdownlist1">
+                        @Html.DropDownList("ddlCountyCity", ViewBag.DDLCountyCityList as IEnumerable<SelectListItem>, new { onchange = "ddlCountyCitySubmit($(this).parents('form'));" })
+                    </span>
+                }
+            </td>
+            <td style="padding: 2px;display: inline-block;">鄉鎮市區</td>
+            <td style="padding: 2px;display: inline-block;">
+                <span id="ddlTownshipCityList">
+                    <select>
+                        <option value="">請選擇</option>
+                    </select>
+                </span>
+            </td>
+            <td style="padding: 2px;display: inline-block;">類別</td>
+            <td style="padding: 2px;display: inline-block;">
+                <span id="ddlCategoryList">
+                    <select>
+                        <option value="">請選擇</option>
+                    </select>
+                </span>
+            </td>
+            <td style="padding: 2px;display: inline-block;">關鍵字</td>
+            <td style="padding: 2px;display: inline-block;">
+                <input type="text" id="keywords" name="keywords" value="" />
+            </td>
+            <td style="padding: 2px;display: inline-block;">
+                <button id="search" name="search" onclick="search();">搜尋</button>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 2px;display: inline-block;">
+                <p id="searchError" style="color:red;"></p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-15" style="top:20px;
+                             text-align:center;">
+                @if (null != Model)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="thumbnail">
+                                <a href="@Url.Action("Category", new { id = item.ig_id})" class="btn btn-default" role="button">
+                                    <img src="@item.ig_pic" title="@item.ig_name" width="150" />
+                                </a>
+                                <h4>@(advertisingCategoryCount.ContainsKey(item.ig_id) ? advertisingCategoryCount[item.ig_id] : 0)</h4>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        function ddlCountyCitySubmit(form) {
+            // 請空 鄉鎮市區 與 類別 選單內容
+            if ('%' === form.context.value) {
+                $("#ddlTownshipCityList").html('<select><option value=""></option></select>');
+                $("#ddlCategoryList").html('<select><option value=""></option></select>');
+                return;
+            }
+            form.submit();
+        }
+
+        function ddlTownshipCitySubmit(form) {
+            form.submit();
+        }
+
+        function search() {
+            var county = $("#ddlCountyCity option:selected").val();
+            var township = $("#ddlTownshipCity option:selected").val();
+            var category = $("#ddlCategory option:selected").val();
+            var keywords = $("#keywords").val();
+
+
+            //if (undefined === county || '' === county || '%' === county) {
+            //    $("#searchError").html('請選擇縣市');
+            //    return;
+            //}
+
+            if (undefined === township || '' === township) {
+                //$("#searchError").html('請選擇鄉鎮市區');
+                township = '';
+                //return;
+            }
+
+            if (undefined === category || '' === category) {
+                category = "-1";
+            }
+
+            location.href = "@Url.Action("ClassifiedAdsSearch")?county=" + county + "&township=" + township + "&category=" + category + "&keywords=" + keywords;
+        }
+
+        var refresh = window.sessionStorage["SearchCategories"];
+        $(window).load(function () {
+            if (undefined !== refresh) {
+                refresh = true;
+                location.reload();
+            }
+        });        
+
+        window.onunload = SayGoodbye;
+        function SayGoodbye() {
+            if (undefined === refresh) {
+                window.sessionStorage["SearchCategories"] = true;
+            }
+            if (true === refresh) {
+                sessionStorage.removeItem('SearchCategories');
+            }
+        }
+    </script>
+}

@@ -1,0 +1,32 @@
+﻿@model MagazineVer1.Models.OrderRecord
+
+@{
+    ViewBag.Title = "通知付款";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.or_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bill)
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            <a href="@Url.Action("OrderDetails", new { on =  Model.or_number})">@Html.DisplayFor(model => model.or_number)</a>
+            
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.bill)
+        </td>
+    </tr>
+</table>
+<div>
+    <a href="@Url.Action("PaymentNotice", new { on =  Model.or_number})" class="btn btn-warning" role="button">確定</a>
+    <a href="@Url.Action("PublishedInquire")" class="btn btn-warning" role="button">取消</a>
+</div>

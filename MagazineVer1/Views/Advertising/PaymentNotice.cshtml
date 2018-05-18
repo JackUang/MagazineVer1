@@ -1,0 +1,137 @@
+﻿@model MagazineVer1.Models.ViewModels.Web.ResPaymentNotice
+@{
+    ViewBag.Title = "通知付款";
+}
+
+@section styles
+{
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css  ">
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table" style="text-align:left;">
+    <tr>
+        <td>訂單編號：</td>
+        <td><span id="orderNumber">@Model.OrderNumber</span></td>
+    </tr>
+    <tr>
+        <td>應繳金額：</td>
+        <td>NT$<span id="totalPrice">@Model.Price</span></td>
+    </tr>
+    <tr>
+        <td>匯款帳號末五碼：</td>
+        <td>
+            <input type="text" value="" id="remittanceAccount" />
+            <span id="remittanceAccount-erroe" style="display:none; color:red;">輸入匯款帳號不足五碼</span>
+        </td>
+    </tr>
+    <tr>
+        <td>姓名：</td>
+        <td>
+            <input type="text" value="" id="name" />
+        </td>
+    </tr>
+    <tr>
+        <td>金額：</td>
+        <td>
+            <input type="text" value="" id="price" />元整
+            <span id="price-error" style="display:none; color:red;">輸入金額與應繳金額不符</span>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>
+            <button id="confirm">確定</button>&nbsp;&nbsp;<button id="cancel">取消</button>
+        </td>
+    </tr>
+</table>
+
+<div id="dialog-saveing" style="display: none;">
+    <p>資料儲存中...</p>
+</div>
+
+<div id="dialog-saveingError" style="display: none;">
+    <p>資料儲存失敗</p>
+</div>
+
+@section scripts
+{
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $('#cancel').click(function () {
+            window.history.back();
+        });
+        $('#confirm').click(function () {
+            $('#price-error').hide();
+            $('#remittanceAccount-erroe').hide();
+
+            var totalPrice = $('#totalPrice').text();
+            var inputPrice = $('#price').val(); // 金額
+            var name = $('#name').val();
+            var remittanceAccount = $('#remittanceAccount').val();
+            var orderNumber = $('#orderNumber').text();
+
+            if (5 > remittanceAccount.length) {
+                $('#remittanceAccount-erroe').show();
+                return;
+            }
+
+            
+            if (totalPrice != inputPrice) {
+                $('#price-error').show();
+                return;
+            }
+
+            $("#dialog-saveing").dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true
+            }).parents(".ui-dialog").find(".ui-dialog-titlebar").remove();
+
+            var postData = {
+                on: orderNumber,
+                name: name,
+                price: inputPrice
+            }
+
+            $.ajax({
+                url: '/Advertising/PaymentNotice',
+                type: 'POST',
+                data: JSON.stringify(postData),
+                dataType: 'json',
+                contentType: 'application/json',
+                cache: false,
+                success: function (data) {
+                    console.log(data);
+                    $("#dialog-saveing").dialog("close");
+                    if (true == data.status) {
+                        window.location = "/Advertising/AccomplishNotice";
+                    }
+                    else {
+                        $("#dialog-saveingError").dialog({
+                            resizable: false,
+                            height: "auto",
+                            width: 400,
+                            modal: true
+                        })
+                    }
+                },
+                error: function (errorData) {
+                    console.log(errorData);
+                    $("#dialog-saveing").dialog("close");
+
+                    $("#dialog-saveingError").dialog({
+                        resizable: false,
+                        height: "auto",
+                        width: 400,
+                        modal: true
+                    })
+                }
+            });
+        });
+    </script>
+}

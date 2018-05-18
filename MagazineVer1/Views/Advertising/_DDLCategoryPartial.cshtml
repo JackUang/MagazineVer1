@@ -1,0 +1,5 @@
+﻿<span>
+    @Html.AntiForgeryToken()
+    @Html.DropDownList("ddlCategory", ViewBag.Category as IEnumerable<SelectListItem>, "請選擇類別")
+    @Html.Hidden("countyCity", (string)ViewBag.County)
+</span>

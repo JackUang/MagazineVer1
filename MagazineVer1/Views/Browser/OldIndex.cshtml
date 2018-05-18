@@ -1,0 +1,209 @@
+﻿
+
+@{
+    ViewBag.Title = "廣告文創";
+}
+
+@model IEnumerable<MagazineVer1.Models.InfoGroupp>
+<style>
+    .ProductImg {
+        height: 20px;
+    }
+</style>
+
+@*@using (Ajax.BeginForm("SelectFromDDL1", new AjaxOptions { UpdateTargetId = "dropdownlist2" }))
+{
+    <span class="dropdownlist1">
+        @Html.DropDownList("cVCounty", new SelectList(ViewBag.BCounty), "==請選擇==", new
+{
+    onchange = "doDdl1Submit($(this).parents('form')); })
+</span>
+}*@
+            @*<div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12 col-xs-15" style="top:-25px;
+                         text-align:center;">
+                        @using (Ajax.BeginForm("Update", "Browser", FormMethod.Post, new AjaxOptions { UpdateTargetId = "updateView" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <span>
+
+                                    @*  @Html.DropDownList("VCounty",ViewBag.BCounty1)*@
+
+
+
+
+            @*&nbsp;地區 <select name="hRegion" style="width:80px" onchange="changeSelected(regionMap,this.value,this.form.dRegion,'');">
+                    <option></option>
+                    <option selected="">首頁</option>
+                    <option>基隆市</option>
+                    <option>台北市</option>
+                    <option>新北市</option>
+                    <option>桃園市</option>
+                    <option>新竹市</option>
+                    <option>新竹縣</option>
+                    <option>宜蘭縣</option>
+                    <option>苗栗縣</option>
+                    <option>台中市</option>
+                    <option>彰化縣</option>
+                    <option>南投縣</option>
+                    <option>雲林縣</option>
+                    <option>嘉義市</option>
+                    <option>嘉義縣</option>
+                    <option>台南市</option>
+                    <option>高雄市</option>
+                    <option>屏東縣</option>
+                    <option>澎湖縣</option>
+                    <option>花蓮縣</option>
+                    <option>台東縣</option>
+                    <option>金門縣</option>
+                    <option>連江縣</option>
+                </select>*@
+            @*&nbsp;類別 <select name="hCategory" style="width:80px" onchange="changeSelected(categoryMap,this.value,this.form.dCategory,'');">
+                            <option selected=""></option>
+                            <option>社區</option>
+                            <option>房仲</option>
+                            <option>代書</option>
+                            <option>融資</option>
+                            <option>娛樂</option>
+                            <option>餐飲</option>
+                            <option>食品</option>
+                            <option>家教</option>
+                            <option>正職</option>
+                            <option>粗工</option>
+                            <option>工讀</option>
+                            <option>專技</option>
+                            <option>門市</option>
+                            <option>清潔</option>
+                            <option>照護</option>
+                            <option>婚友</option>
+                            <option>寵物</option>
+                            <option>旅遊</option>
+                            <option>二手</option>
+                            <option>其他</option>
+                        </select>
+                        @Html.TextBox("InfoName2", null, new { @required = "required" })
+                        <input type="submit" value="Search" />
+                        </span>
+                }*@
+
+            @*@foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="thumbnail">
+                            <a href="@Url.Action("GroupList",new { id=item.ig_id})" class="btn btn-default" role="button">
+                                @*<img class="ProductImg" src="@item.ig_pic" title="@item.ig_name" />*@
+            @*<img src="@item.ig_pic" title="@item.ig_name" />*@
+            @*</a>
+                    </div>
+                </div>*@
+            @*      }*@
+
+            @*<div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/7PnMJAU.png" alt="Bootstrap Image Preview" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/LnRx4pi.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/P7VHJHY.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/EOOMvo2.png" style="height:230px;
+                             ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/9752q5o.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/Mjpzwcc.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/ufwPgfB.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/zjQXiSX.png" style="height:230px;
+                             ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/h3DDO61.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/bk7oa5d.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/bHAdKe8.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/ePYDYpC.png" style="height:230px;
+                             ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/ZZPkgsK.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/h5ZpSFg.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/zKrpYGn.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/XJdjA98.png" style="height:230px;
+                             ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/dU3yNUV.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/XCzqHvj.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/KlBbGmA.png" style="height:230px;
+                             ">
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <img src="http://i.imgur.com/iI3A4yy.png" style="height:230px;
+                             ">
+                    </div>
+                </div>*@
+
+            @*</div>
+                    </div>
+                </div>*@
+
+
+@section scripts
+{
+        <script>
+            function doDdl1Submit(form) {
+                form.submit();
+            }
+        </script>
+
+        }
+
+
